@@ -1,0 +1,15 @@
+! doctype
+
+html
+  head
+    title AngelNest
+    = stylesheet_link_tag :application
+    = javascript_include_tag :application
+    = csrf_meta_tags
+
+  body
+    - flash.each do |type, message|
+      .message class=type
+        p= message
+
+    == yield

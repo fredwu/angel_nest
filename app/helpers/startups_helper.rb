@@ -1,0 +1,2 @@
+module StartupsHelper
+end

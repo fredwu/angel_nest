@@ -1,0 +1,20 @@
+defaults: &defaults
+  adapter: mysql2
+  host: localhost
+  username: root
+  password:
+
+development:
+  <<: *defaults
+  database: angelnest_development
+
+test: &test
+  <<: *defaults
+  database: angelnest_test
+
+production:
+  <<: *defaults
+  database: angelnest_production
+
+cucumber:
+  <<: *test
