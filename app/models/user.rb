@@ -38,4 +38,16 @@ class User < ActiveRecord::Base
   validates :password, :presence     => true,
                        :confirmation => true,
                        :length       => { :within => 6..40 }
+
+  def is_admin?
+    !!is_admin
+  end
+
+  def is_startup?
+    venture.class == Startup
+  end
+
+  def is_angel?
+    venture.class == Angel
+  end
 end
