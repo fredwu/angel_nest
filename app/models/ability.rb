@@ -5,9 +5,9 @@ class Ability
     case
     when user.is_admin?
       can :manage, :all
-    when user.is_startup?
+    when user.is_entrepreneur?
       can :read, :all
-    when user.is_angel?
+    when user.is_investor?
       can :read, :all
     end
 

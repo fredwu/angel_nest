@@ -56,6 +56,14 @@ describe User do
     end
   end
 
+  describe "user permissions" do
+    it "responds to is_xxx?" do
+      User.new.respond_to?(:is_admin?).should be_true
+      User.new.respond_to?(:is_entrepreneur?).should be_true
+      User.new.respond_to?(:is_investor?).should be_true
+    end
+  end
+
   describe "user ventures" do
     it "has a venture" do
       User.new.association(:venture).class.should == ActiveRecord::Associations::BelongsToPolymorphicAssociation

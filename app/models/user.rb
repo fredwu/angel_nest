@@ -47,8 +47,10 @@ class User < ActiveRecord::Base
   def is_startup?
     venture.class == Startup
   end
+  alias :is_entrepreneur? :is_startup?
 
   def is_angel?
     venture.class == Angel
   end
+  alias :is_investor? :is_angel?
 end
