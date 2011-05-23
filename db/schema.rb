@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(:version => 20110523114309) do
     t.string   "name"
     t.string   "email",                                 :default => "", :null => false
     t.string   "password"
+    t.string   "venture_title"
     t.boolean  "is_admin"
     t.string   "encrypted_password",     :limit => 128, :default => "", :null => false
     t.string   "authentication_token"

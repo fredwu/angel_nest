@@ -4,6 +4,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string  :name
       t.string  :email
       t.string  :password
+      t.string  :venture_title
       t.boolean :is_admin
 
       t.database_authenticatable :null => false

@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
                   :email,
                   :password,
                   :password_confirmation,
+                  :venture_title,
                   :remember_me
 
   belongs_to :venture, :polymorphic => true
