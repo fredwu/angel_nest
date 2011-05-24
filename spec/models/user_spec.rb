@@ -71,17 +71,17 @@ describe User do
 
   describe "user ventures" do
     it "has a venture" do
-      User.new.association(:venture).class.should == ActiveRecord::Associations::BelongsToPolymorphicAssociation
+      User.new.association(:venture).should be_a(ActiveRecord::Associations::BelongsToPolymorphicAssociation)
     end
   end
 
   describe "user followers" do
     it "has followers" do
-      User.new.association(:followers).class.should == ActiveRecord::Associations::HasAndBelongsToManyAssociation
+      User.new.association(:followers).should be_a(ActiveRecord::Associations::HasAndBelongsToManyAssociation)
     end
 
     it "has followed users" do
-      User.new.association(:followings).class.should == ActiveRecord::Associations::HasAndBelongsToManyAssociation
+      User.new.association(:followings).should be_a(ActiveRecord::Associations::HasAndBelongsToManyAssociation)
     end
   end
 end

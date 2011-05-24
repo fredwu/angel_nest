@@ -15,6 +15,9 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.trackable
       t.lockable :lock_strategy => :failed_attempts, :unlock_strategy => :both
 
+      t.integer :venture_id
+      t.string  :venture_type
+
       t.timestamps
     end
 
