@@ -4,7 +4,9 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string  :name
       t.string  :email
       t.string  :password
-      t.boolean :is_admin
+      t.integer :followers_count, :default => 0
+      t.integer :followings_count, :default => 0
+      t.boolean :is_admin, :default => false
 
       t.database_authenticatable :null => false
       t.token_authenticatable

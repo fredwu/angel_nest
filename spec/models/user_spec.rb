@@ -61,7 +61,7 @@ describe User do
     end
   end
 
-  context "user attributes and associations" do
+  context "user functions and associations" do
     subject { User.new }
 
     describe "user permissions" do
@@ -82,31 +82,64 @@ describe User do
       end
 
       it "responds to 'is_entrepreneur?'" do
-        subject.is_entrepreneur?.should be_false
+        subject.is_entrepreneur?.should == false
       end
 
       it "responds to 'is_investor?'" do
-        subject.is_investor?.should be_false
+        subject.is_investor?.should == false
       end
 
       it "adds startups" do
         subject.startups << Startup.new
-        subject.is_entrepreneur?.should be_true
+        subject.is_entrepreneur?.should == true
       end
 
       it "adds angels" do
         subject.angels << Angel.new
-        subject.is_investor?.should be_true
+        subject.is_investor?.should == true
       end
     end
 
     describe "user followers" do
+      it "has user_followers (for quicker queries)" do
+        # subject.association(:user_followers).should be_a(ActiveRecord::Associations::HasManyAssociation)
+      end
+
       it "has followers" do
         subject.association(:followers).should be_a(ActiveRecord::Associations::HasAndBelongsToManyAssociation)
       end
 
       it "has followed users" do
         subject.association(:followings).should be_a(ActiveRecord::Associations::HasAndBelongsToManyAssociation)
+      end
+    end
+
+    describe "user followers functionality" do
+      subject { User.make! }
+      let(:target_user) { User.make! }
+
+      it "does not follow a user by default" do
+        subject.is_following?(target_user).should == false
+        target_user.is_followed_by?(subject).should == false
+        subject.followings.count.should == 0
+        target_user.followers.count.should == 0
+      end
+
+      it "follows another user" do
+        subject.follow(target_user)
+        subject.is_following?(target_user).should == true
+        target_user.is_followed_by?(subject).should == true
+        subject.followings.count.should == 1
+        target_user.followers.count.should == 1
+      end
+
+      it "unfollows another user" do
+        subject.follow(target_user)
+        subject.unfollow(target_user)
+        subject.is_following?(target_user).should == false
+        target_user.is_followed_by?(subject).should == false
+        subject.followings.count.should == 0
+        target_user.followers.count.should == 0
       end
     end
   end

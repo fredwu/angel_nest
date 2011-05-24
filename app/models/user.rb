@@ -60,4 +60,23 @@ class User < ActiveRecord::Base
   def is_investor?
     angels.present?
   end
+
+  def follow(target_user)
+    target_user.followers << self
+  end
+
+  def unfollow(target_user)
+    target_user.followers.delete(self)
+  end
+
+  def is_following?(target_user)
+    !!UserFollower.where(
+      :user_id     => target_user.id,
+      :follower_id => id
+    ).first
+  end
+
+  def is_followed_by?(target_user)
+    target_user.is_following?(self)
+  end
 end
