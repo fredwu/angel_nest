@@ -101,45 +101,14 @@ describe User do
     end
 
     describe "user followers" do
-      it "has user_followers (for quicker queries)" do
-        # subject.association(:user_followers).should be_a(ActiveRecord::Associations::HasManyAssociation)
-      end
+      it_behaves_like "followables"
 
       it "has followers" do
-        subject.association(:followers).should be_a(ActiveRecord::Associations::HasAndBelongsToManyAssociation)
+        subject.respond_to?(:followers).should be_true
       end
 
-      it "has followed users" do
-        subject.association(:followings).should be_a(ActiveRecord::Associations::HasAndBelongsToManyAssociation)
-      end
-    end
-
-    describe "user followers functionality" do
-      subject { User.make! }
-      let(:target_user) { User.make! }
-
-      it "does not follow a user by default" do
-        subject.is_following?(target_user).should == false
-        target_user.is_followed_by?(subject).should == false
-        subject.followings.count.should == 0
-        target_user.followers.count.should == 0
-      end
-
-      it "follows another user" do
-        subject.follow(target_user)
-        subject.is_following?(target_user).should == true
-        target_user.is_followed_by?(subject).should == true
-        subject.followings.count.should == 1
-        target_user.followers.count.should == 1
-      end
-
-      it "unfollows another user" do
-        subject.follow(target_user)
-        subject.unfollow(target_user)
-        subject.is_following?(target_user).should == false
-        target_user.is_followed_by?(subject).should == false
-        subject.followings.count.should == 0
-        target_user.followers.count.should == 0
+      it "has followings" do
+        subject.association(:followings).should be_a(ActiveRecord::Associations::HasManyAssociation)
       end
     end
   end

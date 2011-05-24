@@ -34,16 +34,18 @@ ActiveRecord::Schema.define(:version => 20110524055439) do
     t.datetime "updated_at"
   end
 
-  create_table "user_followers", :id => false, :force => true do |t|
-    t.integer  "user_id"
+  create_table "target_followers", :id => false, :force => true do |t|
     t.integer  "follower_id"
+    t.string   "follower_type"
+    t.integer  "target_id"
+    t.string   "target_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "user_followers", ["follower_id"], :name => "index_user_followers_on_follower_id"
-  add_index "user_followers", ["user_id", "follower_id"], :name => "index_user_followers_on_user_id_and_follower_id", :unique => true
-  add_index "user_followers", ["user_id"], :name => "index_user_followers_on_user_id"
+  add_index "target_followers", ["follower_id", "target_type", "target_id"], :name => "target_followers", :unique => true
+  add_index "target_followers", ["follower_id"], :name => "index_target_followers_on_follower_id"
+  add_index "target_followers", ["target_type", "target_id"], :name => "index_target_followers_on_target_type_and_target_id"
 
   create_table "user_ventures", :force => true do |t|
     t.integer  "user_id"
