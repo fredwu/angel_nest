@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110523114309) do
+ActiveRecord::Schema.define(:version => 20110524055439) do
 
   create_table "angels", :force => true do |t|
     t.string   "name"
@@ -45,11 +45,23 @@ ActiveRecord::Schema.define(:version => 20110523114309) do
   add_index "user_followers", ["user_id", "follower_id"], :name => "index_user_followers_on_user_id_and_follower_id", :unique => true
   add_index "user_followers", ["user_id"], :name => "index_user_followers_on_user_id"
 
+  create_table "user_ventures", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "venture_id"
+    t.string   "venture_type"
+    t.string   "venture_role"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "user_ventures", ["user_id", "venture_type", "venture_id"], :name => "index_user_ventures_on_user_id_and_venture_type_and_venture_id"
+  add_index "user_ventures", ["user_id"], :name => "index_user_ventures_on_user_id"
+  add_index "user_ventures", ["venture_type", "venture_id"], :name => "index_user_ventures_on_venture_type_and_venture_id"
+
   create_table "users", :force => true do |t|
     t.string   "name"
     t.string   "email",                                 :default => "", :null => false
     t.string   "password"
-    t.string   "venture_title"
     t.boolean  "is_admin"
     t.string   "encrypted_password",     :limit => 128, :default => "", :null => false
     t.string   "authentication_token"
@@ -67,8 +79,6 @@ ActiveRecord::Schema.define(:version => 20110523114309) do
     t.integer  "failed_attempts",                       :default => 0
     t.string   "unlock_token"
     t.datetime "locked_at"
-    t.integer  "venture_id"
-    t.string   "venture_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

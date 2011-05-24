@@ -61,27 +61,53 @@ describe User do
     end
   end
 
-  describe "user permissions" do
-    it "responds to is_xxx?" do
-      User.new.respond_to?(:is_admin?).should be_true
-      User.new.respond_to?(:is_entrepreneur?).should be_true
-      User.new.respond_to?(:is_investor?).should be_true
-    end
-  end
+  context "user attributes and associations" do
+    subject { User.new }
 
-  describe "user ventures" do
-    it "has a venture" do
-      User.new.association(:venture).should be_a(ActiveRecord::Associations::BelongsToPolymorphicAssociation)
-    end
-  end
-
-  describe "user followers" do
-    it "has followers" do
-      User.new.association(:followers).should be_a(ActiveRecord::Associations::HasAndBelongsToManyAssociation)
+    describe "user permissions" do
+      it "responds to is_xxx?" do
+        subject.respond_to?(:is_admin?).should be_true
+        subject.respond_to?(:is_entrepreneur?).should be_true
+        subject.respond_to?(:is_investor?).should be_true
+      end
     end
 
-    it "has followed users" do
-      User.new.association(:followings).should be_a(ActiveRecord::Associations::HasAndBelongsToManyAssociation)
+    describe "user ventures" do
+      it "responds to startups" do
+        subject.association(:startups).should be_a(ActiveRecord::Associations::HasManyThroughAssociation)
+      end
+
+      it "responds to angels" do
+        subject.association(:angels).should be_a(ActiveRecord::Associations::HasManyThroughAssociation)
+      end
+
+      it "responds to 'is_entrepreneur?'" do
+        subject.is_entrepreneur?.should be_false
+      end
+
+      it "responds to 'is_investor?'" do
+        subject.is_investor?.should be_false
+      end
+
+      it "adds startups" do
+        subject.startups << Startup.new
+        subject.is_entrepreneur?.should be_true
+      end
+
+      it "adds angels" do
+        subject.angels << Angel.new
+        subject.is_investor?.should be_true
+      end
+    end
+
+    describe "user followers" do
+      it "has followers" do
+        subject.association(:followers).should be_a(ActiveRecord::Associations::HasAndBelongsToManyAssociation)
+      end
+
+      it "has followed users" do
+        subject.association(:followings).should be_a(ActiveRecord::Associations::HasAndBelongsToManyAssociation)
+      end
     end
   end
 end

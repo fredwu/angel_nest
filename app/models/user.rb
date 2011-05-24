@@ -14,10 +14,19 @@ class User < ActiveRecord::Base
                   :email,
                   :password,
                   :password_confirmation,
-                  :venture_title,
                   :remember_me
 
-  belongs_to :venture, :polymorphic => true
+  has_many :user_ventures
+
+  has_many :startups,
+           :through     => :user_ventures,
+           :source      => :venture,
+           :source_type => 'Startup'
+
+  has_many :angels,
+           :through     => :user_ventures,
+           :source      => :venture,
+           :source_type => 'Angel'
 
   has_and_belongs_to_many :followers,
                           :class_name              => 'User',
@@ -44,13 +53,11 @@ class User < ActiveRecord::Base
     !!is_admin
   end
 
-  def is_startup?
-    venture.class == Startup
+  def is_entrepreneur?
+    startups.present?
   end
-  alias :is_entrepreneur? :is_startup?
 
-  def is_angel?
-    venture.class == Angel
+  def is_investor?
+    angels.present?
   end
-  alias :is_investor? :is_angel?
 end
