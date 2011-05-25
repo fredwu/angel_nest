@@ -10,30 +10,44 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110524055439) do
+ActiveRecord::Schema.define(:version => 20110525132902) do
 
   create_table "angels", :force => true do |t|
     t.string   "name"
     t.string   "tagline"
     t.string   "funds_to_offer"
     t.text     "description"
-    t.text     "meta"
     t.string   "logo"
     t.integer  "followers_count", :default => 0
     t.integer  "followed_count",  :default => 0
+    t.integer  "comments_count",  :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "comments", :force => true do |t|
+    t.text     "content"
+    t.boolean  "is_private",  :default => false
+    t.integer  "target_id"
+    t.string   "target_type"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "comments", ["is_private", "target_type", "target_id"], :name => "comments_by_type"
+  add_index "comments", ["user_id", "is_private", "target_type", "target_id"], :name => "comments_by_type_by_user"
+  add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
 
   create_table "startups", :force => true do |t|
     t.string   "name"
     t.string   "pitch"
     t.string   "funds_to_raise"
     t.text     "description"
-    t.text     "meta"
     t.string   "logo"
     t.integer  "followers_count", :default => 0
     t.integer  "followed_count",  :default => 0
+    t.integer  "comments_count",  :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -72,6 +86,8 @@ ActiveRecord::Schema.define(:version => 20110524055439) do
     t.string   "email",                                 :default => "",    :null => false
     t.integer  "followers_count",                       :default => 0
     t.integer  "followed_count",                        :default => 0
+    t.integer  "comments_count",                        :default => 0
+    t.integer  "micro_posts_count",                     :default => 0
     t.boolean  "is_admin",                              :default => false
     t.string   "encrypted_password",     :limit => 128, :default => "",    :null => false
     t.string   "authentication_token"

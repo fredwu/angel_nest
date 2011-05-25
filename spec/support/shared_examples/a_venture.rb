@@ -1,4 +1,7 @@
 shared_examples "a venture" do
+  it_behaves_like "commentables"
+  it_behaves_like "followables"
+
   subject { described_class.new }
 
   describe "associations" do
@@ -9,9 +12,5 @@ shared_examples "a venture" do
     it "has user ventures" do
       subject.association(:user_ventures).should be_a(ActiveRecord::Associations::HasManyAssociation)
     end
-  end
-
-  describe "followables" do
-    it_behaves_like "followables"
   end
 end

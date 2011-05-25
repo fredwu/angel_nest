@@ -100,6 +100,10 @@ describe User do
       end
     end
 
+    describe "micro posts" do
+      it_behaves_like "commentables"
+    end
+
     describe "user followers" do
       it_behaves_like "followables"
 

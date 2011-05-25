@@ -1,8 +1,6 @@
 class Startup < ActiveRecord::Base
-  include Followable
+  include Features::Followable
+  include Features::Commentable
 
   mount_uploader :logo, LogoUploader
-
-  has_many :user_ventures, :as => :venture
-  has_many :users, :through => :user_ventures
 end

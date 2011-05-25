@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  include Features::Commentable
+
   devise :database_authenticatable,
          :token_authenticatable,
          :omniauthable,
@@ -11,7 +13,8 @@ class User < ActiveRecord::Base
          :lockable
 
   attr_readonly :followed_count,
-                :followers_count
+                :followers_count,
+                :micro_posts_count
 
   attr_accessible :name,
                   :email,
@@ -27,6 +30,8 @@ class User < ActiveRecord::Base
   validates :password, :presence     => true,
                        :confirmation => true,
                        :length       => { :within => 6..40 }
+
+  has_many :posted_comments, :class_name => 'Comment'
 
   has_many :user_ventures
 
@@ -65,6 +70,10 @@ class User < ActiveRecord::Base
 
   def is_investor?
     angels.present?
+  end
+
+  def micro_posts
+    received_comments.on_users
   end
 
   def follow(target)
