@@ -9,10 +9,10 @@ class CreateTargetFollowers < ActiveRecord::Migration
     end
 
     add_index :target_followers, :follower_id
+    add_index :target_followers, [:follower_type, :follower_id]
+    add_index :target_followers, :target_id
     add_index :target_followers, [:target_type, :target_id]
     add_index :target_followers, [:follower_id, :target_type, :target_id], :unique => true, :name => :target_followers_follwer
-    add_index :target_followers, :target_id
-    add_index :target_followers, [:follower_type, :follower_id]
-    add_index :target_followers, [:target_id, :follower_type, :follower_id], :unique => true, :name => :target_followers_target
+    add_index :target_followers, [:follower_type, :follower_id, :target_type, :target_id], :unique => true, :name => :target_followers_follwer_with_type
   end
 end

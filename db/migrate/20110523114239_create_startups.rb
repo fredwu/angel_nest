@@ -8,7 +8,7 @@ class CreateStartups < ActiveRecord::Migration
       t.text    :meta
       t.string  :logo
       t.integer :followers_count, :default => 0
-      t.integer :followings_count, :default => 0
+      t.integer :followed_count, :default => 0
       t.timestamps
     end
   end

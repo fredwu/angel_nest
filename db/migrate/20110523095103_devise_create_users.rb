@@ -3,9 +3,8 @@ class DeviseCreateUsers < ActiveRecord::Migration
     create_table :users do |t|
       t.string  :name
       t.string  :email
-      t.string  :password
       t.integer :followers_count, :default => 0
-      t.integer :followings_count, :default => 0
+      t.integer :followed_count, :default => 0
       t.boolean :is_admin, :default => false
 
       t.database_authenticatable :null => false

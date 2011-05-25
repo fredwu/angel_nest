@@ -108,7 +108,50 @@ describe User do
       end
 
       it "has followings" do
-        subject.association(:followings).should be_a(ActiveRecord::Associations::HasManyAssociation)
+        subject.association(:followed).should be_a(ActiveRecord::Associations::HasManyAssociation)
+      end
+
+      describe "followed targets" do
+        subject       { User.make! }
+        let(:user)    { User.make! }
+        let(:angel)   { Angel.make! }
+        let(:startup) { Startup.make! }
+
+        it "counts the number of followed targets" do
+          subject.users_followed.count.should == 0
+          subject.angels_followed.count.should == 0
+          subject.startups_followed.count.should == 0
+
+          subject.follow(user)
+          subject.users_followed.count.should == 1
+          subject.angels_followed.count.should == 0
+          subject.startups_followed.count.should == 0
+
+          subject.follow(angel)
+          subject.users_followed.count.should == 1
+          subject.angels_followed.count.should == 1
+          subject.startups_followed.count.should == 0
+
+          subject.follow(startup)
+          subject.users_followed.count.should == 1
+          subject.angels_followed.count.should == 1
+          subject.startups_followed.count.should == 1
+
+          subject.unfollow(user)
+          subject.users_followed.count.should == 0
+          subject.angels_followed.count.should == 1
+          subject.startups_followed.count.should == 1
+
+          subject.unfollow(angel)
+          subject.users_followed.count.should == 0
+          subject.angels_followed.count.should == 0
+          subject.startups_followed.count.should == 1
+
+          subject.unfollow(startup)
+          subject.users_followed.count.should == 0
+          subject.angels_followed.count.should == 0
+          subject.startups_followed.count.should == 0
+        end
       end
     end
   end

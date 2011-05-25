@@ -10,11 +10,23 @@ class User < ActiveRecord::Base
          :validatable,
          :lockable
 
+  attr_readonly :followed_count,
+                :followers_count
+
   attr_accessible :name,
                   :email,
                   :password,
                   :password_confirmation,
                   :remember_me
+
+  validates :name,     :presence     => true,
+                       :length       => { :within => 2..40 }
+  validates :email,    :presence     => true,
+                       :format       => { :with => /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i },
+                       :uniqueness   => { :case_sensitive => false }
+  validates :password, :presence     => true,
+                       :confirmation => true,
+                       :length       => { :within => 6..40 }
 
   has_many :user_ventures
 
@@ -30,29 +42,18 @@ class User < ActiveRecord::Base
 
   has_many :target_followers, :foreign_key => :follower_id
 
-  has_many :followings,
+  has_many :followed,
            :through     => :target_followers,
            :source      => :follower,
            :source_type => 'User'
 
-  has_many :angels_followed,
-           :through     => :target_followers,
-           :source      => :target,
-           :source_type => 'Angel'
+  scope :users_followed,    where(:target_followers => { :target_type => 'User' })
+  scope :angels_followed,   where(:target_followers => { :target_type => 'Angel' })
+  scope :startups_followed, where(:target_followers => { :target_type => 'Startup' })
 
-  has_many :startups_followed,
-           :through     => :target_followers,
-           :source      => :target,
-           :source_type => 'Startup'
-
-  validates :name,     :presence     => true,
-                       :length       => { :within => 2..40 }
-  validates :email,    :presence     => true,
-                       :format       => { :with => /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i },
-                       :uniqueness   => { :case_sensitive => false }
-  validates :password, :presence     => true,
-                       :confirmation => true,
-                       :length       => { :within => 6..40 }
+  def users_followed;    followed.users_followed    end
+  def angels_followed;   followed.angels_followed   end
+  def startups_followed; followed.startups_followed end
 
   def is_admin?
     !!is_admin
@@ -72,7 +73,7 @@ class User < ActiveRecord::Base
       :follower_type => 'User',
       :target_id     => target.id,
       :target_type   => target.class.name
-    )
+    ) && reload unless target == self
   end
 
   def unfollow(target)

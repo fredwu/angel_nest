@@ -1,6 +1,9 @@
 module Followable
   def self.included(model)
     model.class_eval do
+      attr_readonly :followed_count,
+                    :followers_count
+
       has_many :target_followers, :as => :target
 
       has_many :followers,
