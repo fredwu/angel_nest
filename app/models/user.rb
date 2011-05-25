@@ -10,8 +10,6 @@ class User < ActiveRecord::Base
          :validatable,
          :lockable
 
-  attr_readonly   :followers_count,
-                  :followings_count
   attr_accessible :name,
                   :email,
                   :password,

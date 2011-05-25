@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(:version => 20110524055439) do
     t.text     "description"
     t.text     "meta"
     t.string   "logo"
+    t.integer  "followers_count",  :default => 0
+    t.integer  "followings_count", :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -30,6 +32,8 @@ ActiveRecord::Schema.define(:version => 20110524055439) do
     t.text     "description"
     t.text     "meta"
     t.string   "logo"
+    t.integer  "followers_count",  :default => 0
+    t.integer  "followings_count", :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -43,8 +47,11 @@ ActiveRecord::Schema.define(:version => 20110524055439) do
     t.datetime "updated_at"
   end
 
-  add_index "target_followers", ["follower_id", "target_type", "target_id"], :name => "target_followers", :unique => true
+  add_index "target_followers", ["follower_id", "target_type", "target_id"], :name => "target_followers_follwer", :unique => true
   add_index "target_followers", ["follower_id"], :name => "index_target_followers_on_follower_id"
+  add_index "target_followers", ["follower_type", "follower_id"], :name => "index_target_followers_on_follower_type_and_follower_id"
+  add_index "target_followers", ["target_id", "follower_type", "follower_id"], :name => "target_followers_target", :unique => true
+  add_index "target_followers", ["target_id"], :name => "index_target_followers_on_target_id"
   add_index "target_followers", ["target_type", "target_id"], :name => "index_target_followers_on_target_type_and_target_id"
 
   create_table "user_ventures", :force => true do |t|
