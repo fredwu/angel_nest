@@ -72,7 +72,7 @@ describe User do
       end
     end
 
-    describe "user ventures" do
+    describe "user groups" do
       it "responds to startups" do
         subject.association(:startups).should be_a(ActiveRecord::Associations::HasManyThroughAssociation)
       end

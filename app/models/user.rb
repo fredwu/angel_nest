@@ -30,10 +30,10 @@ class User < ActiveRecord::Base
                        :confirmation => true,
                        :length       => { :within => 6..40 }
 
-  has_many :user_ventures
+  has_many :user_groups
 
-  has_many :investors, :through => :user_ventures, :source => :venture, :source_type => 'Investor'
-  has_many :startups,  :through => :user_ventures, :source => :venture, :source_type => 'Startup'
+  has_many :investors, :through => :user_groups, :source => :group, :source_type => 'Investor'
+  has_many :startups,  :through => :user_groups, :source => :group, :source_type => 'Startup'
 
   has_many :target_followed, :class_name => 'TargetFollower', :as => :follower
 

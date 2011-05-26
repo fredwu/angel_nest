@@ -68,18 +68,18 @@ ActiveRecord::Schema.define(:version => 20110525132902) do
   add_index "target_followers", ["target_id"], :name => "index_target_followers_on_target_id"
   add_index "target_followers", ["target_type", "target_id"], :name => "index_target_followers_on_target_type_and_target_id"
 
-  create_table "user_ventures", :force => true do |t|
+  create_table "user_groups", :force => true do |t|
     t.integer  "user_id"
-    t.integer  "venture_id"
-    t.string   "venture_type"
-    t.string   "venture_role"
+    t.integer  "group_id"
+    t.string   "group_type"
+    t.string   "group_role"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "user_ventures", ["user_id", "venture_type", "venture_id"], :name => "index_user_ventures_on_user_id_and_venture_type_and_venture_id"
-  add_index "user_ventures", ["user_id"], :name => "index_user_ventures_on_user_id"
-  add_index "user_ventures", ["venture_type", "venture_id"], :name => "index_user_ventures_on_venture_type_and_venture_id"
+  add_index "user_groups", ["group_type", "group_id"], :name => "index_user_groups_on_group_type_and_group_id"
+  add_index "user_groups", ["user_id", "group_type", "group_id"], :name => "index_user_groups_on_user_id_and_group_type_and_group_id"
+  add_index "user_groups", ["user_id"], :name => "index_user_groups_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "name"

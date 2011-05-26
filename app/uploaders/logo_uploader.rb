@@ -23,7 +23,7 @@ class LogoUploader < CarrierWave::Uploader::Base
   # end
 
   # Process files as they are uploaded:
-  process :resize_to_fill => [Settings.venture.logo.width, Settings.venture.logo.height]
+  process :resize_to_fill => [Settings.group.logo.width, Settings.group.logo.height]
 
   # def scale(width, height)
   #   # do something
@@ -31,7 +31,7 @@ class LogoUploader < CarrierWave::Uploader::Base
 
   # Create different versions of your uploaded files:
   version :thumb do
-    process :resize_to_fill => [Settings.venture.logo.thumb.width, Settings.venture.logo.thumb.height]
+    process :resize_to_fill => [Settings.group.logo.thumb.width, Settings.group.logo.thumb.height]
   end
 
   # Add a white list of extensions which are allowed to be uploaded.

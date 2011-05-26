@@ -1,5 +1,5 @@
 class Startup < ActiveRecord::Base
-  include Features::IsVenture
+  include Features::IsGroup
   include Features::Followable
   include Features::Commentable
 
