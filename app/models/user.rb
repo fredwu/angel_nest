@@ -32,10 +32,11 @@ class User < ActiveRecord::Base
 
   has_many :posted_comments, :class_name => 'Comment'
 
+  has_one  :user_group
   has_many :user_groups
 
-  has_many :investors, :through => :user_groups, :source => :group, :source_type => 'Investor'
-  has_many :startups,  :through => :user_groups, :source => :group, :source_type => 'Startup'
+  has_one  :investor, :through => :user_group,  :source => :group, :source_type => 'Investor'
+  has_many :startups, :through => :user_groups, :source => :group, :source_type => 'Startup'
 
   has_many :target_followed, :class_name => 'TargetFollower', :as => :follower
 
@@ -52,7 +53,7 @@ class User < ActiveRecord::Base
   end
 
   def is_investor?
-    investors.present?
+    investor.present?
   end
 
   def micro_posts

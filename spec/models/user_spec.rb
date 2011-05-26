@@ -78,7 +78,7 @@ describe User do
       end
 
       it "responds to investors" do
-        subject.association(:investors).should be_a(ActiveRecord::Associations::HasManyThroughAssociation)
+        subject.association(:investor).should be_a(ActiveRecord::Associations::HasOneThroughAssociation)
       end
 
       it "responds to 'is_entrepreneur?'" do
@@ -95,7 +95,7 @@ describe User do
       end
 
       it "adds investors" do
-        subject.investors << Investor.new
+        subject.investor = Investor.new
         subject.is_investor?.should == true
       end
     end
