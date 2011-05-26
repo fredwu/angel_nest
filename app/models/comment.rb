@@ -10,10 +10,4 @@ class Comment < ActiveRecord::Base
   scope :on_startups,   where(:target_type => 'Startup')
 
   default_scope public.default_order
-
-  def self.add(content, *options)
-    options = { :is_private => false }.merge(options)
-
-    create(:content => content, :is_private => is_private)
-  end
 end
