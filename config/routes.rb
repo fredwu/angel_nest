@@ -2,13 +2,11 @@ AngelNest::Application.routes.draw do
   resources :comments
 
   devise_for :users
-
-  resources :investors
   resources :startups
 
   resources :users do
-    resources :investors
     resources :startups
+    resources :comments
   end
 
   # The priority is based upon order of creation:

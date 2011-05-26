@@ -26,19 +26,6 @@ ActiveRecord::Schema.define(:version => 20110525132902) do
   add_index "comments", ["user_id", "is_private", "target_type", "target_id"], :name => "comments_by_type_by_user"
   add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
 
-  create_table "investors", :force => true do |t|
-    t.string   "name"
-    t.string   "tagline"
-    t.string   "funds_to_offer"
-    t.text     "description"
-    t.string   "logo"
-    t.integer  "followers_count", :default => 0
-    t.integer  "followed_count",  :default => 0
-    t.integer  "comments_count",  :default => 0
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "startups", :force => true do |t|
     t.string   "name"
     t.string   "pitch"

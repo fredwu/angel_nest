@@ -6,13 +6,6 @@ User.blueprint do
   password { 'password' }
 end
 
-Investor.blueprint do
-  name           { 'Arch Angel' }
-  tagline        { 'Carry On Wayward Son' }
-  funds_to_offer { 20_000 }
-  description    { %q{Carry on my wayward son, there'll be peace when you are done.} }
-end
-
 Startup.blueprint do
   name           { 'Wuit' }
   pitch          { 'Building web applications that make sense.' }

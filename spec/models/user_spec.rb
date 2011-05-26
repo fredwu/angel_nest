@@ -77,15 +77,11 @@ describe User do
         subject.association(:startups).should be_a(ActiveRecord::Associations::HasManyThroughAssociation)
       end
 
-      it "responds to investors" do
-        subject.association(:investors).should be_a(ActiveRecord::Associations::HasManyThroughAssociation)
-      end
-
-      it "responds to 'is_entrepreneur?'" do
+      it "is not an entrepreneur by default" do
         subject.is_entrepreneur?.should == false
       end
 
-      it "responds to 'is_investor?'" do
+      it "is not an investor by default" do
         subject.is_investor?.should == false
       end
 
@@ -93,17 +89,11 @@ describe User do
         subject.startups << Startup.new
         subject.is_entrepreneur?.should == true
       end
-
-      it "adds investors" do
-        subject.investors << Investor.new
-        subject.is_investor?.should == true
-      end
     end
 
     context "related resources" do
       subject { User.make! }
       let(:user)    { User.make! }
-      let(:angel)   { Investor.make! }
       let(:startup) { Startup.make! }
 
       describe "comments" do
@@ -130,37 +120,22 @@ describe User do
         describe "followed targets" do
           it "counts the number of followed targets" do
             subject.users_followed.count.should == 0
-            subject.investors_followed.count.should == 0
             subject.startups_followed.count.should == 0
 
             subject.follow(user)
             subject.users_followed.count.should == 1
-            subject.investors_followed.count.should == 0
-            subject.startups_followed.count.should == 0
-
-            subject.follow(angel)
-            subject.users_followed.count.should == 1
-            subject.investors_followed.count.should == 1
             subject.startups_followed.count.should == 0
 
             subject.follow(startup)
             subject.users_followed.count.should == 1
-            subject.investors_followed.count.should == 1
             subject.startups_followed.count.should == 1
 
             subject.unfollow(user)
             subject.users_followed.count.should == 0
-            subject.investors_followed.count.should == 1
-            subject.startups_followed.count.should == 1
-
-            subject.unfollow(angel)
-            subject.users_followed.count.should == 0
-            subject.investors_followed.count.should == 0
             subject.startups_followed.count.should == 1
 
             subject.unfollow(startup)
             subject.users_followed.count.should == 0
-            subject.investors_followed.count.should == 0
             subject.startups_followed.count.should == 0
           end
         end
