@@ -1,4 +1,4 @@
-class Angel < ActiveRecord::Base
+class Investor < ActiveRecord::Base
   include Features::IsVenture
   include Features::Followable
   include Features::Commentable

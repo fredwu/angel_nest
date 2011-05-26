@@ -1,6 +1,6 @@
-class CreateAngels < ActiveRecord::Migration
+class CreateInvestors < ActiveRecord::Migration
   def change
-    create_table :angels do |t|
+    create_table :investors do |t|
       t.string  :name
       t.string  :tagline
       t.string  :funds_to_offer

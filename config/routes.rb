@@ -3,11 +3,11 @@ AngelNest::Application.routes.draw do
 
   devise_for :users
 
-  resources :angels
+  resources :investors
   resources :startups
 
   resources :users do
-    resources :angels
+    resources :investors
     resources :startups
   end
 

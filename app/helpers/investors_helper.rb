@@ -1,0 +1,2 @@
+module InvestorsHelper
+end

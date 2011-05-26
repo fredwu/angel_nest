@@ -6,7 +6,7 @@ User.blueprint do
   password { 'password' }
 end
 
-Angel.blueprint do
+Investor.blueprint do
   name           { 'Arch Angel' }
   tagline        { 'Carry On Wayward Son' }
   funds_to_offer { 20_000 }

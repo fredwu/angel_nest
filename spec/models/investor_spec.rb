@@ -1,5 +1,5 @@
 require 'spec_helper'
 
-describe Angel do
+describe Investor do
   it_behaves_like "a venture"
 end
