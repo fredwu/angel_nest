@@ -100,57 +100,69 @@ describe User do
       end
     end
 
-    describe "micro posts" do
-      it_behaves_like "commentables"
-    end
+    context "related resources" do
+      subject { User.make! }
+      let(:user)    { User.make! }
+      let(:angel)   { Investor.make! }
+      let(:startup) { Startup.make! }
 
-    describe "user followers" do
-      it_behaves_like "followables"
+      describe "comments" do
+        it_behaves_like "commentables"
 
-      it "has followings" do
-        subject.respond_to?(:followed).should be_true
+        describe "posted comments" do
+          it "has no posted comments by default" do
+            subject.posted_comments.count.should == 0
+          end
+
+          describe "micro-posts" do
+            it { should.respond_to?(:micro_posts) }
+          end
+        end
       end
 
-      describe "followed targets" do
-        subject       { User.make! }
-        let(:user)    { User.make! }
-        let(:angel)   { Investor.make! }
-        let(:startup) { Startup.make! }
+      describe "user followers" do
+        it_behaves_like "followables"
 
-        it "counts the number of followed targets" do
-          subject.users_followed.count.should == 0
-          subject.investors_followed.count.should == 0
-          subject.startups_followed.count.should == 0
+        it "has followings" do
+          subject.respond_to?(:followed).should be_true
+        end
 
-          subject.follow(user)
-          subject.users_followed.count.should == 1
-          subject.investors_followed.count.should == 0
-          subject.startups_followed.count.should == 0
+        describe "followed targets" do
+          it "counts the number of followed targets" do
+            subject.users_followed.count.should == 0
+            subject.investors_followed.count.should == 0
+            subject.startups_followed.count.should == 0
 
-          subject.follow(angel)
-          subject.users_followed.count.should == 1
-          subject.investors_followed.count.should == 1
-          subject.startups_followed.count.should == 0
+            subject.follow(user)
+            subject.users_followed.count.should == 1
+            subject.investors_followed.count.should == 0
+            subject.startups_followed.count.should == 0
 
-          subject.follow(startup)
-          subject.users_followed.count.should == 1
-          subject.investors_followed.count.should == 1
-          subject.startups_followed.count.should == 1
+            subject.follow(angel)
+            subject.users_followed.count.should == 1
+            subject.investors_followed.count.should == 1
+            subject.startups_followed.count.should == 0
 
-          subject.unfollow(user)
-          subject.users_followed.count.should == 0
-          subject.investors_followed.count.should == 1
-          subject.startups_followed.count.should == 1
+            subject.follow(startup)
+            subject.users_followed.count.should == 1
+            subject.investors_followed.count.should == 1
+            subject.startups_followed.count.should == 1
 
-          subject.unfollow(angel)
-          subject.users_followed.count.should == 0
-          subject.investors_followed.count.should == 0
-          subject.startups_followed.count.should == 1
+            subject.unfollow(user)
+            subject.users_followed.count.should == 0
+            subject.investors_followed.count.should == 1
+            subject.startups_followed.count.should == 1
 
-          subject.unfollow(startup)
-          subject.users_followed.count.should == 0
-          subject.investors_followed.count.should == 0
-          subject.startups_followed.count.should == 0
+            subject.unfollow(angel)
+            subject.users_followed.count.should == 0
+            subject.investors_followed.count.should == 0
+            subject.startups_followed.count.should == 1
+
+            subject.unfollow(startup)
+            subject.users_followed.count.should == 0
+            subject.investors_followed.count.should == 0
+            subject.startups_followed.count.should == 0
+          end
         end
       end
     end

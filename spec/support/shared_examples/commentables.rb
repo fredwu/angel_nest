@@ -7,21 +7,21 @@ shared_examples "commentables" do
     subject.save!
     subject.reload
 
-    subject.received_comments.count.should == 0
+    subject.comments.count.should == 0
     subject.comments_count.should == 0
   end
 
   it "allows commenting" do
     subject.add_comment(user, 'This is great!')
 
-    subject.received_comments.count.should == 1
+    subject.comments.count.should == 1
     subject.comments_count.should == 1
   end
 
   it "allows private commenting" do
     subject.add_private_comment(user, 'This is great!')
 
-    subject.received_comments.count.should == 0
+    subject.comments.count.should == 0
     subject.comments_count.should == 1
   end
 end

@@ -3,12 +3,7 @@ module Features::Commentable
     model.class_eval do
       attr_readonly :comments_count
 
-      has_many :comments, :foreign_key => :target_id
-
-      has_many :received_comments,
-               :through     => :comments,
-               :source      => :target,
-               :source_type => name
+      has_many :comments, :as => :target
     end
   end
 

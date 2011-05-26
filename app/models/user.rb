@@ -30,6 +30,8 @@ class User < ActiveRecord::Base
                        :confirmation => true,
                        :length       => { :within => 6..40 }
 
+  has_many :posted_comments, :class_name => 'Comment'
+
   has_many :user_groups
 
   has_many :investors, :through => :user_groups, :source => :group, :source_type => 'Investor'
@@ -54,7 +56,7 @@ class User < ActiveRecord::Base
   end
 
   def micro_posts
-    received_comments.on_users
+    posted_comments.on_users
   end
 
   def follow(target)
