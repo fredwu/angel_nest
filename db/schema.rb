@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(:version => 20110525132902) do
     t.datetime "updated_at"
   end
 
-  create_table "target_followers", :id => false, :force => true do |t|
+  create_table "target_followers", :force => true do |t|
     t.integer  "follower_id"
     t.string   "follower_type"
     t.integer  "target_id"

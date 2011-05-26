@@ -1,6 +1,6 @@
 class CreateTargetFollowers < ActiveRecord::Migration
   def change
-    create_table :target_followers, :id => false do |t|
+    create_table :target_followers do |t|
       t.integer :follower_id
       t.string  :follower_type
       t.integer :target_id

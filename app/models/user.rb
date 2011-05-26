@@ -65,12 +65,10 @@ class User < ActiveRecord::Base
   end
 
   def unfollow(target)
-    TargetFollower.where(
+    target.target_followers.where(
       :follower_id   => id,
-      :follower_type => 'User',
-      :target_id     => target.id,
-      :target_type   => target.class.name
-    ).delete_all && reload
+      :follower_type => 'User'
+    ).first.destroy && reload
   end
 
   def is_following?(target)
