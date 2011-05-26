@@ -107,12 +107,8 @@ describe User do
     describe "user followers" do
       it_behaves_like "followables"
 
-      it "has followers" do
-        subject.respond_to?(:followers).should be_true
-      end
-
       it "has followings" do
-        subject.association(:followed).should be_a(ActiveRecord::Associations::HasManyAssociation)
+        subject.respond_to?(:followed).should be_true
       end
 
       describe "followed targets" do

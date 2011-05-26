@@ -4,6 +4,7 @@ module Features::Commentable
       attr_readonly :comments_count
 
       has_many :comments, :foreign_key => :target_id
+
       has_many :received_comments,
                :through     => :comments,
                :source      => :target,

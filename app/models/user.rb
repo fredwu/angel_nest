@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   include Features::Commentable
+  include Features::Followable
 
   devise :database_authenticatable,
          :token_authenticatable,
@@ -12,9 +13,7 @@ class User < ActiveRecord::Base
          :validatable,
          :lockable
 
-  attr_readonly :followed_count,
-                :followers_count,
-                :micro_posts_count
+  attr_readonly :micro_posts_count
 
   attr_accessible :name,
                   :email,
@@ -31,34 +30,16 @@ class User < ActiveRecord::Base
                        :confirmation => true,
                        :length       => { :within => 6..40 }
 
-  has_many :posted_comments, :class_name => 'Comment'
-
   has_many :user_ventures
 
-  has_many :angels,
-           :through     => :user_ventures,
-           :source      => :venture,
-           :source_type => 'Angel'
+  has_many :angels,   :through => :user_ventures, :source => :venture, :source_type => 'Angel'
+  has_many :startups, :through => :user_ventures, :source => :venture, :source_type => 'Startup'
 
-  has_many :startups,
-           :through     => :user_ventures,
-           :source      => :venture,
-           :source_type => 'Startup'
+  has_many :target_followed, :class_name => 'TargetFollower', :as => :follower
 
-  has_many :target_followers, :foreign_key => :follower_id
-
-  has_many :followed,
-           :through     => :target_followers,
-           :source      => :follower,
-           :source_type => 'User'
-
-  scope :users_followed,    where(:target_followers => { :target_type => 'User' })
-  scope :angels_followed,   where(:target_followers => { :target_type => 'Angel' })
-  scope :startups_followed, where(:target_followers => { :target_type => 'Startup' })
-
-  def users_followed;    followed.users_followed    end
-  def angels_followed;   followed.angels_followed   end
-  def startups_followed; followed.startups_followed end
+  has_many :users_followed,    :through => :target_followed, :source => :target, :source_type => 'User'
+  has_many :angels_followed,   :through => :target_followed, :source => :target, :source_type => 'Angel'
+  has_many :startups_followed, :through => :target_followed, :source => :target, :source_type => 'Startup'
 
   def is_admin?
     !!is_admin
@@ -77,11 +58,9 @@ class User < ActiveRecord::Base
   end
 
   def follow(target)
-    TargetFollower.create(
+    target.target_followers.create(
       :follower_id   => id,
-      :follower_type => 'User',
-      :target_id     => target.id,
-      :target_type   => target.class.name
+      :follower_type => 'User'
     ) && reload unless target == self
   end
 
@@ -95,15 +74,10 @@ class User < ActiveRecord::Base
   end
 
   def is_following?(target)
-    !!target_followers.where(:target_id => target.id, :target_type => target.class.name).first
+    !!target_followed.where(:target_id => target.id, :target_type => target.class.name).first
   end
 
-  def is_followed_by?(target)
-    target.is_following?(self)
-  end
-
-  def followers
-    follower_ids = TargetFollower.where(:target_id => id, :target_type => 'User').map(&:follower_id)
-    User.where(:id => follower_ids)
+  def followed
+    users_followed + angels_followed + startups_followed
   end
 end

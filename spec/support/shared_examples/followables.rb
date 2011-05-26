@@ -3,6 +3,10 @@ shared_examples "followables" do
   let(:target)  { described_class.make! }
   let(:target2) { described_class.make! }
 
+  it "has followers" do
+    subject.association(:followers).should be_a(ActiveRecord::Associations::HasManyThroughAssociation)
+  end
+
   it "does not allow alteration on counter cache fields" do
     subject.followed_count = 10
     subject.followers_count = 10
