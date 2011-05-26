@@ -15,9 +15,9 @@ shared_examples "a venture" do
   end
 
   describe "user roles in ventures" do
-    subject            { described_class.make! }
-    let(:founder)      { User.make! }
-    let(:user)         { User.make! }
+    subject       { described_class.make! }
+    let(:founder) { User.make! }
+    let(:user)    { User.make! }
 
     before(:each) do
       subject.add_user(founder, :founder)
