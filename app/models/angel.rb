@@ -1,4 +1,5 @@
 class Angel < ActiveRecord::Base
+  include Features::IsVenture
   include Features::Followable
   include Features::Commentable
 

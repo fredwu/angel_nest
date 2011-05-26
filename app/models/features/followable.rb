@@ -4,9 +4,6 @@ module Features::Followable
       attr_readonly :followed_count,
                     :followers_count
 
-      has_many :user_ventures, :as => :venture
-      has_many :users, :through => :user_ventures
-
       has_many :target_followers, :as => :target
 
       has_many :followers,
