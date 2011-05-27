@@ -6,14 +6,14 @@ module Features::IsGroup
     end
   end
 
-  def add_user(user, role_identifier = :follower)
+  def attach_user(user, role_identifier = :follower)
     user_groups.create(
-      :user_id      => user.id,
-      :group_role => role_identifier
+      :user_id         => user.id,
+      :role_identifier => role_identifier
     )
   end
 
-  def remove_user(user)
+  def detach_user(user)
     users.delete(user)
   end
 end

@@ -20,26 +20,27 @@ shared_examples "a group" do
     let(:user)    { User.make! }
 
     before(:each) do
-      subject.add_user(founder, :founder)
+      subject.attach_user(founder, :founder)
     end
 
     it "has a founding user and role" do
       subject.users.count.should == 1
       subject.users.first == founder
-      subject.user_groups.first.group_role == 'founder'
+      subject.user_groups.first.role_identifier == 'founder'
     end
 
-    it "adds a user" do
-      subject.add_user(user, :advisor)
+    it "attaches a user" do
+      subject.attach_user(user, :advisor)
       subject.users.count.should == 2
       subject.users.last == user
     end
 
-    it "removes a user" do
-      subject.add_user(user)
-      subject.remove_user(user)
+    it "detaches a user" do
+      subject.attach_user(user)
+      subject.detach_user(user)
       subject.users.count.should == 1
       subject.users.last == founder
+      User.last.should == user
     end
   end
 end
