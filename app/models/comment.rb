@@ -9,5 +9,5 @@ class Comment < ActiveRecord::Base
   scope :on_investors,  where(:target_type => 'Investor')
   scope :on_startups,   where(:target_type => 'Startup')
 
-  default_scope public.default_order
+  default_scope default_order
 end

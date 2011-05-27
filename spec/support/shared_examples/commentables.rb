@@ -21,7 +21,9 @@ shared_examples "commentables" do
   it "allows private commenting" do
     subject.add_private_comment(user, 'This is great!')
 
-    subject.comments.count.should == 0
+    subject.comments.count.should == 1
     subject.comments_count.should == 1
+    subject.comments.public.count.should == 0
+    subject.comments.private.count.should == 1
   end
 end
