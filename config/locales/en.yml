@@ -8,3 +8,17 @@ en:
       founder: Founder
       advisor: Advisor
       investor: Investor
+    stage_identifiers:
+      concept: Concept
+      prototype_development: Prototype Development
+      market_pilot: Market Pilot
+      launched: Launched
+      has_revenue: Has Revenue
+      has_profit: Has Profit
+    market_identifiers:
+      mobile: Mobile
+      consumer_internet: Consumer Internet
+      enterprise_software: Enterprise Software
+      clean_technology: Clean Technology
+      life_science: Life Science
+      social_network: Social Network

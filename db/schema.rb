@@ -43,14 +43,18 @@ ActiveRecord::Schema.define(:version => 20110525132902) do
     t.string   "name"
     t.string   "pitch"
     t.string   "funds_to_raise"
+    t.string   "stage_identifier"
+    t.string   "market_identifier"
     t.text     "description"
     t.string   "logo"
-    t.integer  "followers_count", :default => 0
-    t.integer  "followed_count",  :default => 0
-    t.integer  "comments_count",  :default => 0
+    t.integer  "followers_count",   :default => 0
+    t.integer  "followed_count",    :default => 0
+    t.integer  "comments_count",    :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "startups", ["name"], :name => "index_startups_on_name"
 
   create_table "target_followers", :force => true do |t|
     t.integer  "follower_id"
@@ -72,7 +76,7 @@ ActiveRecord::Schema.define(:version => 20110525132902) do
     t.integer  "user_id"
     t.integer  "group_id"
     t.string   "group_type"
-    t.string   "group_role"
+    t.string   "role_identifier"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -1,4 +1,24 @@
 group:
+  startup:
+    role_identifiers:
+      follower
+      founder
+      advisor
+      investor
+    stage_identifiers:
+      concept
+      prototype_development
+      market_pilot
+      launched
+      has_revenue
+      has_profit
+    market_identifiers:
+      mobile
+      consumer_internet
+      enterprise_software
+      clean_technology
+      life_science
+      social_network
   logo:
     full:
       width: 400
