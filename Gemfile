@@ -11,6 +11,10 @@ gem 'inherited_resources', '~> 1.2.0'
 gem 'simple_form',         '~> 1.4.0'
 gem 'rails_config'
 
+# geo related gems
+gem 'carmen'
+gem 'geo_location'
+
 # asset gems
 gem 'slim-rails'
 gem 'sass'
@@ -23,7 +27,7 @@ gem 'carrierwave'
 group :development, :test do
   gem 'cucumber-rails'
   gem 'capybara'
-  gem 'rspec-rails', '>= 2.6.1.beta1'
+  gem 'rspec-rails', '~> 2.6.1'
   gem 'machinist',   '>= 2.0.0.beta2'
   gem 'pickle'
   gem 'ffaker'
