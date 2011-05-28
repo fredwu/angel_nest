@@ -19,7 +19,7 @@ shared_examples "a group" do
     let(:founder) { User.make! }
     let(:user)    { User.make! }
 
-    before(:each) do
+    before do
       subject.attach_user(founder, :founder)
     end
 
