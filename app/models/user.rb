@@ -35,11 +35,9 @@ class User < ActiveRecord::Base
   has_one  :investor
 
   has_many :startup_users
-
   has_many :startups, :through => :startup_users
 
-  has_many :target_followed, :class_name => 'TargetFollower', :as => :follower
-
+  has_many :target_followed,   :class_name => 'TargetFollower', :as => :follower
   has_many :users_followed,    :through => :target_followed, :source => :target, :source_type => 'User'
   has_many :startups_followed, :through => :target_followed, :source => :target, :source_type => 'Startup'
 

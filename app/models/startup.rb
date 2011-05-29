@@ -1,6 +1,6 @@
 class Startup < ActiveRecord::Base
-  include Features::Followable
   include Features::Commentable
+  include Features::Followable
 
   has_many :startup_users
   has_many :users, :through => :startup_users
