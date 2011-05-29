@@ -78,7 +78,7 @@ describe User do
       end
 
       it "responds to investors" do
-        subject.association(:investor).should be_a(ActiveRecord::Associations::HasOneThroughAssociation)
+        subject.association(:investor).should be_a(ActiveRecord::Associations::HasOneAssociation)
       end
 
       it "responds to 'is_entrepreneur?'" do
@@ -101,9 +101,8 @@ describe User do
     end
 
     context "related resources" do
-      subject { User.make! }
+      subject       { User.make! }
       let(:user)    { User.make! }
-      let(:angel)   { Investor.make! }
       let(:startup) { Startup.make! }
 
       describe "comments" do
@@ -130,37 +129,22 @@ describe User do
         describe "followed targets" do
           it "counts the number of followed targets" do
             subject.users_followed.count.should == 0
-            subject.investors_followed.count.should == 0
             subject.startups_followed.count.should == 0
 
             subject.follow(user)
             subject.users_followed.count.should == 1
-            subject.investors_followed.count.should == 0
-            subject.startups_followed.count.should == 0
-
-            subject.follow(angel)
-            subject.users_followed.count.should == 1
-            subject.investors_followed.count.should == 1
             subject.startups_followed.count.should == 0
 
             subject.follow(startup)
             subject.users_followed.count.should == 1
-            subject.investors_followed.count.should == 1
             subject.startups_followed.count.should == 1
 
             subject.unfollow(user)
             subject.users_followed.count.should == 0
-            subject.investors_followed.count.should == 1
-            subject.startups_followed.count.should == 1
-
-            subject.unfollow(angel)
-            subject.users_followed.count.should == 0
-            subject.investors_followed.count.should == 0
             subject.startups_followed.count.should == 1
 
             subject.unfollow(startup)
             subject.users_followed.count.should == 0
-            subject.investors_followed.count.should == 0
             subject.startups_followed.count.should == 0
           end
         end

@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(:version => 20110525132902) do
     t.integer  "followers_count", :default => 0
     t.integer  "followed_count",  :default => 0
     t.integer  "comments_count",  :default => 0
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -32,17 +32,16 @@ class User < ActiveRecord::Base
 
   has_many :posted_comments, :class_name => 'Comment'
 
-  has_one  :user_group
+  has_one  :investor
+
   has_many :user_groups
 
-  has_one  :investor, :through => :user_group,  :source => :group, :source_type => 'Investor'
   has_many :startups, :through => :user_groups, :source => :group, :source_type => 'Startup'
 
   has_many :target_followed, :class_name => 'TargetFollower', :as => :follower
 
-  has_many :users_followed,     :through => :target_followed, :source => :target, :source_type => 'User'
-  has_many :investors_followed, :through => :target_followed, :source => :target, :source_type => 'Investor'
-  has_many :startups_followed,  :through => :target_followed, :source => :target, :source_type => 'Startup'
+  has_many :users_followed,    :through => :target_followed, :source => :target, :source_type => 'User'
+  has_many :startups_followed, :through => :target_followed, :source => :target, :source_type => 'Startup'
 
   def is_admin?
     !!is_admin
@@ -79,6 +78,6 @@ class User < ActiveRecord::Base
   end
 
   def followed
-    users_followed + investors_followed + startups_followed
+    users_followed + startups_followed
   end
 end

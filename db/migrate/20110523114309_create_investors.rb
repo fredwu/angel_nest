@@ -9,6 +9,7 @@ class CreateInvestors < ActiveRecord::Migration
       t.integer :followers_count, :default => 0
       t.integer :followed_count, :default => 0
       t.integer :comments_count, :default => 0
+      t.integer :user_id
       t.timestamps
     end
   end
