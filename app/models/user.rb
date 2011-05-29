@@ -30,7 +30,7 @@ class User < ActiveRecord::Base
                        :confirmation => true,
                        :length       => { :within => 6..40 }
 
-  has_many :posted_comments, :class_name => 'Comment'
+  has_many :posted_comments, :class_name => 'Message'
 
   has_one  :investor
 

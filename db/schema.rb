@@ -12,20 +12,6 @@
 
 ActiveRecord::Schema.define(:version => 20110525132902) do
 
-  create_table "comments", :force => true do |t|
-    t.text     "content"
-    t.boolean  "is_private",  :default => false
-    t.integer  "target_id"
-    t.string   "target_type"
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "comments", ["is_private", "target_type", "target_id"], :name => "comments_by_type"
-  add_index "comments", ["user_id", "is_private", "target_type", "target_id"], :name => "comments_by_type_by_user"
-  add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
-
   create_table "investors", :force => true do |t|
     t.string   "name"
     t.string   "tagline"
@@ -39,6 +25,20 @@ ActiveRecord::Schema.define(:version => 20110525132902) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "messages", :force => true do |t|
+    t.text     "content"
+    t.boolean  "is_private",  :default => false
+    t.integer  "target_id"
+    t.string   "target_type"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "messages", ["is_private", "target_type", "target_id"], :name => "comments_by_type"
+  add_index "messages", ["user_id", "is_private", "target_type", "target_id"], :name => "comments_by_type_by_user"
+  add_index "messages", ["user_id"], :name => "index_messages_on_user_id"
 
   create_table "startup_users", :force => true do |t|
     t.integer  "startup_id"

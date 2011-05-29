@@ -1,4 +1,4 @@
-class Comment < ActiveRecord::Base
+class Message < ActiveRecord::Base
   belongs_to :user, :counter_cache => :micro_posts_count
   belongs_to :target, :polymorphic => true, :counter_cache => :comments_count
 

@@ -1,12 +1,11 @@
 AngelNest::Application.routes.draw do
-  resources :comments
-
   devise_for :users
 
   resources :investors
   resources :startups
 
   resources :users do
+    resources :messages
     resources :investors
     resources :startups
   end

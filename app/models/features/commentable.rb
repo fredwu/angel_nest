@@ -3,14 +3,14 @@ module Features::Commentable
     model.class_eval do
       attr_readonly :comments_count
 
-      has_many :comments, :as => :target
+      has_many :comments, :class_name => 'Message', :as => :target
     end
   end
 
   def add_comment(user, content, options = {})
     options = { :is_private => false }.merge(options)
 
-    Comment.create(
+    Message.create(
       :content     => content,
       :is_private  => options[:is_private],
       :target_id   => id,

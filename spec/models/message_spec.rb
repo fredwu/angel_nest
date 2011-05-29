@@ -1,5 +1,5 @@
 require 'spec_helper'
 
-describe Comment do
+describe Message do
 
 end
