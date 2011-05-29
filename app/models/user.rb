@@ -30,7 +30,7 @@ class User < ActiveRecord::Base
                        :confirmation => true,
                        :length       => { :within => 6..40 }
 
-  has_many :posted_comments, :class_name => 'Message'
+  has_many :messages, :order => 'created_at DESC'
 
   has_one  :investor
 
@@ -53,8 +53,12 @@ class User < ActiveRecord::Base
     investor.present?
   end
 
+  def add_micro_post(content)
+    messages.create(:content => content) && reload
+  end
+
   def micro_posts
-    posted_comments.on_users
+    messages.micro_posts
   end
 
   def follow(target)

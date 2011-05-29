@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe User do
+  it_behaves_like "commentables"
+
   let :attrs do
     {
       :name     => 'John Doe',
@@ -104,20 +106,6 @@ describe User do
       subject       { User.make! }
       let(:user)    { User.make! }
       let(:startup) { Startup.make! }
-
-      describe "comments" do
-        it_behaves_like "commentables"
-
-        describe "posted comments" do
-          it "has no posted comments by default" do
-            subject.posted_comments.count.should == 0
-          end
-
-          describe "micro-posts" do
-            it { should.respond_to?(:micro_posts) }
-          end
-        end
-      end
 
       describe "user followers" do
         it_behaves_like "followables"

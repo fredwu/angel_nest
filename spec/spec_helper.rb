@@ -25,6 +25,8 @@ RSpec.configure do |config|
   # instead of true.
   config.use_transactional_fixtures = true
 
+  config.include Delorean
+
   DatabaseCleaner.start
   config.before do
     DatabaseCleaner.clean
