@@ -40,6 +40,18 @@ ActiveRecord::Schema.define(:version => 20110525132902) do
     t.datetime "updated_at"
   end
 
+  create_table "startup_users", :force => true do |t|
+    t.integer  "startup_id"
+    t.integer  "user_id"
+    t.string   "role_identifier"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "startup_users", ["startup_id", "user_id"], :name => "index_startup_users_on_startup_id_and_user_id"
+  add_index "startup_users", ["startup_id"], :name => "index_startup_users_on_startup_id"
+  add_index "startup_users", ["user_id"], :name => "index_startup_users_on_user_id"
+
   create_table "startups", :force => true do |t|
     t.string   "name"
     t.string   "pitch"
@@ -72,19 +84,6 @@ ActiveRecord::Schema.define(:version => 20110525132902) do
   add_index "target_followers", ["follower_type", "follower_id"], :name => "index_target_followers_on_follower_type_and_follower_id"
   add_index "target_followers", ["target_id"], :name => "index_target_followers_on_target_id"
   add_index "target_followers", ["target_type", "target_id"], :name => "index_target_followers_on_target_type_and_target_id"
-
-  create_table "user_groups", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "group_id"
-    t.string   "group_type"
-    t.string   "role_identifier"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "user_groups", ["group_type", "group_id"], :name => "index_user_groups_on_group_type_and_group_id"
-  add_index "user_groups", ["user_id", "group_type", "group_id"], :name => "index_user_groups_on_user_id_and_group_type_and_group_id"
-  add_index "user_groups", ["user_id"], :name => "index_user_groups_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "name"

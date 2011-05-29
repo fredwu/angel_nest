@@ -6,7 +6,6 @@ class Comment < ActiveRecord::Base
   scope :public,        where(:is_private => false)
   scope :private,       where(:is_private => true)
   scope :on_users,      where(:target_type => 'User')
-  scope :on_investors,  where(:target_type => 'Investor')
   scope :on_startups,   where(:target_type => 'Startup')
 
   default_scope default_order
