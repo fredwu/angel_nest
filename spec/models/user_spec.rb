@@ -151,9 +151,14 @@ describe User do
           it "sees micro posts from followed users" do
             subject.follow(user)
             subject.follow(user2)
-            user.add_micro_post('Hello world!')
+
+            time_travel_to(1.minute.ago) { user.add_micro_post('Hello world!') }
             user.add_micro_post('Hello ruby!')
             user2.add_micro_post('Hello from user2!')
+
+            subject.followed_micro_posts.first.content.should == 'Hello ruby!'
+            subject.followed_micro_posts.last.content.should == 'Hello world!'
+
             subject.followed_micro_posts.count.should == 3
 
             subject.unfollow(user)

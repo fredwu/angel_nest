@@ -96,7 +96,7 @@ class User < ActiveRecord::Base
   end
 
   def followed_micro_posts
-    Message.where(:target_id => nil, :user_id => users_followed_ids)
+    Message.where(:target_id => nil, :user_id => users_followed_ids).default_order
   end
 
   private
