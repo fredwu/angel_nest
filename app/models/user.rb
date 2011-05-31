@@ -1,3 +1,5 @@
+require 'digest/md5'
+
 class User < ActiveRecord::Base
   include Features::Commentable
   include Features::Followable
@@ -40,6 +42,8 @@ class User < ActiveRecord::Base
   has_many :target_followed,   :class_name => 'TargetFollower', :as => :follower
   has_many :users_followed,    :through => :target_followed, :source => :target, :source_type => 'User'
   has_many :startups_followed, :through => :target_followed, :source => :target, :source_type => 'Startup'
+
+  before_save :email_nomarlisation
 
   def is_admin?
     !!is_admin
@@ -85,5 +89,11 @@ class User < ActiveRecord::Base
 
   def followed_micro_posts
     Message.where(:target_id => nil, :user_id => users_followed_ids)
+  end
+
+  private
+
+  def email_nomarlisation
+    self.email = email.strip.downcase
   end
 end

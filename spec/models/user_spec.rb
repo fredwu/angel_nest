@@ -38,6 +38,15 @@ describe User do
     end
   end
 
+  describe "user persistence" do
+    it "normalises the email address" do
+      user = User.new(attrs.merge(:email => 'TESTme@EXAMPLE.com'))
+      user.save(:validate => false)
+
+      user.email.should == 'testme@example.com'
+    end
+  end
+
   describe "password validation" do
     def test_user_password(password, password_confirmation = nil)
       User.new(attrs.merge(
