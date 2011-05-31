@@ -148,24 +148,26 @@ describe User do
         end
 
         describe "followed micro posts" do
-          it "sees micro posts from followed users" do
+          it "sees micro posts from followed users, including self" do
             subject.follow(user)
             subject.follow(user2)
 
-            time_travel_to(1.minute.ago) { user.add_micro_post('Hello world!') }
-            user.add_micro_post('Hello ruby!')
-            user2.add_micro_post('Hello from user2!')
+            time_travel_to(3.minute.ago) { user.add_micro_post('Hello world!') }
+            time_travel_to(2.minute.ago) { user.add_micro_post('Hello ruby!') }
+            time_travel_to(1.minute.ago) { user2.add_micro_post('Hello from user2!') }
 
-            subject.followed_micro_posts.first.content.should == 'Hello ruby!'
+            subject.add_micro_post('Hello from myself!')
+
+            subject.followed_micro_posts.first.content.should == 'Hello from myself!'
             subject.followed_micro_posts.last.content.should == 'Hello world!'
 
-            subject.followed_micro_posts.count.should == 3
+            subject.followed_micro_posts.count.should == 4
 
             subject.unfollow(user)
-            subject.followed_micro_posts.count.should == 1
+            subject.followed_micro_posts.count.should == 2
 
             subject.unfollow(user2)
-            subject.followed_micro_posts.count.should == 0
+            subject.followed_micro_posts.count.should == 1
           end
         end
       end
