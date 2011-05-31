@@ -23,4 +23,6 @@ AngelNest::Application.configure do
   config.action_dispatch.best_standards_support = :builtin
 
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+
+  Slim::Engine.set_default_options :pretty => true
 end
