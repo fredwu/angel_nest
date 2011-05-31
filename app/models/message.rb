@@ -1,5 +1,5 @@
 class Message < ActiveRecord::Base
-  belongs_to :user, :counter_cache => :micro_posts_count
+  belongs_to :user, :counter_cache => :messages_count
   belongs_to :target, :polymorphic => true, :counter_cache => :comments_count
 
   scope :default_order, order('created_at DESC')

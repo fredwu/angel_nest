@@ -91,7 +91,7 @@ ActiveRecord::Schema.define(:version => 20110525132902) do
     t.integer  "followers_count",                       :default => 0
     t.integer  "followed_count",                        :default => 0
     t.integer  "comments_count",                        :default => 0
-    t.integer  "micro_posts_count",                     :default => 0
+    t.integer  "messages_count",                        :default => 0
     t.boolean  "is_admin",                              :default => false
     t.string   "encrypted_password",     :limit => 128, :default => "",    :null => false
     t.string   "authentication_token"

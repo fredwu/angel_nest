@@ -20,9 +20,9 @@ describe Message do
         startup = Startup.make!
         startup.add_comment(subject, 'this is a comment for a startup')
 
-        subject.messages.count.should == 3
-        subject.micro_posts.count.should == 2
-        subject.micro_posts_count.should == 2
+        subject.messages.count.should    == 4 # all messages (including comments)
+        subject.messages_count.should    == 3 # all sent and received messages of a user
+        subject.micro_posts.count.should == 2 # only micro posts
         subject.micro_posts.first.content.should == 'hello ruby'
         subject.micro_posts.last.content.should == 'hello world'
       end

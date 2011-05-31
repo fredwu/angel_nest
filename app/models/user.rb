@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
          :validatable,
          :lockable
 
-  attr_readonly :micro_posts_count
+  attr_readonly :messages_count
 
   attr_accessible :name,
                   :email,

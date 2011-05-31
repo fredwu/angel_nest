@@ -6,7 +6,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.integer :followers_count, :default => 0
       t.integer :followed_count, :default => 0
       t.integer :comments_count, :default => 0
-      t.integer :micro_posts_count, :default => 0
+      t.integer :messages_count, :default => 0
       t.boolean :is_admin, :default => false
 
       t.database_authenticatable :null => false
