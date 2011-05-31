@@ -57,6 +57,10 @@ class User < ActiveRecord::Base
     investor.present?
   end
 
+  def avatar(size = 80)
+    "http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(email)}?s=#{size}"
+  end
+
   def send_private_message(target_user, content)
     messages.create(
       :content     => content,
@@ -66,7 +70,12 @@ class User < ActiveRecord::Base
   end
 
   def add_micro_post(content)
-    messages.create(:content => content) && reload
+    unless content.blank?
+      messages.create(:content => content) && reload
+      true
+    else
+      false
+    end
   end
 
   def micro_posts

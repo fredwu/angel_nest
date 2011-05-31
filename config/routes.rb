@@ -10,6 +10,9 @@ AngelNest::Application.routes.draw do
     resources :startups
   end
 
+  match 'users/followed_micro_posts' => 'users#followed_micro_posts', :via => :get
+  match 'users/add_micro_post'       => 'users#add_micro_post', :via => :post
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -59,7 +62,7 @@ AngelNest::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
+  root :to => 'users#followed_micro_posts'
 
   # See how all your routes lay out with "rake routes"
 

@@ -14,6 +14,11 @@ describe Message do
         subject.micro_posts.count.should == 0
       end
 
+      it "ignores empty micro posts" do
+        subject.add_micro_post(' ')
+        subject.micro_posts.count.should == 0
+      end
+
       it "posts micro posts" do
         time_travel_to(1.minute.ago) { subject.add_micro_post('hello world') }
         subject.add_micro_post('hello ruby')
