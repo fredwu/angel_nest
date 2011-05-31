@@ -82,4 +82,8 @@ class User < ActiveRecord::Base
   def followed
     users_followed + startups_followed
   end
+
+  def followed_micro_posts
+    Message.where(:target_id => nil, :user_id => users_followed_ids)
+  end
 end

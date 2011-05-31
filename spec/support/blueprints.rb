@@ -19,3 +19,9 @@ Startup.blueprint do
   funds_to_raise { 10_000 }
   description    { %q{At Wuit we not only make web apps that make sense, we also share ideas and knowledge with the community.} }
 end
+
+Message.blueprint do
+  content    { "Message content #{sn}." }
+  is_private { false }
+  user
+end

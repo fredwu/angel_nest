@@ -105,6 +105,7 @@ describe User do
     context "related resources" do
       subject       { User.make! }
       let(:user)    { User.make! }
+      let(:user2)   { User.make! }
       let(:startup) { Startup.make! }
 
       describe "user followers" do
@@ -134,6 +135,23 @@ describe User do
             subject.unfollow(startup)
             subject.users_followed.count.should == 0
             subject.startups_followed.count.should == 0
+          end
+        end
+
+        describe "followed micro posts" do
+          it "sees micro posts from followed users" do
+            subject.follow(user)
+            subject.follow(user2)
+            user.add_micro_post('Hello world!')
+            user.add_micro_post('Hello ruby!')
+            user2.add_micro_post('Hello from user2!')
+            subject.followed_micro_posts.count.should == 3
+
+            subject.unfollow(user)
+            subject.followed_micro_posts.count.should == 1
+
+            subject.unfollow(user2)
+            subject.followed_micro_posts.count.should == 0
           end
         end
       end
