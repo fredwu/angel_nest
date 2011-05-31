@@ -14,10 +14,12 @@ Investor.blueprint do
 end
 
 Startup.blueprint do
-  name           { 'Wuit' }
-  pitch          { 'Building web applications that make sense.' }
-  funds_to_raise { 10_000 }
-  description    { %q{At Wuit we not only make web apps that make sense, we also share ideas and knowledge with the community.} }
+  name              { 'Wuit' }
+  pitch             { 'Building web applications that make sense.' }
+  funds_to_raise    { 10_000 }
+  description       { %q{At Wuit we not only make web apps that make sense, we also share ideas and knowledge with the community.} }
+  stage_identifier  { 'concept' }
+  market_identifier { 'social_network' }
 end
 
 Message.blueprint do

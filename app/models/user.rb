@@ -57,6 +57,14 @@ class User < ActiveRecord::Base
     investor.present?
   end
 
+  def send_private_message(target_user, content)
+    messages.create(
+      :content     => content,
+      :target_id   => target_user.id,
+      :target_type => 'User'
+    ) && reload
+  end
+
   def add_micro_post(content)
     messages.create(:content => content) && reload
   end

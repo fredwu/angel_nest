@@ -2,7 +2,8 @@ require 'spec_helper'
 
 describe Message do
   context "user" do
-    subject { User.make! }
+    subject    { User.make! }
+    let(:user) { User.make! }
 
     it "has no posted messages by default" do
       subject.messages.count.should == 0
@@ -16,6 +17,8 @@ describe Message do
       it "posts micro posts" do
         time_travel_to(1.minute.ago) { subject.add_micro_post('hello world') }
         subject.add_micro_post('hello ruby')
+
+        subject.send_private_message(user, 'hey there!')
 
         startup = Startup.make!
         startup.add_comment(subject, 'this is a comment for a startup')
