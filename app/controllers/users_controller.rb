@@ -1,12 +1,12 @@
 class UsersController < ApplicationController
   inherit_resources
 
-  def show
-    @micro_posts = resource.micro_posts
+  def home
+    @micro_posts = resource.followed_micro_posts
   end
 
-  def followed_micro_posts
-    @micro_posts = resource.followed_micro_posts
+  def show
+    @micro_posts = resource.micro_posts
   end
 
   def add_micro_post
