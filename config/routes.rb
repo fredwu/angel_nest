@@ -4,9 +4,9 @@ AngelNest::Application.routes.draw do
   resources :users
   resources :startups
 
-  match 'user/profile'        => 'users#show',           :via => :get
-  match 'user/home'           => 'users#home',           :via => :get
-  match 'user/add_micro_post' => 'users#add_micro_post', :via => :post
+  match 'my/profile'        => 'users#show',           :via => :get
+  match 'my/home'           => 'users#home',           :via => :get
+  match 'my/add_micro_post' => 'users#add_micro_post', :via => :post
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

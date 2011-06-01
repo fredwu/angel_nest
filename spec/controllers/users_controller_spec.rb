@@ -13,7 +13,7 @@ describe UsersController do
       controller.stub(:current_user).and_return(current_user)
       sign_in current_user
 
-      request.env['HTTP_REFERER'] = user_home_url
+      request.env['HTTP_REFERER'] = my_home_url
 
       current_user.follow(user)
       user.add_micro_post('Hello world!')
