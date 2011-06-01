@@ -1,8 +1,12 @@
 class UsersController < ApplicationController
   inherit_resources
 
+  def show
+    @micro_posts = resource.micro_posts
+  end
+
   def followed_micro_posts
-    @micro_posts = current_user.followed_micro_posts
+    @micro_posts = resource.followed_micro_posts
   end
 
   def add_micro_post
@@ -12,5 +16,13 @@ class UsersController < ApplicationController
       format.json { render :json => result }
       format.html { redirect_to :back }
     end
+  end
+
+  private
+
+  def resource
+    super
+  rescue ActiveRecord::RecordNotFound
+    current_user
   end
 end

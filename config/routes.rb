@@ -1,17 +1,12 @@
 AngelNest::Application.routes.draw do
   devise_for :users
 
-  resources :investors
+  resources :users
   resources :startups
 
-  resources :users do
-    resources :messages
-    resources :investors
-    resources :startups
-  end
-
-  match 'users/followed_micro_posts' => 'users#followed_micro_posts', :via => :get
-  match 'users/add_micro_post'       => 'users#add_micro_post', :via => :post
+  match 'user/profile'              => 'users#show',                 :via => :get
+  match 'user/followed_micro_posts' => 'users#followed_micro_posts', :via => :get
+  match 'user/add_micro_post'       => 'users#add_micro_post',       :via => :post
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

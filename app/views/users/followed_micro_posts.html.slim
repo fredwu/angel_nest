@@ -1,17 +1,7 @@
-div= render 'users/avatar', :user => current_user, :size => 80
+= render 'mini_profile', :user => resource
 
-ul
-  li= "#{t 'label.following'}: #{current_user.followed_count}"
-  li= "#{t 'label.followers'}: #{current_user.followers_count}"
-  li= "#{t 'label.micro_posts'}: #{current_user.micro_posts.count}"
-
-= form_tag 'users/add_micro_post', :id => 'add_micro_post' do
+= form_tag user_add_micro_post_path, :id => 'add_micro_post' do
   = text_area_tag :content
   = submit_tag 'Post'
 
-table
-  - @micro_posts.each do |micro_post|
-    tr
-      td= micro_post.content
-      td= render 'users/avatar', :user => micro_post.user, :size => 24
-      td= "Posted by #{micro_post.user.name} #{time_ago(micro_post.created_at)}"
+= render 'messages/micro_posts', :micro_posts => @micro_posts

@@ -10,12 +10,20 @@ describe Message do
     end
 
     describe "micro posts" do
-      it "has no micro posts by default" do
-        subject.micro_posts.count.should == 0
+      it "returns true when successful" do
+        subject.add_micro_post('hello').should == true
+      end
+
+      it "returns false when not successful" do
+        subject.add_micro_post(' ').should == false
       end
 
       it "ignores empty micro posts" do
         subject.add_micro_post(' ')
+        subject.micro_posts.count.should == 0
+      end
+
+      it "has no micro posts by default" do
         subject.micro_posts.count.should == 0
       end
 

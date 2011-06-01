@@ -1,0 +1,4 @@
+tr
+  td= micro_post.content
+  td= render 'users/avatar', :user => micro_post.user, :size => 24
+  td= "Posted by #{micro_post.user.name} #{time_ago(micro_post.created_at)}"
