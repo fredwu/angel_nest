@@ -20,7 +20,9 @@ user2.send_private_message(user, 'what up?')
 
 user2.investor = Investor.make!
 
-startup = Startup.make!
-startup.attach_user(user, :founder)
+3.times do
+  startup = Startup.make!
+  startup.attach_user(user, :founder)
+end
 
 p 'Finished creating seeds data for development.'
