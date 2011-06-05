@@ -5,8 +5,8 @@ AngelNest::Application.routes.draw do
     resources :startups
   end
 
-  resources :startups
-  resources :investors
+  resources :startups,  :only => :index
+  resources :investors, :only => :index
 
   match 'my/profile'        => 'users#show',           :via => :get
   match 'my/home'           => 'users#home',           :via => :get
