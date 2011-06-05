@@ -73,7 +73,7 @@ describe User do
   end
 
   context "user functions and associations" do
-    subject { User.new }
+    subject { User.make! }
 
     describe "user permissions" do
       it "responds to is_xxx?" do
@@ -88,7 +88,7 @@ describe User do
         subject.association(:startups).should be_a(ActiveRecord::Associations::HasManyThroughAssociation)
       end
 
-      it "responds to investors" do
+      it "responds to investor" do
         subject.association(:investor).should be_a(ActiveRecord::Associations::HasOneAssociation)
       end
 
@@ -105,9 +105,15 @@ describe User do
         subject.is_entrepreneur?.should == true
       end
 
-      it "adds investors" do
+      it "adds investor" do
         subject.investor = Investor.new
         subject.is_investor?.should == true
+      end
+
+      it "finds investor users" do
+        2.times { User.make! }
+        subject.investor = Investor.make!
+        User.investors.count.should == 1
       end
     end
 

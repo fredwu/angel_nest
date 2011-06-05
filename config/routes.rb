@@ -6,6 +6,7 @@ AngelNest::Application.routes.draw do
   end
 
   resources :startups
+  resources :investors
 
   match 'my/profile'        => 'users#show',           :via => :get
   match 'my/home'           => 'users#home',           :via => :get

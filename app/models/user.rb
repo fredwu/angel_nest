@@ -43,6 +43,8 @@ class User < ActiveRecord::Base
   has_many :users_followed,    :through => :target_followed, :source => :target, :source_type => 'User'
   has_many :startups_followed, :through => :target_followed, :source => :target, :source_type => 'Startup'
 
+  scope :investors, includes(:investor).where('investors.user_id IS NOT NULL')
+
   before_save :email_nomarlisation
 
   def is_admin?

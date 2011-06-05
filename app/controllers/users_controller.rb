@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
   inherit_resources
-  include AngelNest::AutoUserScoping
 
   def home
     @micro_posts = resource.followed_micro_posts
@@ -17,5 +16,11 @@ class UsersController < ApplicationController
       format.json { render :json => result }
       format.html { redirect_to :back }
     end
+  end
+
+  private
+
+  def resource
+    params[:id].nil? ? current_user : super
   end
 end
