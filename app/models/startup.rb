@@ -9,11 +9,11 @@ class Startup < ActiveRecord::Base
   mount_uploader :logo, LogoUploader
 
   def stage
-    I18n.t "group.stage_identifiers.#{Settings.group.startup.stage_identifiers[stage_identifier]}"
+    I18n.t "group.stage_identifiers.#{stage_identifier}"
   end
 
   def market
-    I18n.t "group.market_identifiers.#{Settings.group.startup.market_identifiers[market_identifier]}"
+    I18n.t "group.market_identifiers.#{market_identifier}"
   end
 
   def attach_user(user, role_identifier = :follower)
