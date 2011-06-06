@@ -16,7 +16,7 @@ class Startup < ActiveRecord::Base
     I18n.t "group.market_identifiers.#{market_identifier}"
   end
 
-  def attach_user(user, role_identifier = :follower)
+  def attach_user(user, role_identifier = :founder)
     startup_users.create(
       :user_id         => user.id,
       :role_identifier => role_identifier
