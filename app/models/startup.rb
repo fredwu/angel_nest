@@ -4,6 +4,7 @@ class Startup < ActiveRecord::Base
 
   has_many :startup_users
   has_many :users, :through => :startup_users
+  has_many :proposals
 
   mount_uploader :logo, LogoUploader
 
@@ -24,5 +25,14 @@ class Startup < ActiveRecord::Base
 
   def detach_user(user)
     users.delete(user)
+  end
+
+  def new_proposal(investors = [], content = {})
+    proposal = proposals.create({
+      :proposal_stage_identifier => Settings.group.startup.proposal_stage_identifiers['submission'],
+      :json_content              => content.to_json,
+    })
+
+    proposal.investors = [investors].flatten
   end
 end

@@ -22,6 +22,10 @@ en:
       clean_technology: Clean Technology
       life_science: Life Science
       social_network: Social Network
+    proposal_stage_identifiers:
+      submission: Submission
+      reviewing: Reviewing
+      accepted: Accpeted
   meta:
     time_ago: '%{time} ago'
   label:

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110525132902) do
+ActiveRecord::Schema.define(:version => 20110606072040) do
 
   create_table "investors", :force => true do |t|
     t.string   "name"
@@ -26,6 +26,8 @@ ActiveRecord::Schema.define(:version => 20110525132902) do
     t.datetime "updated_at"
   end
 
+  add_index "investors", ["name"], :name => "index_investors_on_name"
+
   create_table "messages", :force => true do |t|
     t.text     "content"
     t.boolean  "is_private",  :default => false
@@ -39,6 +41,27 @@ ActiveRecord::Schema.define(:version => 20110525132902) do
   add_index "messages", ["is_private", "target_type", "target_id"], :name => "comments_by_type"
   add_index "messages", ["user_id", "is_private", "target_type", "target_id"], :name => "comments_by_type_by_user"
   add_index "messages", ["user_id"], :name => "index_messages_on_user_id"
+
+  create_table "proposal_for_investors", :id => false, :force => true do |t|
+    t.integer  "proposal_id"
+    t.integer  "investor_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "proposal_for_investors", ["investor_id"], :name => "index_proposal_for_investors_on_investor_id"
+  add_index "proposal_for_investors", ["proposal_id", "investor_id"], :name => "index_proposal_for_investors_on_proposal_id_and_investor_id"
+  add_index "proposal_for_investors", ["proposal_id"], :name => "index_proposal_for_investors_on_proposal_id"
+
+  create_table "proposals", :force => true do |t|
+    t.string   "proposal_stage_identifier"
+    t.text     "json_content"
+    t.integer  "startup_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "proposals", ["startup_id"], :name => "index_proposals_on_startup_id"
 
   create_table "startup_users", :force => true do |t|
     t.integer  "startup_id"

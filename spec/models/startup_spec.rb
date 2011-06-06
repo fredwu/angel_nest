@@ -5,7 +5,7 @@ describe Startup do
   it_behaves_like "followables"
 
   subject do
-    Startup.make({
+    Startup.make!({
       :stage_identifier  => 'market_pilot',
       :market_identifier => 'social_network',
     })
@@ -29,27 +29,30 @@ describe Startup do
 
     it "modifies stage on the fly" do
       subject.stage_identifier = 'has_profit'
+
       subject.stage.should == 'Has Profit'
     end
 
     it "modifies market on the fly" do
       subject.market_identifier = 'enterprise_software'
+
       subject.market.should == 'Enterprise Software'
     end
 
     it "errors out on invalid stage identifier" do
       subject.stage_identifier = 'invalid'
+
       subject.stage.should raise_exception
     end
 
     it "errors out on invalid market identifier" do
       subject.market_identifier = 'invalid'
+
       subject.market.should raise_exception
     end
   end
 
   describe "user roles" do
-    subject       { Startup.make! }
     let(:founder) { User.make! }
     let(:user)    { User.make! }
 
@@ -59,22 +62,51 @@ describe Startup do
 
     it "has a founding user and role" do
       subject.users.count.should == 1
-      subject.users.first == founder
-      subject.startup_users.first.role_identifier == 'founder'
+      subject.users.first.should == founder
+      subject.startup_users.first.role_identifier.should == 'founder'
     end
 
     it "attaches a user" do
       subject.attach_user(user, :advisor)
+
       subject.users.count.should == 2
-      subject.users.last == user
+      subject.users.last.should == user
     end
 
     it "detaches a user" do
       subject.attach_user(user)
       subject.detach_user(user)
+
       subject.users.count.should == 1
-      subject.users.last == founder
+      subject.users.last.should == founder
       User.last.should == user
+    end
+  end
+
+  describe "proposals" do
+    let(:investor1) { Investor.make! }
+    let(:investor2) { Investor.make! }
+
+    it "submits proposal to one investor" do
+      subject.new_proposal(investor1, { 'hello' => 'world' })
+
+      subject.proposals.count.should == 1
+      investor1.proposals.count.should == 1
+      subject.proposals.first.proposal_stage_identifier == 'submission'
+    end
+
+    it "submits proposal to many investors" do
+      subject.new_proposal([investor1, investor2], { 'hello' => 'world' })
+
+      subject.proposals.count.should == 1
+      investor1.proposals.count.should == 1
+      investor2.proposals.count.should == 1
+    end
+
+    it "preserves proposal content structure" do
+      subject.new_proposal(investor1, { 'hello' => 'world' })
+
+      subject.proposals.first.content['hello'].should == 'world'
     end
   end
 end

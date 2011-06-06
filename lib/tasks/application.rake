@@ -7,7 +7,7 @@ if Rails.env.development? || Rails.env.test?
         Rake::Task['db:drop'].invoke
         Rake::Task['db:create'].invoke
         Rake::Task['db:migrate'].invoke
-        require File.dirname(__FILE__) + '/../../db/seeds_for_dev'
+        require File.dirname(__FILE__) + '/../../db/seeds_for_dev' unless Rails.env.test?
       end
     end
   end
