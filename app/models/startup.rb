@@ -27,12 +27,16 @@ class Startup < ActiveRecord::Base
     users.delete(user)
   end
 
-  def new_proposal(investors = [], content = {})
-    proposal = proposals.create({
-      :proposal_stage_identifier => Settings.group.startup.proposal_stage_identifiers['submission'],
-      :json_content              => content.to_json,
-    })
+  def create_proposal(content = {})
+    proposal = proposals.new
+    proposal.content = content
+    proposal.save
+    proposal
+  end
 
+  def submit_proposal(investors = [], content = {})
+    proposal = create_proposal(content)
+    proposal.update_attribute(:proposal_stage_identifier, 'submitted')
     proposal.investors = [investors].flatten
   end
 end

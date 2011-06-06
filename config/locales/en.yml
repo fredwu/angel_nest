@@ -23,7 +23,8 @@ en:
       life_science: Life Science
       social_network: Social Network
     proposal_stage_identifiers:
-      submission: Submission
+      draft: Draft
+      submitted: Submitted
       reviewing: Reviewing
       accepted: Accpeted
   meta:

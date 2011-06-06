@@ -53,8 +53,8 @@ describe Startup do
   end
 
   describe "user roles" do
-    let(:founder) { User.make! }
-    let(:user)    { User.make! }
+    let(:founder)   { User.make! }
+    let(:user)      { User.make! }
 
     before do
       subject.attach_user(founder, :founder)
@@ -84,27 +84,40 @@ describe Startup do
   end
 
   describe "proposals" do
-    let(:investor1) { Investor.make! }
-    let(:investor2) { Investor.make! }
+    let(:investor1)      { Investor.make! }
+    let(:investor2)      { Investor.make! }
 
-    it "submits proposal to one investor" do
-      subject.new_proposal(investor1, { 'hello' => 'world' })
+    it "creates a draft proposal" do
+      subject.create_proposal({ 'hello' => 'world' })
 
       subject.proposals.count.should == 1
+      subject.proposals.draft.count.should == 1
+      subject.proposals.submitted.count.should == 0
+      subject.proposals.first.proposal_stage_identifier.should == 'draft'
+    end
+
+    it "submits proposal to one investor" do
+      subject.submit_proposal(investor1, { 'hello' => 'world' })
+
+      subject.proposals.count.should == 1
+      subject.proposals.draft.count.should == 0
+      subject.proposals.submitted.count.should == 1
       investor1.proposals.count.should == 1
-      subject.proposals.first.proposal_stage_identifier == 'submission'
+      subject.proposals.first.proposal_stage_identifier.should == 'submitted'
     end
 
     it "submits proposal to many investors" do
-      subject.new_proposal([investor1, investor2], { 'hello' => 'world' })
+      subject.submit_proposal([investor1, investor2], { 'hello' => 'world' })
 
       subject.proposals.count.should == 1
+      subject.proposals.draft.count.should == 0
+      subject.proposals.submitted.count.should == 1
       investor1.proposals.count.should == 1
       investor2.proposals.count.should == 1
     end
 
     it "preserves proposal content structure" do
-      subject.new_proposal(investor1, { 'hello' => 'world' })
+      subject.submit_proposal(investor1, { 'hello' => 'world' })
 
       subject.proposals.first.content['hello'].should == 'world'
     end
