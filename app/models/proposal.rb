@@ -1,8 +1,8 @@
 class Proposal < ActiveRecord::Base
   has_and_belongs_to_many :investors, :join_table => :proposal_for_investors
 
-  scope :draft,     where(:proposal_stage_identifier => :draft)
-  scope :submitted, where(:proposal_stage_identifier => :submitted)
+  scope :draft,     where(:proposal_stage_identifier => 'draft')
+  scope :submitted, where(:proposal_stage_identifier => 'submitted')
 
   before_create :default_proposal_stage_identifier
 

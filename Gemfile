@@ -9,6 +9,7 @@ gem 'omniauth',            '~> 0.2.0'
 gem 'cancan',              '~> 1.6.0'
 gem 'inherited_resources', '~> 1.2.0'
 gem 'simple_form',         '~> 1.4.0'
+gem 'squeel',              '~> 0.7.0'
 gem 'rails_config'
 
 # geo related gems

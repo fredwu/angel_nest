@@ -29,17 +29,20 @@ body
       h1= link_to t('site.name'), root_path
       nav
         ul
-          li= link_to_current 'Entrepreneurs', entrepreneurs_path
           li= link_to_current 'Startups', startups_path
+          li= link_to_current 'Entrepreneurs', entrepreneurs_path
           li= link_to_current 'Investors', investors_path
       .clear
       hr
 
   #main.container_12
     aside.grid_3
-      h3 Sidebar
+      - if current_user
+        = render 'layouts/sidebars/customised'
+      - else
+        = render 'layouts/sidebars/generic'
     article.grid_9
-      == yield
+      = yield
     .clear
 
   footer.container_12

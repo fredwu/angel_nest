@@ -43,8 +43,8 @@ class User < ActiveRecord::Base
   has_many :users_followed,    :through => :target_followed, :source => :target, :source_type => 'User'
   has_many :startups_followed, :through => :target_followed, :source => :target, :source_type => 'Startup'
 
-  scope :entrepreneurs, includes(:startup_users).where('startup_users.user_id IS NOT NULL')
-  scope :investors,     includes(:investor).where('investors.user_id IS NOT NULL')
+  scope :entrepreneurs, joins(:startup_users).where('startup_users.user_id IS NOT NULL')
+  scope :investors,     joins(:investor).where('investors.user_id IS NOT NULL')
 
   before_save :email_nomarlisation
 

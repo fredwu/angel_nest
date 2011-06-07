@@ -59,21 +59,22 @@ body {
 
 a {
   color: $link_colour;
+  text-decoration: none;
 
   &:active  { color: $link_colour; }
   &:visited { color: $link_colour; }
-  &:hover   { color: $link_colour_h; }
+  &:hover   { color: $link_colour_h; text-decoration: underline; }
 }
-
-/* ------------------------------
-  header
------------------------------- */
 
 .container_12 {
   padding: 0 $viewport_padding;
   position: relative;
   background: $bg_colour_primary;
 }
+
+/* ------------------------------
+  header
+------------------------------ */
 
 #header-container {
   margin-top: $viewport_margin;

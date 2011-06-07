@@ -1,0 +1,3 @@
+ul
+  - collection.each do |resource|
+    li= link_to resource.name, eval("user_#{resource.class.to_s.underscore}_path(current_user, resource)")

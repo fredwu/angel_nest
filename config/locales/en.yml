@@ -31,6 +31,13 @@ en:
   meta:
     time_ago: '%{time} ago'
   label:
-    following: 'Following'
-    followers: 'Followers'
-    micro_posts: 'Micro-posts'
+    create: create
+    create_new: create new
+    create_one_now: create one now!
+    apply_now: apply now!
+    following: Following
+    followers: Followers
+    micro_posts: Micro-posts
+  dict:
+    have_no_startups: You have no startups,
+    not_an_investor: You are not an investor,

@@ -83,6 +83,24 @@ describe Startup do
     end
   end
 
+  describe "user involvement and investment" do
+    let(:user) { User.make! }
+
+    it "recognises user involvement" do
+      subject.attach_user(user, :founder)
+
+      user.startups.involved.count.should == 1
+      user.startups.invested.count.should == 0
+    end
+
+    it "recognises user investment" do
+      subject.attach_user(user, :investor)
+
+      user.startups.involved.count.should == 0
+      user.startups.invested.count.should == 1
+    end
+  end
+
   describe "proposals" do
     let(:investor1)      { Investor.make! }
     let(:investor2)      { Investor.make! }

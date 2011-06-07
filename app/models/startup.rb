@@ -2,11 +2,14 @@ class Startup < ActiveRecord::Base
   include Features::Commentable
   include Features::Followable
 
+  mount_uploader :logo, LogoUploader
+
   has_many :startup_users
   has_many :users, :through => :startup_users
   has_many :proposals
 
-  mount_uploader :logo, LogoUploader
+  scope :involved, where(['startup_users.role_identifier != ?', 'investor'])
+  scope :invested, where(['startup_users.role_identifier = ?', 'investor'])
 
   def stage
     I18n.t "group.stage_identifiers.#{stage_identifier}"

@@ -110,6 +110,12 @@ describe User do
         subject.is_investor?.should == true
       end
 
+      it "finds entrepreneur users" do
+        2.times { User.make! }
+        subject.startups << Startup.make!
+        User.entrepreneurs.count.should == 1
+      end
+
       it "finds investor users" do
         2.times { User.make! }
         subject.investor = Investor.make!

@@ -3,6 +3,7 @@ AngelNest::Application.routes.draw do
 
   resources :users do
     resources :startups
+    resource  :investor
   end
 
   resources :entrepreneurs, :only => :index

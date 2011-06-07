@@ -12,6 +12,9 @@ p 'Creating seeds data for development ...'
 end
 
 user  = User.first
+user.update_attribute :name, 'Fred Wu'
+user.update_attribute :email, 'ifredwu@gmail.com'
+
 user2 = User.last
 
 user.follow(user2)
