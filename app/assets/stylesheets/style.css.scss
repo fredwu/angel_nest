@@ -6,7 +6,8 @@
 
 $primary_colour:            #0E3399;
 $primary_colour_h:          darken($primary_colour, 15%);
-$secondary_colour:          #111;
+$primary_colour_dark:       darken($primary_colour, 30%);
+$secondary_colour:          grayscale($primary_colour_dark);
 $secondary_colour_h:        lighten($secondary_colour, 70%);
 
 $button_colour_primary:     darken($primary_colour, 10%);
