@@ -2,30 +2,41 @@ require File.dirname(__FILE__) + '/../spec/support/blueprints'
 
 p 'Creating seeds data for development ...'
 
-2.times do
-  user = User.make!
-  user.confirm!
+user = User.make!({
+  :name     => 'Fred Wu',
+  :email    => 'ifredwu@gmail.com',
+  :password => 'password',
+})
+user.confirm!
 
-  5.times do
-    Message.make!(:user => user)
-  end
+40.times do
+  u = User.make!
+  u.confirm!
 end
 
-user  = User.first
-user.update_attribute :name, 'Fred Wu'
-user.update_attribute :email, 'ifredwu@gmail.com'
+10.times { Investor.make! }
+20.times { Startup.make! }
 
-user2 = User.last
+Startup.first.attach_user(user)
 
-user.follow(user2)
-user.send_private_message(user2, 'hey there!')
-user2.send_private_message(user, 'what up?')
+Investor.all.each do |investor|
+  User.new_users.first.investor = investor
+end
 
-user2.investor = Investor.make!
+Startup.all.each do |startup|
+  startup.attach_user(User.new_users.first, :founder)
+end
 
-3.times do
-  startup = Startup.make!
-  startup.attach_user(user, :founder)
+User.limit(10).each do |u|
+  user.follow(u)
+end
+
+User.limit(20).each do |u|
+  u.follow(user)
+end
+
+User.order('RAND()').each do |u|
+  u.add_micro_post(Faker::Lorem.sentences * ' ')
 end
 
 p 'Finished creating seeds data for development.'
