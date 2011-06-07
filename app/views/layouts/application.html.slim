@@ -38,9 +38,9 @@ body
   #main.container_12
     aside.grid_3
       - if current_user
-        = render 'layouts/sidebars/customised'
+        = render 'layouts/sidebars/private'
       - else
-        = render 'layouts/sidebars/generic'
+        = render 'layouts/sidebars/public'
     article.grid_9
       = yield
     .clear
