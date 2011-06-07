@@ -113,12 +113,16 @@ describe User do
       it "finds entrepreneur users" do
         2.times { User.make! }
         subject.startups << Startup.make!
+        User.new_users.count.should == 2
         User.entrepreneurs.count.should == 1
+        User.investors.count.should == 0
       end
 
       it "finds investor users" do
         2.times { User.make! }
         subject.investor = Investor.make!
+        User.new_users.count.should == 2
+        User.entrepreneurs.count.should == 0
         User.investors.count.should == 1
       end
     end

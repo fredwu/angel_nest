@@ -43,6 +43,7 @@ class User < ActiveRecord::Base
   has_many :users_followed,    :through => :target_followed, :source => :target, :source_type => 'User'
   has_many :startups_followed, :through => :target_followed, :source => :target, :source_type => 'Startup'
 
+  scope :new_users,     includes(:startup_users, :investor).where('startup_users.user_id IS NULL').where('investors.user_id IS NULL')
   scope :entrepreneurs, joins(:startup_users).where('startup_users.user_id IS NOT NULL')
   scope :investors,     joins(:investor).where('investors.user_id IS NOT NULL')
 
@@ -50,6 +51,10 @@ class User < ActiveRecord::Base
 
   def is_admin?
     !!is_admin
+  end
+
+  def is_new_user?
+    !is_entrepreneur? && !is_investor?
   end
 
   def is_entrepreneur?
