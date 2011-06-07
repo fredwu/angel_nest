@@ -1,15 +1,51 @@
 ! doctype
+|
+  <!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
+  <!--[if IE 7 ]>    <html lang="en" class="no-js ie7"> <![endif]-->
+  <!--[if IE 8 ]>    <html lang="en" class="no-js ie8"> <![endif]-->
+  <!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
+  <!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
 
-html
-  head
-    title AngelNest
-    = stylesheet_link_tag :application
-    = javascript_include_tag :application
-    = csrf_meta_tags
+head
+  meta charset="UTF-8"
+  meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"
 
-  body
-    - flash.each do |type, message|
-      .message class=type
-        p= message
+  title= t('site.name')
 
-    == yield
+  meta name="author" content="Fred Wu"
+  meta name="viewport" content="width=device-width, initial-scale=1.0"
+
+  = stylesheet_link_tag :application
+  = javascript_include_tag :application
+  = csrf_meta_tags
+
+body
+  - flash.each do |type, message|
+    .message class=type
+      p.info= message
+
+  header.container_12
+    #header-container
+      h1= link_to t('site.name'), root_path
+      nav
+        ul
+          li= link_to_current 'Entrepreneurs', entrepreneurs_path
+          li= link_to_current 'Startups', startups_path
+          li= link_to_current 'Investors', investors_path
+      .clear
+      hr
+
+  #main.container_12
+    aside.grid_3
+      h3 Sidebar
+    article.grid_9
+      == yield
+    .clear
+
+  footer.container_12
+    #footer-container
+      p
+        ' Copyright &copy;
+        = t('site.name')
+
+| </html>

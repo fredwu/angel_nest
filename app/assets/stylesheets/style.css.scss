@@ -1,0 +1,140 @@
+/* ------------------------------
+  Author: Fred Wu
+------------------------------ */
+
+// colours
+
+$primary_colour:            #0E3399;
+$primary_colour_h:          darken($primary_colour, 15%);
+$secondary_colour:          #111;
+$secondary_colour_h:        lighten($secondary_colour, 70%);
+
+$button_colour_primary:     darken($primary_colour, 10%);
+$button_colour_primary_h:   darken($primary_colour, 15%);
+
+$button_colour_secondary:   lighten($secondary_colour, 90%);
+$button_colour_secondary_h: lighten($secondary_colour, 80%);
+
+$bg_colour_primary:         lighten($primary_colour, 70%);
+$bg_colour_secondary:       lighten($primary_colour, 60%);
+
+// functional colour assignments
+
+$text_colour:   $secondary_colour;
+$link_colour:   $primary_colour;
+$link_colour_h: $primary_colour_h;
+
+// sizes & calculations
+
+$viewport_width:   960px;
+$viewport_margin:  30px;
+$viewport_padding: 20px;
+
+$header_hr_height: 5px;
+
+// mixins
+
+@mixin anchor_button() {
+  display: block;
+  padding: 10px 20px;
+  color: $secondary_colour;
+  font-weight: bold;
+  background: $button_colour_secondary;
+  text-decoration: none;
+
+  &:hover, &.current {
+    background: $button_colour_secondary_h;
+  }
+}
+
+/* ------------------------------
+  base level elements
+------------------------------ */
+
+body {
+  font-family: Helvetica, "Helvetica Neue", Arial, sans-serif;
+  background: $bg_colour_secondary;
+}
+
+a {
+  color: $link_colour;
+
+  &:active  { color: $link_colour; }
+  &:visited { color: $link_colour; }
+  &:hover   { color: $link_colour_h; }
+}
+
+/* ------------------------------
+  header
+------------------------------ */
+
+.container_12 {
+  padding: 0 $viewport_padding;
+  position: relative;
+  background: $bg_colour_primary;
+}
+
+#header-container {
+  margin-top: $viewport_margin;
+  padding-top: $viewport_padding;
+
+  h1 {
+    display: block;
+    font-size: 30px;
+    padding: 10px 0;
+
+    a {
+      text-decoration: none;
+    }
+  }
+
+  ul {
+    list-style: none;
+    position: absolute;
+    bottom: $header_hr_height;
+    right: $viewport_padding;
+
+    li {
+      float: left;
+
+      a {
+        @include anchor_button;
+      }
+    }
+  }
+
+  hr {
+    width: $viewport_width + $viewport_padding * 2;
+    margin: 0;
+    margin-left: -$viewport_padding;
+    height: $header_hr_height;
+    background: $secondary_colour_h;
+  }
+}
+
+/* ------------------------------
+  main
+------------------------------ */
+
+#main {
+  padding-top: $viewport_padding;
+  padding-bottom: $viewport_padding;
+}
+
+/* ------------------------------
+  footer
+------------------------------ */
+
+#footer-container {
+  margin-bottom: $viewport_margin;
+  padding: $viewport_padding 0;
+  text-align: center;
+
+  p {
+    font-size: 11px;
+    color: $secondary_colour_h;
+  }
+}
+
+
+
