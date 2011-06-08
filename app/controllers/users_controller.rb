@@ -21,6 +21,12 @@ class UsersController < ApplicationController
   private
 
   def resource
-    params[:id].nil? ? current_user : super
+    if params.key?(:username)
+      User.find_by_username(params[:username])
+    elsif params.key?(:id)
+      super
+    else
+      current_user
+    end
   end
 end

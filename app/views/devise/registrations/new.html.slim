@@ -1,5 +1,6 @@
 h1= t('label.sign_up')
 = simple_form_for resource, :url => registration_path(resource_name) do |f|
+  = f.input :username
   = f.input :name
   = f.input :email
   = f.input :password

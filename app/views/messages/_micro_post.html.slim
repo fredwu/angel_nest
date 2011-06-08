@@ -5,6 +5,6 @@ hr
   '
   = render 'users/avatar', :user => micro_post.user, :size => 16
   '
-  = link_to micro_post.user.name, resource_path(micro_post.user)
+  = link_to micro_post.user.name, resource_path(micro_post.user.username)
   '
   = time_ago(micro_post.created_at)

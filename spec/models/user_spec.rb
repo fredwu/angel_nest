@@ -5,8 +5,18 @@ describe User do
 
   let :attrs do
     {
+      :username => 'john_doe',
       :name     => 'John Doe',
       :email    => 'test@example.com',
+      :password => 'password',
+    }
+  end
+
+  let :attrs2 do
+    {
+      :username => 'john_doe_2',
+      :name     => 'John Doe 2',
+      :email    => 'test2@example.com',
       :password => 'password',
     }
   end
@@ -14,6 +24,26 @@ describe User do
   describe "user creation" do
     it "creates a user given valid attributes" do
       User.new(attrs).should be_valid
+    end
+
+    it "requires a username" do
+      User.new(attrs.merge(:username => '')).should_not be_valid
+    end
+
+    it "rejects a username that contains illegal characters" do
+      User.new(attrs.merge(:username => 'john_doe')).should be_valid
+      User.new(attrs.merge(:username => 'john.doe')).should_not be_valid
+      User.new(attrs.merge(:username => 'john-doe')).should_not be_valid
+    end
+
+    it "rejects duplicated usernames" do
+      User.create!(attrs)
+      User.new(attrs2.merge(:username => attrs[:username])).should_not be_valid
+    end
+
+    it "rejects duplicated case-insensitive usernames" do
+      User.create!(attrs)
+      User.new(attrs2.merge(:username => attrs[:username].upcase)).should_not be_valid
     end
 
     it "requires a name" do
@@ -32,9 +62,9 @@ describe User do
       User.new(attrs.merge(:email => 'invalid_email')).should_not be_valid
     end
 
-    it "rejects duplicate email addresses" do
+    it "rejects duplicated email addresses" do
       User.create!(attrs)
-      User.new(attrs).should_not be_valid
+      User.new(attrs2.merge(:email => attrs[:email])).should_not be_valid
     end
   end
 

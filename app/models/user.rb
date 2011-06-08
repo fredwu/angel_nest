@@ -17,17 +17,22 @@ class User < ActiveRecord::Base
 
   attr_readonly :messages_count
 
-  attr_accessible :name,
+  attr_accessible :username,
+                  :name,
                   :email,
                   :password,
                   :password_confirmation,
                   :remember_me
 
+  validates :username, :presence     => true,
+                       :uniqueness   => { :case_sensitive => false },
+                       :length       => { :within => 4..20 },
+                       :format       => { :with => /^[A-Za-z0-9_]+$/ }
   validates :name,     :presence     => true,
-                       :length       => { :within => 2..40 }
+                       :length       => { :within => 4..30 }
   validates :email,    :presence     => true,
-                       :format       => { :with => /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i },
-                       :uniqueness   => { :case_sensitive => false }
+                       :uniqueness   => { :case_sensitive => false },
+                       :format       => { :with => /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }
   validates :password, :presence     => true,
                        :confirmation => true,
                        :length       => { :within => 6..40 }

@@ -3,6 +3,7 @@ require 'machinist/active_record'
 User.blueprint do
   u_name  = Faker::Name.name
 
+  username { "user_#{sn}" }
   name     { u_name }
   email    { Faker::Internet.email(u_name) }
   password { Faker::Internet.user_name(u_name) }

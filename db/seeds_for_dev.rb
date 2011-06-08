@@ -3,6 +3,7 @@ require File.dirname(__FILE__) + '/../spec/support/blueprints'
 p 'Creating seeds data for development ...'
 
 user = User.make!({
+  :username => 'fredwu',
   :name     => 'Fred Wu',
   :email    => 'ifredwu@gmail.com',
   :password => 'password',

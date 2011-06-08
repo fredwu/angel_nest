@@ -10,6 +10,8 @@ AngelNest::Application.routes.draw do
   resources :startups,      :only => :index
   resources :investors,     :only => :index
 
+  match 'u/:username'    => 'users#show',           :via => :get, :as => :user
+
   match 'my/profile'     => 'users#show',           :via => :get
   match 'my/home'        => 'users#home',           :via => :get
   match 'my/micro_posts' => 'users#add_micro_post', :via => :post

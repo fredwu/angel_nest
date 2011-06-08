@@ -1,6 +1,6 @@
 .mini_profile
   h2
-    = link_to user.name, user_path(user)
+    = link_to user.name, user_path(user.username)
     - if user == current_user
       |  (
       = link_to t('label.edit'), edit_registration_path(user)

@@ -1,6 +1,7 @@
 h1= t('label.edit_my_profile')
 = simple_form_for resource, :url => registration_path(resource_name) do |f|
   = devise_error_messages!
+  = f.input :username
   = f.input :name
   = f.input :email
   = f.input :password, :required => false
