@@ -1,7 +1,8 @@
 hr
 .micro-post= micro_post.content
 .micro-post-meta
-  ' Posted by
+  = t('meta.posted_by')
+  '
   = render 'users/avatar', :user => micro_post.user, :size => 16
   '
   = link_to micro_post.user.name, resource_path(micro_post.user)

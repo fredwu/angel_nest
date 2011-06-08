@@ -29,6 +29,7 @@ en:
       reviewing: Reviewing
       accepted: Accpeted
   meta:
+    posted_by: Posted by
     time_ago: '%{time} ago'
   label:
     create: create
