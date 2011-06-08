@@ -101,12 +101,12 @@ describe User do
       end
 
       it "adds startups" do
-        subject.startups << Startup.new
+        subject.startups << Startup.make!
         subject.is_entrepreneur?.should == true
       end
 
       it "adds investor" do
-        subject.investor = Investor.new
+        subject.investor = Investor.make!
         subject.is_investor?.should == true
       end
 

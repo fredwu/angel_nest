@@ -23,6 +23,11 @@ describe Message do
         subject.micro_posts.count.should == 0
       end
 
+      it "errors out if it's longer than 140 characters" do
+        subject.add_micro_post('a' * 141)
+        subject.micro_posts.count.should == 0
+      end
+
       it "has no micro posts by default" do
         subject.micro_posts.count.should == 0
       end
