@@ -27,6 +27,10 @@ $link_colour_h: $primary_colour_h;
 
 // sizes & calculations
 
+$h1_size:          20px;
+$h2_size:          16px;
+$h3_size:          14px;
+
 $grid_cell_width:  60px;
 $grid_cell_margin: 10px;
 $grid_cell:        $grid_cell_width + $grid_cell_margin * 2;
@@ -77,6 +81,12 @@ body {
   background: $bg_colour_secondary;
 }
 
+.container_12 {
+  padding: 0 $viewport_padding;
+  position: relative;
+  background: $bg_colour_primary;
+}
+
 a {
   color: $link_colour;
   text-decoration: none;
@@ -84,12 +94,6 @@ a {
   &:active  { color: $link_colour; }
   &:visited { color: $link_colour; }
   &:hover   { color: $link_colour_h; text-decoration: underline; }
-}
-
-.container_12 {
-  padding: 0 $viewport_padding;
-  position: relative;
-  background: $bg_colour_primary;
 }
 
 /* ------------------------------
@@ -180,6 +184,31 @@ form#add_micro_post {
 }
 
 /* ------------------------------
+  sidebar
+------------------------------ */
+
+#private_sidebar {
+  .mini_profile {
+    position: relative;
+    $h2_margin_bottom: 5px;
+
+    h2 {
+      margin-bottom: $h2_margin_bottom;
+    }
+
+    #avatar {
+
+    }
+
+    ul {
+      position: absolute;
+      top: $h1_size + $h2_margin_bottom;
+      left: 60px;
+    }
+  }
+}
+
+/* ------------------------------
   main
 ------------------------------ */
 
@@ -189,10 +218,14 @@ form#add_micro_post {
 
   h1 {
     display: block;
-    font-size: 20px;
+    font-size: $h1_size;
     padding-bottom: 10px;
     margin-bottom: 20px;
     border-bottom: 3px dotted $secondary_colour_h;
+  }
+
+  h2 {
+    font-size: $h2_size;
   }
 }
 

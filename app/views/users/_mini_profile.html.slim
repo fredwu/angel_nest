@@ -1,6 +1,13 @@
-div= render 'users/avatar', :user => user, :size => 80
+.mini_profile
+  h2
+    = link_to user.name, user_path(user)
+    - if user == current_user
+      |  (
+      = link_to t('label.edit'), edit_registration_path(user)
+      | )
+  .avatar= render 'users/avatar', :user => user, :size => 50
 
-ul
-  li= "#{t 'label.following'}: #{user.followed_count}"
-  li= "#{t 'label.followers'}: #{user.followers_count}"
-  li= "#{t 'label.micro_posts'}: #{user.micro_posts.count}"
+  ul
+    li= "#{t 'label.following'}: #{user.followed_count}"
+    li= "#{t 'label.followers'}: #{user.followers_count}"
+    li= "#{t 'label.micro_posts'}: #{user.micro_posts.count}"
