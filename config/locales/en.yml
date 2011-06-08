@@ -4,6 +4,7 @@
 en:
   site:
     name: AngelNest
+    welcome: Welcome to AngelNest - the place for connecting entrepreneurs and investors!
   group:
     role_identifiers:
       founder: Founder
@@ -32,7 +33,21 @@ en:
     posted_by: Posted by
     time_ago: '%{time} ago'
   label:
-    create: create
+    create: Create
+    update: Update
+    edit: Edit
+    delete: Delete
+    sign_in: Sign in
+    sign_out: Sign out
+    sign_up: Sign up
+    new_password: New password
+    confirm_new_password: Confirm new password
+    change_my_password: Change my password
+    forgot_your_password: Forgot your password?
+    send_reset_password_instructions: Send me reset password instructions
+    resend_confirmation_instructions: Resend confirmation instructions
+    resend_unlock_instructions: Resend unlock instructions
+    edit_my_profile: Edit my profile
     create_new: create new
     create_one_now: create one now!
     apply_now: apply now!
@@ -41,6 +56,6 @@ en:
     micro_posts: Micro-posts
     add_micro_post: Post
     whats_on_your_mind: What's on your mind?
-  dict:
+  text:
     have_no_startups: You have no startups,
     not_an_investor: You are not an investor,

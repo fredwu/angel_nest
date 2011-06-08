@@ -103,6 +103,7 @@ form {
     text-align: right;
     margin: 2px $grid_cell_margin;
     font-weight: bold;
+    font-size: 12px;
   }
 
   .input {
@@ -112,6 +113,7 @@ form {
   input.string,
   textarea.text {
     width: grid_cells(6);
+    font-size: 14px;
   }
 
   input[type='submit'],
@@ -184,6 +186,14 @@ form#add_micro_post {
 #main {
   padding-top: $viewport_padding;
   padding-bottom: $viewport_padding;
+
+  h1 {
+    display: block;
+    font-size: 20px;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    border-bottom: 3px dotted $secondary_colour_h;
+  }
 }
 
 /* ------------------------------
