@@ -5,7 +5,21 @@ en:
   site:
     name: AngelNest
     welcome: Welcome to AngelNest - the place for connecting entrepreneurs and investors!
-  group:
+  simple_form:
+    helpers:
+      submit:
+        startup:
+          create: Add startup
+    labels:
+      name: Name
+      pitch: Pitch
+      funds_to_raise: Funds to raise
+      stage_identifier: Stage
+      market_identifier: Market
+      description: Description
+  startup:
+    stages: Stages
+    markets: Markets
     role_identifiers:
       founder: Founder
       advisor: Advisor

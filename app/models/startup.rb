@@ -9,6 +9,7 @@ class Startup < ActiveRecord::Base
   has_many :proposals
 
   validates :name,              :presence     => true,
+                                :uniqueness   => true,
                                 :length       => { :within => 4..40 }
   validates :pitch,             :presence     => true,
                                 :length       => { :within => 10..140 }
@@ -21,12 +22,20 @@ class Startup < ActiveRecord::Base
   scope :involved, where(['startup_users.role_identifier != ?', 'investor'])
   scope :invested, where(['startup_users.role_identifier = ?', 'investor'])
 
+  def self.stages
+    I18n.t 'startup.stage_identifiers'
+  end
+
+  def self.markets
+    I18n.t 'startup.market_identifiers'
+  end
+
   def stage
-    I18n.t "group.stage_identifiers.#{stage_identifier}"
+    I18n.t "startup.stage_identifiers.#{stage_identifier}"
   end
 
   def market
-    I18n.t "group.market_identifiers.#{market_identifier}"
+    I18n.t "startup.market_identifiers.#{market_identifier}"
   end
 
   def attach_user(user, role_identifier = :founder)

@@ -10,29 +10,47 @@ describe StartupsController do
     Startup.make!.attach_user(user)
   end
 
-  it "lists the non-scoped collection" do
-    get :index
+  context "index" do
+    it "lists the non-scoped collection" do
+      get :index
 
-    @controller.send(:collection).count.should == 3
+      @controller.send(:collection).count.should == 3
+    end
+
+    it "lists the scoped collection" do
+      get :index, :user_id => user.id
+
+      @controller.send(:collection).count.should == 1
+    end
+
+    it "lists the scoped empty collection" do
+      get :index, :user_id => user2.id
+
+      @controller.send(:collection).count.should == 0
+    end
+
+    it "lists the scoped collection for current user" do
+      controller.stub(:current_user).and_return(current_user)
+
+      get :my_index
+
+      @controller.send(:collection).count.should == 2
+    end
   end
 
-  it "lists the scoped collection" do
-    get :index, :user_id => user.id
+  context "create" do
+    subject { Startup.make }
 
-    @controller.send(:collection).count.should == 1
-  end
+    it "creates a startup with a founder user attached" do
+      controller.stub(:current_user).and_return(current_user)
 
-  it "lists the scoped empty collection" do
-    get :index, :user_id => user2.id
+      post :create, :user_id => current_user.id, :startup => subject.attributes
 
-    @controller.send(:collection).count.should == 0
-  end
+      startup = Startup.last
 
-  it "lists the scoped collection for current user" do
-    controller.stub(:current_user).and_return(current_user)
-
-    get :my_index
-
-    @controller.send(:collection).count.should == 2
+      @controller.send(:resource).should == startup
+      startup.users.first.should == current_user
+      startup.users.count.should == 1
+    end
   end
 end

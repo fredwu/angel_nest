@@ -11,6 +11,13 @@ describe Startup do
     })
   end
 
+  describe "startup creation" do
+    it "rejects duplicated names" do
+      Startup.make!(:name => 'My Startup')
+      Startup.make(:name => 'My Startup').should_not be_valid
+    end
+  end
+
   describe "associations" do
     it "has users" do
       subject.association(:users).should be_a(ActiveRecord::Associations::HasManyThroughAssociation)

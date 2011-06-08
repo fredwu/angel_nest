@@ -14,6 +14,6 @@ class CreateStartups < ActiveRecord::Migration
       t.timestamps
     end
 
-    add_index :startups, :name
+    add_index :startups, :name, :unique => true
   end
 end

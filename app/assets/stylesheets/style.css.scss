@@ -115,9 +115,10 @@ form {
   }
 
   input.string,
+  select.select,
   textarea.text {
-    width: grid_cells(6);
     font-size: 14px;
+    width: grid_cells(6);
   }
 
   input[type='submit'],

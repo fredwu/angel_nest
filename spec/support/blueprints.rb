@@ -21,8 +21,8 @@ Startup.blueprint do
   pitch             { Faker::Company.catch_phrase }
   funds_to_raise    { rand(5_000_000) }
   description       { Faker::Lorem.paragraphs * "\n\n" }
-  stage_identifier  { I18n.t('group.stage_identifiers').keys.sample }
-  market_identifier { I18n.t('group.market_identifiers').keys.sample }
+  stage_identifier  { Startup.stages.keys.sample }
+  market_identifier { Startup.markets.keys.sample }
 end
 
 Message.blueprint do
