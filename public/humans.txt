@@ -1,0 +1,12 @@
+/* TEAM */
+
+  Principal Developer: Fred Wu
+  Twitter: @fredwu
+  LinkedIn: http://au.linkedin.com/in/wufred
+  Homepage: http://fredwu.me/
+  From: Melbourne, Australia
+
+/* SITE */
+
+  Language: Ruby
+  Framework: Ruby on Rails
