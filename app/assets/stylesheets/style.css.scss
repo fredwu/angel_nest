@@ -239,6 +239,29 @@ form#add_micro_post {
   h2 {
     font-size: $h2_size;
   }
+
+  ul#micro_posts {
+    list-style: none;
+
+    .micro_post {
+      $avatar_size: 50px;
+
+      .micro_post_user {
+        float: left;
+      }
+
+      .micro_post_container {
+        margin-left: $avatar_size + 10px;
+        min-height: $avatar_size;
+
+        .micro_post_meta {
+          color: $secondary_colour_h;
+          font-size: 12px;
+          margin-bottom: 5px;
+        }
+      }
+    }
+  }
 }
 
 /* ------------------------------

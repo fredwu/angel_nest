@@ -32,6 +32,7 @@ en:
   meta:
     posted_by: Posted by
     time_ago: '%{time} ago'
+    time_ago_by: '%{time} ago by'
   label:
     create: Create
     update: Update
