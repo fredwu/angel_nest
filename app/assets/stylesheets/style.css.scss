@@ -129,15 +129,26 @@ form {
 }
 
 form#add_micro_post {
+  position: relative;
+
+  $height: 60px;
+
+  label {
+    display: none;
+  }
+
   textarea {
-    height: 50px;
+    font-size: 22px;
+    width: grid_cells(7.5);
+    height: $height;
+    margin-left: 25px;
   }
 
   input.button {
     position: absolute;
-    right: $viewport_padding;
-    margin-left: 0;
-    margin-top: -50px;
+    top: 0;
+    right: 0;
+    height: $height;
   }
 }
 
