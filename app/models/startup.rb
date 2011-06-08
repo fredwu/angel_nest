@@ -8,12 +8,15 @@ class Startup < ActiveRecord::Base
   has_many :users, :through => :startup_users
   has_many :proposals
 
-  validates :name,           :presence     => true,
-                             :length       => { :within => 4..40 }
-  validates :pitch,          :presence     => true,
-                             :length       => { :within => 10..140 }
-  validates :funds_to_raise, :presence     => true,
-                             :numericality => true
+  validates :name,              :presence     => true,
+                                :length       => { :within => 4..40 }
+  validates :pitch,             :presence     => true,
+                                :length       => { :within => 10..140 }
+  validates :funds_to_raise,    :presence     => true,
+                                :numericality => true
+  validates :stage_identifier,  :presence     => true
+  validates :market_identifier, :presence     => true
+  validates :description,       :presence     => true
 
   scope :involved, where(['startup_users.role_identifier != ?', 'investor'])
   scope :invested, where(['startup_users.role_identifier = ?', 'investor'])

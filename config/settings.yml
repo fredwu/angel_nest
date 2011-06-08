@@ -6,3 +6,13 @@ group:
     thumb:
       width: 64
       height: 64
+startup:
+  proposal:
+    questions:
+      en:
+        - Product or service introduction.
+        - What is the target market?
+        - Please provide an estimated operation margin in 5 years (%).
+        - What are the competitors currently in the market?
+        - What is the advantage of your product or service?
+        - What is your marketing plan?

@@ -219,6 +219,7 @@ form#add_micro_post {
   h1 {
     display: block;
     font-size: $h1_size;
+    text-transform: capitalize;
     padding-bottom: 10px;
     margin-bottom: 20px;
     border-bottom: 3px dotted $secondary_colour_h;

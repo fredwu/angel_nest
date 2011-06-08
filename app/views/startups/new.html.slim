@@ -1,0 +1,9 @@
+h1= t('label.create_new_startup_profile')
+= simple_form_for resource do |f|
+  = f.input :name
+  = f.input :pitch
+  = f.input :funds_to_raise
+  = f.input :stage_identifier
+  = f.input :market_identifier
+  = f.input :description
+  = f.button :submit
