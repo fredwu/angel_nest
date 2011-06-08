@@ -27,16 +27,32 @@ $link_colour_h: $primary_colour_h;
 
 // sizes & calculations
 
+$grid_cell_width:  60px;
+$grid_cell_margin: 10px;
+$grid_cell:        $grid_cell_width + $grid_cell_margin * 2;
+
 $viewport_width:   960px;
 $viewport_margin:  30px;
 $viewport_padding: 20px;
 
 $header_hr_height: 5px;
 
+// functions
+
+@function grid_cells($n: 1) {
+  @return $grid_cell * $n - $grid_cell_margin * 2;
+}
+
 // mixins
 
-@mixin anchor_button() {
+@mixin base_tab() {
   display: block;
+
+}
+
+@mixin anchor_tab() {
+  @include base_tab();
+
   padding: 10px 20px;
   color: $secondary_colour;
   font-weight: bold;
@@ -46,6 +62,10 @@ $header_hr_height: 5px;
   &:hover, &.current {
     background: $button_colour_secondary_h;
   }
+}
+
+@mixin action_button() {
+  @include anchor_tab();
 }
 
 /* ------------------------------
@@ -70,6 +90,49 @@ a {
   padding: 0 $viewport_padding;
   position: relative;
   background: $bg_colour_primary;
+}
+
+/* ------------------------------
+  form
+------------------------------ */
+
+form {
+  label {
+    float: left;
+    width: grid_cells(2);
+    text-align: right;
+    margin: 2px $grid_cell_margin;
+    font-weight: bold;
+  }
+
+  .input {
+    margin-bottom: 10px;
+  }
+
+  input.string,
+  textarea.text {
+    width: grid_cells(6);
+  }
+
+  input[type='submit'],
+  input[type='button'],
+  input.button {
+    margin-left: $grid_cell * 2;
+    @include action_button();
+  }
+}
+
+form#add_micro_post {
+  textarea {
+    height: 50px;
+  }
+
+  input.button {
+    position: absolute;
+    right: $viewport_padding;
+    margin-left: 0;
+    margin-top: -50px;
+  }
 }
 
 /* ------------------------------
@@ -100,7 +163,7 @@ a {
       float: left;
 
       a {
-        @include anchor_button;
+        @include anchor_tab;
       }
     }
   }

@@ -10,7 +10,7 @@ class UsersController < ApplicationController
   end
 
   def add_micro_post
-    result = current_user.add_micro_post(params[:content])
+    result = current_user.add_micro_post(params[:message][:content])
 
     respond_to do |format|
       format.json { render :json => result }

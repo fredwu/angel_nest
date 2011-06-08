@@ -27,14 +27,14 @@ describe UsersController do
       end
 
       it "adds micro posts via html" do
-        post :add_micro_post, :content => 'Hello html!'
+        post :add_micro_post, :message => { :content => 'Hello html!' }
 
         current_user.micro_posts.last.content.should == 'Hello html!'
         response.should redirect_to(request.env['HTTP_REFERER'])
       end
 
       it "adds micro posts via json" do
-        post :add_micro_post, :content => 'Hello json!', :format => :json
+        post :add_micro_post, :message => { :content => 'Hello json!' }, :format => :json
 
         current_user.micro_posts.last.content.should == 'Hello json!'
         response.should be_success

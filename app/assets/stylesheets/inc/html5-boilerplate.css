@@ -60,8 +60,8 @@ input[type="checkbox"] { vertical-align: bottom; }
 label, input[type="button"], input[type="submit"], input[type="image"], button { cursor: pointer; }
 button, input, select, textarea { margin: 0; }
 input:valid, textarea:valid   {  }
-input:invalid, textarea:invalid { border-radius: 1px; -moz-box-shadow: 0px 0px 5px red; -webkit-box-shadow: 0px 0px 5px red; box-shadow: 0px 0px 5px red; }
-.no-boxshadow input:invalid, .no-boxshadow textarea:invalid { background-color: #f0dddd; }
+/*input:invalid, textarea:invalid { border-radius: 1px; -moz-box-shadow: 0px 0px 5px red; -webkit-box-shadow: 0px 0px 5px red; box-shadow: 0px 0px 5px red; }*/
+/*.no-boxshadow input:invalid, .no-boxshadow textarea:invalid { background-color: #f0dddd; }*/
 
 /*::-moz-selection{ background: #FF5E99; color:#fff; text-shadow: none; }*/
 /*::selection { background:#FF5E99; color:#fff; text-shadow: none; }*/
