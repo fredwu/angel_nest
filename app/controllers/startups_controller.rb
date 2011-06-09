@@ -8,6 +8,6 @@ class StartupsController < ApplicationController
   private
 
   def attach_user_to_startup
-    resource.attach_user(parent)
+    resource.attach_user(parent) if resource.persisted?
   end
 end

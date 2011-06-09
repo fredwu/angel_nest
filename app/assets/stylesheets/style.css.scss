@@ -4,6 +4,8 @@
 
 // colours
 
+$error_colour:              #990D0D;
+
 $primary_colour:            #0E3399;
 $primary_colour_h:          darken($primary_colour, 15%);
 $primary_colour_dark:       darken($primary_colour, 30%);
@@ -101,6 +103,8 @@ a {
 ------------------------------ */
 
 form {
+  $input_margin: $grid_cell * 2;
+
   label {
     float: left;
     width: grid_cells(2);
@@ -124,8 +128,25 @@ form {
   input[type='submit'],
   input[type='button'],
   input.button {
-    margin-left: $grid_cell * 2;
+    margin-left: $input_margin;
     @include action_button();
+  }
+
+  span.error,
+  span.hint {
+    display: block;
+    clear: both;
+    margin-top: 3px;
+    margin-left: $input_margin;
+  }
+
+  span.error {
+    font-size: 13px;
+    color: $error_colour;
+  }
+
+  span.hint {
+    font-size: 11px;
   }
 }
 

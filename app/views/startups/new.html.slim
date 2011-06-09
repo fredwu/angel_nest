@@ -1,9 +1,6 @@
-h1= t('label.create_new_startup_profile')
-= simple_form_for resource, :url => user_startups_path do |f|
-  = f.input :name
-  = f.input :pitch
-  = f.input :funds_to_raise
-  = f.input :stage_identifier,  :collection => Startup.stages,  :value_method => :first, :label_method => :second
-  = f.input :market_identifier, :collection => Startup.markets, :value_method => :first, :label_method => :second
-  = f.input :description
-  = f.button :submit
+h1
+  = t('label.create')
+  '
+  = t('label.startup_profile')
+
+= render 'form', :submit_path => user_startups_path
