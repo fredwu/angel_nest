@@ -8,10 +8,6 @@ en:
   system:
     access_denied: Access denied!
   simple_form:
-    helpers:
-      submit:
-        startup:
-          create: Add startup
     labels:
       name: Name
       pitch: Pitch
@@ -21,6 +17,11 @@ en:
       description: Description
     hints:
       pitch: A one sentence pitch to describe your startup.
+  helpers:
+    submit:
+      create: 'Add %{model}'
+      update: 'Edit %{model}'
+      destroy: 'Delete %{model}'
   startup:
     stages: Stages
     markets: Markets
