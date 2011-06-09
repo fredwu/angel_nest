@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '~> 3.1.0.rc1'
+gem 'rails', '= 3.1.0.rc1'
 gem 'mysql2'
 
 # core function gems
@@ -27,9 +27,9 @@ gem 'carrierwave'
 
 group :development, :test do
   gem 'cucumber-rails'
-  gem 'capybara'
+  gem 'capybara',    '~> 1.0.0.rc1'
   gem 'rspec-rails', '~> 2.6.1'
-  gem 'machinist',   '>= 2.0.0.beta2'
+  gem 'machinist',   '~> 2.0.0.beta2'
   gem 'pickle'
   gem 'ffaker'
   gem 'delorean'
