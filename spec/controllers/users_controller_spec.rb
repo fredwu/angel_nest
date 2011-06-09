@@ -1,17 +1,21 @@
 require 'spec_helper'
 
 describe UsersController do
-  test_authentication :home,
-                      :add_micro_post,
-                      :show
+  include_context "inherited_resources"
+
+  authenticates_gets :home,
+                     :add_micro_post,
+                     :show
+
+  authenticates_posts
 
   context "logged in" do
     let(:current_user) { User.make! }
     let(:user)         { User.make! }
 
     before do
-      controller.stub(:current_user).and_return(current_user)
       sign_in current_user
+      controller.stub(:current_user).and_return(current_user)
 
       request.env['HTTP_REFERER'] = my_home_url
 
@@ -43,6 +47,24 @@ describe UsersController do
     end
 
     context "user profile" do
+      let(:user) { User.make!(:username => 'angel') }
+
+      it "accepts :id as the parameter" do
+        get :show, :id => user.id
+
+        resource.should == user
+      end
+
+      it "accepts :username as the parameter" do
+        get :show, :username => 'angel'
+
+        resource.should == user
+      end
+
+      it "routes to /u/:username" do
+        { :get => '/u/angel' }.should be_routable
+      end
+
       it "has micro posts" do
         get :show
 

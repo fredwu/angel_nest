@@ -16,7 +16,11 @@ describe UsersHelper do
     end
 
     before do
-      helper.stub(:find_geo_location).and_return(geo_location_hash)
+      GeoLocation.stub(:find).and_return(geo_location_hash)
+    end
+
+    it "returns correct geo location hash from the remote server" do
+      helper.find_geo_location.should == geo_location_hash
     end
 
     it "detects the country of the current user" do

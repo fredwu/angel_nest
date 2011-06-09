@@ -4,6 +4,9 @@ describe StartupsController do
   it_behaves_like "ensure_ownership"
   include_context "inherited_resources"
 
+  authenticates_gets
+  authenticates_posts
+
   let(:startup)      { Startup.make! }
   let(:current_user) { User.make! }
   let(:user)         { User.make! }

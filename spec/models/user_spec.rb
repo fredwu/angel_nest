@@ -21,7 +21,7 @@ describe User do
     }
   end
 
-  describe "user creation" do
+  describe "creation" do
     it "creates a user given valid attributes" do
       User.new(attrs).should be_valid
     end
@@ -68,7 +68,7 @@ describe User do
     end
   end
 
-  describe "user persistence" do
+  describe "persistence" do
     it "normalises the email address" do
       user = User.new(attrs.merge(:email => 'TESTme@EXAMPLE.com'))
       user.save(:validate => false)
@@ -102,14 +102,37 @@ describe User do
     end
   end
 
-  context "user functions and associations" do
+  context "attributes" do
     subject { User.make! }
 
-    describe "user permissions" do
+    it "has an avatar" do
+      subject.avatar.should match 'gravatar.com'
+      subject.avatar(100).should match 's=100'
+    end
+  end
+
+  context "functions and associations" do
+    subject { User.make! }
+
+    describe "permissions" do
       it "responds to is_xxx?" do
-        subject.respond_to?(:is_admin?).should be_true
-        subject.respond_to?(:is_entrepreneur?).should be_true
-        subject.respond_to?(:is_investor?).should be_true
+        subject.respond_to?(:is_admin?).should == true
+        subject.respond_to?(:is_new_user?).should == true
+        subject.respond_to?(:is_entrepreneur?).should == true
+        subject.respond_to?(:is_investor?).should == true
+      end
+
+      it "is a new user" do
+        subject.is_new_user?.should == true
+      end
+
+      it "is not an admin" do
+        subject.is_admin?.should == false
+      end
+
+      it "is an admin" do
+        user = User.make(:is_admin => true)
+        user.is_admin?.should == true
       end
     end
 
