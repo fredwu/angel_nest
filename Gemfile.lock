@@ -214,6 +214,9 @@ GEM
       json_pure
       rubyzip
     simple_form (1.4.0)
+    simplecov (0.4.2)
+      simplecov-html (~> 0.4.4)
+    simplecov-html (0.4.5)
     slim (0.9.4)
       temple (~> 0.3.0)
       tilt (~> 1.2)
@@ -272,6 +275,7 @@ DEPENDENCIES
   rspec-rails (~> 2.6.1)
   sass
   simple_form (~> 1.4.0)
+  simplecov
   slim-rails
   squeel (~> 0.7.0)
   turn
