@@ -14,15 +14,15 @@ class ApplicationController < ActionController::Base
 
   def ensure_ownership
     if resource_class == User
-      deny_access! unless current_user == resource
+      deny_access unless current_user == resource
     elsif parent_class == User
-      deny_access! unless current_user == parent
+      deny_access unless current_user == parent
     elsif params.key?(:user_id)
-      deny_access! unless current_user == User.find(params[:user_id])
+      deny_access unless current_user == User.find(params[:user_id])
     end
   end
 
-  def deny_access!
+  def deny_access
     render :text => t('system.access_denied'), :status => 403
   end
 end
