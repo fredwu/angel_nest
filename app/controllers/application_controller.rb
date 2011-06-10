@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   layout proc { |controller| controller.request.xhr? ? nil : 'application' }
 
   before_filter :require_login, :unless => :devise_controller?
-  before_filter :ensure_ownership, :except => [:index, :show]
+  before_filter :ensure_ownership, :except => [:index, :show], :unless => :devise_controller?
 
   private
 
