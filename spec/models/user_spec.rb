@@ -106,8 +106,8 @@ describe User do
     subject { User.make! }
 
     it "has an avatar" do
-      subject.avatar.should match 'gravatar.com'
-      subject.avatar(100).should match 's=100'
+      subject.avatar.should include('gravatar.com')
+      subject.avatar(100).should include('s=100')
     end
   end
 

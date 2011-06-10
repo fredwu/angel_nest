@@ -2,11 +2,11 @@ require 'spec_helper'
 
 describe ApplicationHelper do
   it "has #time_ago" do
-    helper.time_ago(Time.now).should match time_ago_in_words(Time.now)
+    helper.time_ago(Time.now).should include(time_ago_in_words(Time.now))
   end
 
   it "has #time_ago_by" do
-    helper.time_ago_by(Time.now).should match time_ago_in_words(Time.now)
+    helper.time_ago_by(Time.now).should include(time_ago_in_words(Time.now))
   end
 
   it "has #link_to_current" do
