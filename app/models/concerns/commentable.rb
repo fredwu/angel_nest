@@ -1,10 +1,10 @@
-module Features::Commentable
-  def self.included(model)
-    model.class_eval do
-      attr_readonly :comments_count
+module Commentable
+  extend ActiveSupport::Concern
 
-      has_many :comments, :class_name => 'Message', :as => :target
-    end
+  included do
+    attr_readonly :comments_count
+
+    has_many :comments, :class_name => 'Message', :as => :target
   end
 
   def add_comment(user, content, options = {})

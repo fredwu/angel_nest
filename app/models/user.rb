@@ -1,8 +1,8 @@
 require 'digest/md5'
 
 class User < ActiveRecord::Base
-  include Features::Commentable
-  include Features::Followable
+  include Commentable
+  include Followable
 
   devise :database_authenticatable,
          :token_authenticatable,
