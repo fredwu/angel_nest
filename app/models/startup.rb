@@ -59,6 +59,6 @@ class Startup < ActiveRecord::Base
   def submit_proposal(investors = [], content = {})
     proposal = create_proposal(content)
     proposal.update_attribute(:proposal_stage_identifier, 'submitted')
-    proposal.investors = [investors].flatten
+    proposal.submit(investors)
   end
 end
