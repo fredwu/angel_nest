@@ -56,7 +56,7 @@ describe StartupsController do
       post :create, :user_id => current_user.id,
                     :startup => Startup.make.attributes
 
-      startup = Startup.last
+      startup = Startup.all.last
 
       resource.should == startup
       startup.users.first.should == current_user
@@ -68,7 +68,7 @@ describe StartupsController do
                     :id      => startup.id,
                     :startup => startup.attributes.merge(:name => 'Edited Name')
 
-      startup = Startup.last
+      startup = Startup.all.last
 
       resource.should == startup
       startup.name.should == 'Edited Name'
@@ -79,7 +79,7 @@ describe StartupsController do
     #                 :id      => startup.id,
     #                 :startup => startup.attributes.merge(:name => 'Edited Name')
     #
-    #   startup = Startup.last
+    #   startup = Startup.all.last
     #
     #   startup.name.should_not == 'Edited Name'
     # end

@@ -228,7 +228,7 @@ describe User do
             subject.add_micro_post('Hello from myself!')
 
             subject.followed_micro_posts.first.content.should == 'Hello from myself!'
-            subject.followed_micro_posts.last.content.should == 'Hello world!'
+            subject.followed_micro_posts.all.last.content.should == 'Hello world!'
 
             subject.followed_micro_posts.count.should == 4
 

@@ -77,7 +77,7 @@ describe Startup do
       subject.attach_user(user, :advisor)
 
       subject.users.count.should == 2
-      subject.users.last.should == user
+      subject.users.all.last.should == user
     end
 
     it "detaches a user" do
@@ -85,8 +85,8 @@ describe Startup do
       subject.detach_user(user)
 
       subject.users.count.should == 1
-      subject.users.last.should == founder
-      User.last.should == user
+      subject.users.all.last.should == founder
+      User.all.last.should == user
     end
   end
 

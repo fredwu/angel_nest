@@ -90,7 +90,7 @@ ActiveRecord::Schema.define(:version => 20110606072040) do
     t.datetime "updated_at"
   end
 
-  add_index "startups", ["name"], :name => "index_startups_on_name"
+  add_index "startups", ["name"], :name => "index_startups_on_name", :unique => true
 
   create_table "target_followers", :force => true do |t|
     t.integer  "follower_id"
