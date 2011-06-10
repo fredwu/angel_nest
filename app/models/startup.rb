@@ -1,6 +1,6 @@
 class Startup < ActiveRecord::Base
-  include Commentable
-  include Followable
+  include Commentable,
+          Followable
 
   mount_uploader :logo, LogoUploader
 
