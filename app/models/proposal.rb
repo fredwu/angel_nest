@@ -6,14 +6,6 @@ class Proposal < ActiveRecord::Base
 
   before_create :default_proposal_stage_identifier
 
-  def content=(hash_content)
-    self.json_content = hash_content.to_json
-  end
-
-  def content
-    ActiveSupport::JSON.decode(json_content)
-  end
-
   def submit(investors)
     self.investors = [investors].flatten
   end
