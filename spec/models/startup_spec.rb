@@ -142,9 +142,9 @@ describe Startup do
     end
 
     it "preserves proposal content structure" do
-      subject.submit_proposal(investor1, { 'hello' => 'world' })
+      proposal = subject.submit_proposal(investor1, { 'hello' => 'world' })
 
-      subject.proposals.first.content['hello'].should == 'world'
+      proposal.content.should == { 'hello' => 'world' }
     end
   end
 end

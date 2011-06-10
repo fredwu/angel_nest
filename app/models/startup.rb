@@ -50,15 +50,13 @@ class Startup < ActiveRecord::Base
   end
 
   def create_proposal(content = {})
-    proposal = proposals.new
-    proposal.content = content
-    proposal.save
-    proposal
+    proposals.create(:content => content)
   end
 
   def submit_proposal(investors = [], content = {})
     proposal = create_proposal(content)
     proposal.update_attribute(:proposal_stage_identifier, 'submitted')
     proposal.submit(investors)
+    proposal
   end
 end
