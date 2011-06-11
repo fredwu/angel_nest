@@ -2,7 +2,7 @@ class CreateProposals < ActiveRecord::Migration
   def change
     create_table :proposals do |t|
       t.string  :proposal_stage_identifier
-      t.text    :content
+      t.text    :details
       t.integer :startup_id
       t.timestamps
     end

@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(:version => 20110606072040) do
 
   create_table "proposals", :force => true do |t|
     t.string   "proposal_stage_identifier"
-    t.text     "content"
+    t.text     "details"
     t.integer  "startup_id"
     t.datetime "created_at"
     t.datetime "updated_at"

@@ -141,10 +141,10 @@ describe Startup do
       investor2.proposals.count.should == 1
     end
 
-    it "preserves proposal content structure" do
+    it "preserves proposal details structure" do
       proposal = subject.submit_proposal(investor1, { 'hello' => 'world' })
 
-      proposal.content.should == { 'hello' => 'world' }
+      proposal.details.should == { 'hello' => 'world' }
     end
   end
 end

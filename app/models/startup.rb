@@ -49,12 +49,12 @@ class Startup < ActiveRecord::Base
     users.delete(user)
   end
 
-  def create_proposal(content = {})
-    proposals.create(:content => content)
+  def create_proposal(details = {})
+    proposals.create(:details => details)
   end
 
-  def submit_proposal(investors = [], content = {})
-    proposal = create_proposal(content)
+  def submit_proposal(investors = [], details = {})
+    proposal = create_proposal(details)
     proposal.update_attribute(:proposal_stage_identifier, 'submitted')
     proposal.submit(investors)
     proposal
