@@ -8,29 +8,27 @@ class Proposal < ActiveRecord::Base
 
   before_create :default_proposal_stage_identifier
 
-  class AttributesCollection
-    include Virtus
+  class Details
+    include SchemalessAttributes
 
-    def method_missing(method, *args)
-      nil
-    end
-  end
-
-  class Details < AttributesCollection
     attribute :business,    Object
     attribute :market_1y,   Object
     attribute :market_5y,   Object
     attribute :competitors, Object
     attribute :investment,  Object
 
-    class BusinessInfo < AttributesCollection
+    class BusinessInfo
+      include SchemalessAttributes
+
       attribute :new_business_model, Boolean
       attribute :new_product,        Boolean
       attribute :pitch,              String
       attribute :introduction,       String
     end
 
-    class MarketInfo < AttributesCollection
+    class MarketInfo
+      include SchemalessAttributes
+
       attribute :target_audience,            String
       attribute :per_capita_annual_spending, Integer
       attribute :number_of_users,            Integer
@@ -40,13 +38,17 @@ class Proposal < ActiveRecord::Base
       attribute :gross_profit_margin,        String
     end
 
-    class CompetitorsInfo < AttributesCollection
+    class CompetitorsInfo
+      include SchemalessAttributes
+
       attribute :details,            String
       attribute :competitive_edges,  String
       attribute :competing_strategy, String
     end
 
-    class InvestmentInfo < AttributesCollection
+    class InvestmentInfo
+      include SchemalessAttributes
+
       attribute :amount,                Integer
       attribute :currency,              String
       attribute :equity_percentage,     Integer
