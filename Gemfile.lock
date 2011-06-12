@@ -1,3 +1,11 @@
+GIT
+  remote: git://github.com/stonean/slim.git
+  revision: a3465a03f913fb1c724797c785f13703265acd12
+  specs:
+    slim (0.9.4)
+      temple (~> 0.3.0)
+      tilt (~> 1.2)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -217,9 +225,6 @@ GEM
     simplecov (0.4.2)
       simplecov-html (~> 0.4.4)
     simplecov-html (0.4.5)
-    slim (0.9.4)
-      temple (~> 0.3.0)
-      tilt (~> 1.2)
     slim-rails (0.2.1)
       slim (>= 0.9.2)
     sprockets (2.0.0.beta.10)
@@ -277,6 +282,7 @@ DEPENDENCIES
   sass
   simple_form (~> 1.4.0)
   simplecov
+  slim!
   slim-rails
   squeel (~> 0.7.0)
   turn

@@ -18,6 +18,7 @@ gem 'carmen'
 gem 'geo_location'
 
 # asset gems
+gem 'slim', :git => 'git://github.com/stonean/slim.git'
 gem 'slim-rails'
 gem 'sass'
 gem 'coffee-script'

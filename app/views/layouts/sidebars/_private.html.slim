@@ -8,8 +8,7 @@ h3 Startups
   p= link_to t('label.create_new'), new_user_startup_path(current_user)
 - else
   p
-    = t('text.have_no_startups')
-    '
+    =' t('text.have_no_startups')
     = link_to t('label.create_one_now'), new_user_startup_path(current_user)
 
 hr
@@ -19,6 +18,5 @@ h3 Investor
   = render 'ventures/mini_index', :collection => current_user.startups.invested
 - else
   p
-    = t('text.not_an_investor')
-    '
+    =' t('text.not_an_investor')
     = link_to t('label.apply_now'), new_user_investor_path(current_user)
