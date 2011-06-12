@@ -60,8 +60,8 @@ describe Startup do
   end
 
   describe "user roles" do
-    let(:founder)   { User.make! }
-    let(:user)      { User.make! }
+    let(:founder) { User.make! }
+    let(:user)    { User.make! }
 
     before do
       subject.attach_user(founder, :founder)
@@ -109,11 +109,12 @@ describe Startup do
   end
 
   describe "proposals" do
-    let(:investor1)      { Investor.make! }
-    let(:investor2)      { Investor.make! }
+    let(:proposal)  { Proposal.make }
+    let(:investor1) { Investor.make! }
+    let(:investor2) { Investor.make! }
 
     it "creates a draft proposal" do
-      subject.create_proposal({ 'hello' => 'world' })
+      subject.create_proposal(proposal.attributes)
 
       subject.proposals.count.should == 1
       subject.proposals.draft.count.should == 1
@@ -122,7 +123,7 @@ describe Startup do
     end
 
     it "submits proposal to one investor" do
-      subject.submit_proposal(investor1, { 'hello' => 'world' })
+      subject.submit_proposal(investor1, proposal.attributes)
 
       subject.proposals.count.should == 1
       subject.proposals.draft.count.should == 0
@@ -132,7 +133,7 @@ describe Startup do
     end
 
     it "submits proposal to many investors" do
-      subject.submit_proposal([investor1, investor2], { 'hello' => 'world' })
+      subject.submit_proposal([investor1, investor2], proposal.attributes)
 
       subject.proposals.count.should == 1
       subject.proposals.draft.count.should == 0
@@ -142,9 +143,10 @@ describe Startup do
     end
 
     it "preserves proposal details structure" do
-      proposal = subject.submit_proposal(investor1, { 'hello' => 'world' })
+      proposal_attributes = proposal.attributes.merge(:pitch => 'Hello world')
+      subject.submit_proposal(investor1, proposal_attributes)
 
-      proposal.details.should == { 'hello' => 'world' }
+      Proposal.all.last.pitch.should == 'Hello world'
     end
   end
 end

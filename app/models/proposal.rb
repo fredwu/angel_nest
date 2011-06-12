@@ -1,60 +1,50 @@
 class Proposal < ActiveRecord::Base
-  serialize :details
-
+  belongs_to              :startup
   has_and_belongs_to_many :investors, :join_table => :proposal_for_investors
+
+  validates :pitch,                      :presence     => true,
+                                         :length       => { :within => 10..140 }
+  validates :introduction,               :presence     => true,
+                                         :length       => { :within => 10..300 }
+  validates :target_audience,            :presence     => true,
+                                         :length       => { :within => 10..300 }
+  validates :per_capita_annual_spending, :numericality => true
+  validates :number_of_users,            :numericality => true
+  validates :market_cap,                 :presence     => true,
+                                         :numericality => true
+  validates :penetration_rate,           :presence     => true,
+                                         :numericality => { :less_than_or_equal_to  => 100 }
+  validates :marketing_strategy,         :length       => { :within => 10..400 }
+  validates :gross_profit_margin,        :presence     => true,
+                                         :numericality => true
+  validates :competitors_details,        :presence     => true,
+                                         :length       => { :within => 10..400 }
+  validates :competitive_edges,          :presence     => true,
+                                         :length       => { :within => 10..400 }
+  validates :competing_strategy,         :presence     => true,
+                                         :length       => { :within => 10..400 }
+  validates :investment_amount,          :presence     => true,
+                                         :numericality => true
+  validates :investment_currency,        :presence     => true,
+                                         :inclusion    => { :in => Settings.currencies }
+  validates :equity_percentage,          :presence     => true,
+                                         :numericality => { :less_than_or_equal_to => 100 }
+  validates :spending_plan,              :presence     => true,
+                                         :length       => { :within => 10..400 }
+  validates :next_investment_round,      :presence     => true,
+                                         :numericality => true
 
   scope :draft,     where(:proposal_stage_identifier => 'draft')
   scope :submitted, where(:proposal_stage_identifier => 'submitted')
 
   before_create :default_proposal_stage_identifier
 
-  class Details
-    include SchemalessAttributes
+  def self.stages
+    I18n.t 'startup.proposal_stage_identifiers'
+  end
 
-    attribute :business,    Object
-    attribute :market_1y,   Object
-    attribute :market_5y,   Object
-    attribute :competitors, Object
-    attribute :investment,  Object
-
-    class BusinessInfo
-      include SchemalessAttributes
-
-      attribute :new_business_model, Boolean
-      attribute :new_product,        Boolean
-      attribute :pitch,              String
-      attribute :introduction,       String
-    end
-
-    class MarketInfo
-      include SchemalessAttributes
-
-      attribute :target_audience,            String
-      attribute :per_capita_annual_spending, Integer
-      attribute :number_of_users,            Integer
-      attribute :market_cap,                 Integer
-      attribute :penetration_rate,           Integer
-      attribute :marketing_strategy,         String
-      attribute :gross_profit_margin,        String
-    end
-
-    class CompetitorsInfo
-      include SchemalessAttributes
-
-      attribute :details,            String
-      attribute :competitive_edges,  String
-      attribute :competing_strategy, String
-    end
-
-    class InvestmentInfo
-      include SchemalessAttributes
-
-      attribute :amount,                Integer
-      attribute :currency,              String
-      attribute :equity_percentage,     Integer
-      attribute :spending_plan,         String
-      attribute :next_investment_round, Integer
-    end
+  def stage
+    I18n.t "startup.proposal_stage_identifiers.#{proposal_stage_identifier}"
   end
 
   def submit(investors)
