@@ -48,9 +48,9 @@ class User < ActiveRecord::Base
   has_many :users_followed,    :through => :target_followed, :source => :target, :source_type => 'User'
   has_many :startups_followed, :through => :target_followed, :source => :target, :source_type => 'Startup'
 
-  scope :new_users,     includes(:startup_users, :investor).where('startup_users.user_id IS NULL').where('investors.user_id IS NULL')
-  scope :entrepreneurs, joins(:startup_users).where('startup_users.user_id IS NOT NULL')
-  scope :investors,     joins(:investor).where('investors.user_id IS NOT NULL')
+  scope :new_users,     joins { [startup_users.outer, investor.outer] }.where { (startup_users.user_id == nil) & (investors.user_id == nil) }
+  scope :entrepreneurs, joins { startup_users }.where { startup_users.user_id != nil }
+  scope :investors,     joins { investor }.where { investors.user_id != nil }
 
   before_save :email_nomarlisation
 

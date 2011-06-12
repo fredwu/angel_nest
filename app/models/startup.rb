@@ -19,8 +19,8 @@ class Startup < ActiveRecord::Base
   validates :market_identifier, :presence     => true
   validates :description,       :presence     => true
 
-  scope :involved, where(['startup_users.role_identifier != ?', 'investor'])
-  scope :invested, where(['startup_users.role_identifier = ?', 'investor'])
+  scope :involved, where { startup_users.role_identifier != 'investor' }
+  scope :invested, where { startup_users.role_identifier == 'investor' }
 
   def self.stages
     I18n.t 'startup.stage_identifiers'

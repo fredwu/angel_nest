@@ -1,3 +1,3 @@
 Squeel.configure do |config|
-  config.load_core_extensions :hash, :symbol
+  config.load_core_extensions :hash
 end
