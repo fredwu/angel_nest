@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
+  force_ssl
+
   layout proc { |controller| controller.request.xhr? ? nil : 'application' }
 
   before_filter :require_login, :unless => :devise_controller?
