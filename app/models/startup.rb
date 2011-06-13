@@ -5,7 +5,12 @@ class Startup < ActiveRecord::Base
   mount_uploader :logo, LogoUploader
 
   has_many :startup_users
-  has_many :users, :through => :startup_users
+  has_many :users,      :through => :startup_users
+  has_many :members,    :through => :startup_users, :source => :user, :conditions => { 'startup_users.role_identifier' => 'member' }
+  has_many :investors,  :through => :startup_users, :source => :user, :conditions => { 'startup_users.role_identifier' => 'investor' }
+  has_many :advisors,   :through => :startup_users, :source => :user, :conditions => { 'startup_users.role_identifier' => 'advisor' }
+  has_many :incubators, :through => :startup_users, :source => :user, :conditions => { 'startup_users.role_identifier' => 'incubator' }
+
   has_many :proposals
 
   validates :name,              :presence     => true,
@@ -30,6 +35,10 @@ class Startup < ActiveRecord::Base
     I18n.t 'startup.market_identifiers'
   end
 
+  def self.roles
+    I18n.t 'startup.role_identifiers'
+  end
+
   def stage
     I18n.t "startup.stage_identifiers.#{stage_identifier}"
   end
@@ -38,15 +47,28 @@ class Startup < ActiveRecord::Base
     I18n.t "startup.market_identifiers.#{market_identifier}"
   end
 
-  def attach_user(user, role_identifier = :founder)
+  def attach_user(user, role_identifier = :member, member_title = '')
     startup_users.create(
       :user_id         => user.id,
-      :role_identifier => role_identifier
+      :role_identifier => role_identifier,
+      :member_title    => member_title,
     )
   end
 
   def detach_user(user)
     users.delete(user)
+  end
+
+  def user_meta(user)
+    startup_users.where(:user_id => user.id).first
+  end
+
+  def member_title(user)
+    user_meta(user).member_title
+  end
+
+  def user_role(user)
+    I18n.t "startup.role_identifiers.#{user_meta(user).role_identifier}"
   end
 
   def create_proposal(attributes = {})

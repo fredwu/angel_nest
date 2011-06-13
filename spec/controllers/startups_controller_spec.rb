@@ -52,7 +52,7 @@ describe StartupsController do
       controller.stub(:current_user).and_return(current_user)
     end
 
-    it "creates a startup profile with a founder user attached" do
+    it "creates a startup profile with a member user attached" do
       post :create, :user_id => current_user.id,
                     :startup => Startup.make.attributes
 

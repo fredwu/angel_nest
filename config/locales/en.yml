@@ -26,9 +26,10 @@ en:
     stages: Stages
     markets: Markets
     role_identifiers:
-      founder: Founder
+      member: Member
       advisor: Advisor
       investor: Investor
+      incubator: Incubator
     stage_identifiers:
       concept: Concept
       prototype_development: Prototype Development
@@ -58,6 +59,7 @@ en:
     edit: Edit
     delete: Delete
     welcome: Welcome
+    member: Member
     sign_in: Sign in
     sign_out: Sign out
     sign_up: Sign up

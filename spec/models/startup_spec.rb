@@ -60,17 +60,17 @@ describe Startup do
   end
 
   describe "user roles" do
-    let(:founder) { User.make! }
-    let(:user)    { User.make! }
+    let(:member) { User.make! }
+    let(:user)   { User.make! }
 
     before do
-      subject.attach_user(founder, :founder)
+      subject.attach_user(member, :member)
     end
 
     it "has a founding user and role" do
       subject.users.count.should == 1
-      subject.users.first.should == founder
-      subject.startup_users.first.role_identifier.should == 'founder'
+      subject.users.first.should == member
+      subject.startup_users.first.role_identifier.should == 'member'
     end
 
     it "attaches a user" do
@@ -85,7 +85,7 @@ describe Startup do
       subject.detach_user(user)
 
       subject.users.count.should == 1
-      subject.users.all.last.should == founder
+      subject.users.all.last.should == member
       User.all.last.should == user
     end
   end
@@ -94,10 +94,11 @@ describe Startup do
     let(:user) { User.make! }
 
     it "recognises user involvement" do
-      subject.attach_user(user, :founder)
+      subject.attach_user(user, :member, 'CEO')
 
       user.startups.involved.count.should == 1
       user.startups.invested.count.should == 0
+      subject.members.first.should == user
     end
 
     it "recognises user investment" do
@@ -105,6 +106,14 @@ describe Startup do
 
       user.startups.involved.count.should == 0
       user.startups.invested.count.should == 1
+      subject.investors.first.should == user
+    end
+
+    it "recognises user meta" do
+      subject.attach_user(user, :member, 'CEO')
+      subject.user_meta(user).member_title.should == 'CEO'
+      subject.member_title(user).should == 'CEO'
+      subject.user_role(user).should == 'Member'
     end
   end
 

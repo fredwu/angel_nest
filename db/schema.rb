@@ -86,6 +86,7 @@ ActiveRecord::Schema.define(:version => 20110606072040) do
     t.integer  "startup_id"
     t.integer  "user_id"
     t.string   "role_identifier"
+    t.string   "member_title"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

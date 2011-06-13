@@ -4,6 +4,7 @@ class CreateStartupUsers < ActiveRecord::Migration
       t.integer :startup_id
       t.integer :user_id
       t.string  :role_identifier
+      t.string  :member_title, :default => ''
 
       t.timestamps
     end
