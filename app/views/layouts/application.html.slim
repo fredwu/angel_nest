@@ -21,10 +21,6 @@ head
   = csrf_meta_tags
 
 body
-  - flash.each do |type, message|
-    .message class=type
-      p.info= message
-
   header.container_12
     #header-container
       h1= link_to t('site.name'), root_path
@@ -46,6 +42,9 @@ body
         - else
           #public_sidebar= render 'layouts/sidebars/public'
     article class="grid_#{@hide_sidebar ? 12 : 9}"
+      - flash.each do |type, message|
+        .message class=type
+          p.info= message
       = yield
     .clear
 

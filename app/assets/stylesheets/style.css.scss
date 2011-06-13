@@ -98,6 +98,48 @@ a {
   &:hover   { color: $link_colour_h; text-decoration: underline; }
 }
 
+div.message {
+  border-width: 1px;
+  border-style: solid;
+  background-position: 12px 12px;
+  background-repeat: no-repeat;
+  margin-bottom: $viewport_padding;
+  overflow: hidden;
+  border-radius: 3px;
+
+  &.notice {
+    border-color: #bbdbe0;
+    background-color: #ecf9ff;
+    background-image: url("/images/message_icons/info.gif");
+    color: #0888c3;
+  }
+
+  &.warning {
+    border-color: #e5e181;
+    background-color: #fefde2;
+    background-image: url("/images/message_icons/warning.gif");
+    color: #666;
+  }
+
+  &.success {
+    border-color: #bfde84;
+    background-color: #edfbd8;
+    background-image: url("/images/message_icons/success.gif");
+    color: #508600;
+  }
+
+  &.alert {
+    border-color: #e9c59b;
+    background-color: #ffecce;
+    background-image: url("/images/message_icons/error.gif");
+    color: #e3302c;
+  }
+
+  p {
+    padding: 10px 15px 10px 40px;
+  }
+}
+
 /* ------------------------------
   form
 ------------------------------ */
@@ -161,9 +203,8 @@ form#add_micro_post {
 
   textarea {
     font-size: 22px;
-    width: grid_cells(7.5);
+    width: grid_cells(7.8);
     height: $height;
-    margin-left: 25px;
   }
 
   input.button {
@@ -269,6 +310,7 @@ form#add_micro_post {
   }
 
   ul#micro_posts {
+    margin: 0;
     list-style: none;
 
     .micro_post {
