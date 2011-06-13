@@ -16,6 +16,7 @@ head
   meta name="viewport" content="width=device-width, initial-scale=1.0"
 
   = stylesheet_link_tag :application
+  = javascript_include_tag '/javascripts/modernizr.min.js'
   = javascript_include_tag :application
   = csrf_meta_tags
 
@@ -50,5 +51,9 @@ body
       p
         ' Copyright &copy;
         = t('site.name')
+
+  /[if lt IE 7 ]
+    = javascript_include_tag '/javascripts/dd_belatedpng.js'
+    = javascript_tag 'DD_belatedPNG.fix("img, .png_bg");'
 
 | </html>
