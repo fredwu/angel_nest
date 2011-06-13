@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  force_ssl
+  force_ssl if Rails.env.production?
 
   layout proc { |controller| controller.request.xhr? ? nil : 'application' }
 
