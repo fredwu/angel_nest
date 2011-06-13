@@ -52,6 +52,9 @@ describe StartupsController do
       controller.stub(:current_user).and_return(current_user)
     end
 
+    hides_sidebar :get, :show
+    hides_sidebar :get, :edit
+
     it "creates a startup profile with a member user attached" do
       post :create, :user_id => current_user.id,
                     :startup => Startup.make.attributes
@@ -73,15 +76,5 @@ describe StartupsController do
       resource.should == startup
       startup.name.should == 'Edited Name'
     end
-
-    # it "doesn't allow editing other user's startup profile" do
-    #   post :update, :user_id => user.id,
-    #                 :id      => startup.id,
-    #                 :startup => startup.attributes.merge(:name => 'Edited Name')
-    #
-    #   startup = Startup.all.last
-    #
-    #   startup.name.should_not == 'Edited Name'
-    # end
   end
 end
