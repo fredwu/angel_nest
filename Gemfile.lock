@@ -57,7 +57,7 @@ GEM
       activesupport (~> 3.0)
     childprocess (0.1.9)
       ffi (~> 1.0.6)
-    chronic (0.4.3)
+    chronic (0.4.4)
     coffee-script (2.2.0)
       coffee-script-source
       execjs
@@ -185,8 +185,8 @@ GEM
       activesupport (= 3.1.0.rc1)
       bundler (~> 1.0)
       railties (= 3.1.0.rc1)
-    rails_config (0.2.3)
-      activesupport (~> 3.0)
+    rails_config (0.2.4)
+      activesupport (>= 3.0)
     railties (3.1.0.rc1)
       actionpack (= 3.1.0.rc1)
       activesupport (= 3.1.0.rc1)
