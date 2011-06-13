@@ -25,4 +25,8 @@ class ApplicationController < ActionController::Base
   def deny_access
     render :text => t('system.access_denied'), :status => 403
   end
+
+  def hide_sidebar
+    @hide_sidebar = true
+  end
 end

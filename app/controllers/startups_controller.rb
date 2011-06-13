@@ -4,7 +4,8 @@ class StartupsController < ApplicationController
 
   include AutoUserScoping
 
-  after_filter :attach_user_to_startup, :only => :create
+  before_filter :hide_sidebar, :only => [:show, :edit]
+  after_filter  :attach_user_to_startup, :only => :create
 
   private
 
