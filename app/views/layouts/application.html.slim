@@ -33,6 +33,8 @@ body
           li= link_to_current 'Startups', startups_path
           li= link_to_current 'Entrepreneurs', entrepreneurs_path
           li= link_to_current 'Investors', investors_path
+      - if current_user
+        #userbar= render 'layouts/userbars/topnav'
       .clear
       hr
 

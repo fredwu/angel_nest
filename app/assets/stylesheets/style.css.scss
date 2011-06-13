@@ -207,6 +207,12 @@ form#add_micro_post {
     }
   }
 
+  #userbar {
+    position: absolute;
+    top: $viewport_padding;
+    right: $viewport_padding;
+  }
+
   hr {
     width: $viewport_width + $viewport_padding * 2;
     margin: 0;

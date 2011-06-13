@@ -1,0 +1,7 @@
+h3
+  =' t('label.welcome')
+  = link_to current_user.name, user_path(current_user.username)
+  | ! (
+  = link_to t('label.edit'), edit_registration_path(current_user)
+  ' ) |
+  = link_to t('label.sign_out'), destroy_user_session_path
