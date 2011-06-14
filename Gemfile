@@ -26,6 +26,7 @@ gem 'uglifier'
 gem 'jquery-rails'
 gem 'mini_magick'
 gem 'carrierwave'
+gem 'client_side_validations', '~> 3.1.0.beta.3'
 
 group :development, :test do
   gem 'cucumber-rails'
