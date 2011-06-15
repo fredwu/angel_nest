@@ -76,6 +76,9 @@ en:
     apply_now: apply now!
     following: Following
     followers: Followers
+    follow: Follow
+    unfollow: Unfollow
+    followed: Followed
     micro_posts: Micro posts
     add_micro_post: Post
     whats_on_your_mind: What's on your mind?

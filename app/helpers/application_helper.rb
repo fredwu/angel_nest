@@ -12,4 +12,14 @@ module ApplicationHelper
       link_to *params, :class => 'current'
     end
   end
+
+  def follow_button(target)
+    target_type = target.class.name
+
+    if target.is_followed_by?(current_user)
+      button_to t('label.unfollow'), unfollow_target_path(target, :target_type => target_type)
+    else
+      button_to t('label.follow'), follow_target_path(target, :target_type => target_type)
+    end
+  end
 end

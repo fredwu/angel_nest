@@ -14,6 +14,10 @@ module Followable
   end
 
   def is_followed_by?(target)
-    target.is_following?(self)
+    if target
+      target.is_following?(self)
+    else
+      false
+    end
   end
 end

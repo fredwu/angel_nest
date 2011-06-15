@@ -194,6 +194,14 @@ describe User do
         end
 
         describe "followed targets" do
+          it "follows a nil target" do
+            subject.follow(nil).should be_nil
+          end
+
+          it "unfollows a nil target" do
+            subject.unfollow(nil).should be_nil
+          end
+
           it "counts the number of followed targets" do
             subject.users_followed.count.should == 0
             subject.startups_followed.count.should == 0

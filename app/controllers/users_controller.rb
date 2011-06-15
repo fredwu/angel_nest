@@ -18,6 +18,24 @@ class UsersController < ApplicationController
     end
   end
 
+  def follow_target
+    result = current_user.follow(target)
+
+    respond_to do |format|
+      format.json { render :json => result }
+      format.html { redirect_to :back }
+    end
+  end
+
+  def unfollow_target
+    result = current_user.unfollow(target)
+
+    respond_to do |format|
+      format.json { render :json => result }
+      format.html { redirect_to :back }
+    end
+  end
+
   private
 
   def resource
@@ -28,5 +46,9 @@ class UsersController < ApplicationController
     else
       current_user
     end
+  end
+
+  def target
+    params[:target_type].constantize.find(params[:target_id])
   end
 end

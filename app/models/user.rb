@@ -99,17 +99,18 @@ class User < ActiveRecord::Base
     target.target_followers.create(
       :follower_id   => id,
       :follower_type => 'User'
-    ) && reload unless target == self
+    ) && reload unless target == self || target.nil?
   end
 
   def unfollow(target)
     target.target_followers.where(
       :follower_id   => id,
       :follower_type => 'User'
-    ).first.destroy && reload
+    ).first.try(:destroy) && reload unless target.nil?
   end
 
   def is_following?(target)
+    return false if target.nil?
     !!target_followed.where(:target_id => target.id, :target_type => target.class.name).first
   end
 

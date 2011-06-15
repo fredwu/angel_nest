@@ -12,6 +12,7 @@ describe UsersController do
   context "logged in" do
     let(:current_user) { User.make! }
     let(:user)         { User.make! }
+    let(:startup)      { Startup.make! }
 
     before do
       sign_in current_user
@@ -69,6 +70,22 @@ describe UsersController do
         get :show
 
         assigns(:micro_posts).should == current_user.micro_posts
+      end
+    end
+
+    context "follow/unfollow targets" do
+      it "follows a target" do
+        post :follow_target, :target_id => startup.id, :target_type => 'Startup'
+
+        response.should be_redirect
+        current_user.is_following?(startup).should == true
+      end
+
+      it "unfollows a target" do
+        post :unfollow_target, :target_id => startup.id, :target_type => 'Startup'
+
+        response.should be_redirect
+        current_user.is_following?(startup).should == false
       end
     end
   end
