@@ -23,6 +23,7 @@ Startup.blueprint do
   description       { Faker::Lorem.paragraphs * "\n\n" }
   stage_identifier  { Startup.stages.keys.sample }
   market_identifier { Startup.markets.keys.sample }
+  location          { Faker::Address.city }
 end
 
 Message.blueprint do

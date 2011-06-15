@@ -5,7 +5,6 @@ class CreateInvestors < ActiveRecord::Migration
       t.string  :tagline
       t.string  :funds_to_offer
       t.text    :description
-      t.string  :logo
       t.integer :followers_count, :default => 0
       t.integer :followed_count, :default => 0
       t.integer :comments_count, :default => 0

@@ -17,7 +17,6 @@ ActiveRecord::Schema.define(:version => 20110606072040) do
     t.string   "tagline"
     t.string   "funds_to_offer"
     t.text     "description"
-    t.string   "logo"
     t.integer  "followers_count", :default => 0
     t.integer  "followed_count",  :default => 0
     t.integer  "comments_count",  :default => 0
@@ -86,7 +85,7 @@ ActiveRecord::Schema.define(:version => 20110606072040) do
     t.integer  "startup_id"
     t.integer  "user_id"
     t.string   "role_identifier"
-    t.string   "member_title"
+    t.string   "member_title",    :default => ""
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -101,6 +100,7 @@ ActiveRecord::Schema.define(:version => 20110606072040) do
     t.string   "funds_to_raise"
     t.string   "stage_identifier"
     t.string   "market_identifier"
+    t.string   "location"
     t.text     "description"
     t.string   "logo"
     t.integer  "followers_count",   :default => 0
@@ -110,6 +110,8 @@ ActiveRecord::Schema.define(:version => 20110606072040) do
     t.datetime "updated_at"
   end
 
+  add_index "startups", ["location"], :name => "index_startups_on_location"
+  add_index "startups", ["market_identifier", "location"], :name => "index_startups_on_market_identifier_and_location"
   add_index "startups", ["name"], :name => "index_startups_on_name", :unique => true
 
   create_table "target_followers", :force => true do |t|
