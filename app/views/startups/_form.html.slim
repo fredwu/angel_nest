@@ -4,5 +4,12 @@
   = f.input :funds_to_raise
   = f.input :stage_identifier,  :collection => Startup.stages,  :value_method => :first, :label_method => :second
   = f.input :market_identifier, :collection => Startup.markets, :value_method => :first, :label_method => :second
+  = f.input :logo, :as => :file
+  = f.input :logo_cache, :as => :hidden
+  - if resource.logo?
+    .input
+      = label_tag ''
+      = image_tag(resource.logo_thumb)
+  = f.input :remove_logo, :as => :boolean if resource.logo?
   = f.input :description
   = f.button :submit

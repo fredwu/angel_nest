@@ -41,7 +41,7 @@ body
           #private_sidebar= render 'layouts/sidebars/private'
         - else
           #public_sidebar= render 'layouts/sidebars/public'
-    article class="grid_#{@hide_sidebar ? 12 : 9}"
+    article class=(@hide_sidebar ? "grid_12" : "grid_9" unless @custom_grids)
       - flash.each do |type, message|
         .message class=type
           p.info= message

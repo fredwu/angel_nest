@@ -7,8 +7,8 @@ group:
       width: 400
       height: 300
     thumb:
-      width: 64
-      height: 64
+      width: 133
+      height: 100
 startup:
   proposal:
     questions:

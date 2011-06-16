@@ -309,6 +309,14 @@ form#add_micro_post {
     font-size: $h2_size;
   }
 
+  .editable {
+    font-size: 14px;
+    font-weight: bold;
+    text-align: right;
+    clear: both;
+    margin-bottom: 10px;
+  }
+
   ul#micro_posts {
     margin: 0;
     list-style: none;

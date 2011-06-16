@@ -47,6 +47,14 @@ class Startup < ActiveRecord::Base
     I18n.t "startup.market_identifiers.#{market_identifier}"
   end
 
+  def logo_full
+    logo? ? logo : 'startup_400x300.png'
+  end
+
+  def logo_thumb
+    logo? ? logo.thumb : 'startup_133x100.png'
+  end
+
   def attach_user(user, role_identifier = :member, member_title = '')
     startup_users.create(
       :user_id         => user.id,
