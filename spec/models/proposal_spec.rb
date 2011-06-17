@@ -10,11 +10,11 @@ describe Proposal do
   it "edits the details" do
     proposal.pitch = 'Hello ruby'
     proposal.save
-    Proposal.all.last.pitch.should == 'Hello ruby'
+    Proposal.last.pitch.should == 'Hello ruby'
   end
 
   it "rejects invalid inuts" do
     proposal.penetration_rate = 101
-    proposal.save.should raise_exception
+    expect { proposal.save! }.to raise_exception
   end
 end

@@ -134,6 +134,7 @@ ActiveRecord::Schema.define(:version => 20110606072040) do
     t.string   "username"
     t.string   "name"
     t.string   "email",                                 :default => "",    :null => false
+    t.string   "location"
     t.integer  "followers_count",                       :default => 0
     t.integer  "followed_count",                        :default => 0
     t.integer  "comments_count",                        :default => 0
@@ -163,6 +164,7 @@ ActiveRecord::Schema.define(:version => 20110606072040) do
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["is_admin"], :name => "index_users_on_is_admin"
+  add_index "users", ["location"], :name => "index_users_on_location"
   add_index "users", ["name"], :name => "index_users_on_name"
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
   add_index "users", ["unlock_token"], :name => "index_users_on_unlock_token", :unique => true

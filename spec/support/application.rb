@@ -4,6 +4,10 @@ module AngelNest
       klass.extend ClassMethods
     end
 
+    def load_file(file)
+      File.open("#{Rails.root}/spec/fixtures/#{file}")
+    end
+
     module ClassMethods
       def hides_sidebar(request_type = :get, actions = [])
         generic_check('hides the sidebar', request_type, actions) do
@@ -45,5 +49,5 @@ module AngelNest
 end
 
 RSpec.configure do |config|
-  config.include AngelNest::TestHelpers, :type => :controller
+  config.include AngelNest::TestHelpers
 end

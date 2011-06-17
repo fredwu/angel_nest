@@ -4,6 +4,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string  :username
       t.string  :name
       t.string  :email
+      t.string  :location
       t.integer :followers_count, :default => 0
       t.integer :followed_count, :default => 0
       t.integer :comments_count, :default => 0
@@ -24,6 +25,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
     add_index :users, :username,             :unique   => true
     add_index :users, :name
     add_index :users, :email,                :unique   => true
+    add_index :users, :location
     add_index :users, :is_admin
     add_index :users, :reset_password_token, :unique   => true
     add_index :users, :confirmation_token,   :unique   => true

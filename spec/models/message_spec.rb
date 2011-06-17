@@ -45,7 +45,7 @@ describe Message do
         subject.messages_count.should    == 3 # all sent and received messages of a user
         subject.micro_posts.count.should == 2 # only micro posts
         subject.micro_posts.first.content.should == 'hello ruby'
-        subject.micro_posts.all.last.content.should == 'hello world'
+        subject.micro_posts.last.content.should == 'hello world'
       end
     end
   end

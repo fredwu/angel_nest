@@ -20,8 +20,10 @@ class Startup < ActiveRecord::Base
                                 :length       => { :within => 10..140 }
   validates :funds_to_raise,    :presence     => true,
                                 :numericality => true
-  validates :stage_identifier,  :presence     => true
-  validates :market_identifier, :presence     => true
+  validates :stage_identifier,  :presence     => true,
+                                :inclusion    => { :in => I18n.t('startup.stage_identifiers').keys.map(&:to_s) }
+  validates :market_identifier, :presence     => true,
+                                :inclusion    => { :in => I18n.t('startup.market_identifiers').keys.map(&:to_s) }
   validates :description,       :presence     => true
 
   scope :involved, where { startup_users.role_identifier != 'investor' }

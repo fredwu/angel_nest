@@ -49,13 +49,13 @@ describe Startup do
     it "errors out on invalid stage identifier" do
       subject.stage_identifier = 'invalid'
 
-      subject.stage.should raise_exception
+      expect { subject.save! }.to raise_exception
     end
 
     it "errors out on invalid market identifier" do
       subject.market_identifier = 'invalid'
 
-      subject.market.should raise_exception
+      expect { subject.save! }.to raise_exception
     end
   end
 
@@ -77,7 +77,7 @@ describe Startup do
       subject.attach_user(user, :advisor)
 
       subject.users.count.should == 2
-      subject.users.all.last.should == user
+      subject.users.last.should == user
     end
 
     it "detaches a user" do
@@ -85,8 +85,8 @@ describe Startup do
       subject.detach_user(user)
 
       subject.users.count.should == 1
-      subject.users.all.last.should == member
-      User.all.last.should == user
+      subject.users.last.should == member
+      User.last.should == user
     end
   end
 
@@ -155,7 +155,24 @@ describe Startup do
       proposal_attributes = proposal.attributes.merge(:pitch => 'Hello world')
       subject.submit_proposal(investor1, proposal_attributes)
 
-      Proposal.all.last.pitch.should == 'Hello world'
+      Proposal.last.pitch.should == 'Hello world'
+    end
+  end
+
+  describe "logo" do
+    let(:uploader) { LogoUploader.new(subject, :logo) }
+
+    it "does not save invalid file types" do
+      expect { uploader.store!(load_file('file.gif')) }.to raise_exception(CarrierWave::IntegrityError)
+    end
+
+    it "reads the saved logo" do
+      uploader.store!(load_file('file.jpg'))
+      uploader.to_s.should match(/startup.*file\.jpg/)
+    end
+
+    it "reads the default logo" do
+      subject.logo_full.should == 'startup_400x300.png'
     end
   end
 end

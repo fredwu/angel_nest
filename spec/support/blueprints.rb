@@ -6,6 +6,7 @@ User.blueprint do
   username { "user_#{sn}" }
   name     { u_name }
   email    { Faker::Internet.email(u_name) }
+  location { Faker::Address.city }
   password { 'password' }
 end
 
@@ -21,8 +22,8 @@ Startup.blueprint do
   pitch             { Faker::Company.catch_phrase }
   funds_to_raise    { rand(5_000_000) }
   description       { Faker::Lorem.paragraphs * "\n\n" }
-  stage_identifier  { Startup.stages.keys.sample }
-  market_identifier { Startup.markets.keys.sample }
+  stage_identifier  { Startup.stages.keys.sample.to_s }
+  market_identifier { Startup.markets.keys.sample.to_s }
   location          { Faker::Address.city }
 end
 
