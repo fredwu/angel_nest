@@ -328,7 +328,7 @@ form#add_micro_post {
 
       li {
         float: left;
-        margin-left: 10px;
+        margin-right: 10px;
 
         .label {
           font-size: $font_size_tiny;
@@ -344,7 +344,7 @@ form#add_micro_post {
   .follow_button {
     float: left;
     input {
-      margin: 0;
+      margin: 0 10px 0 0;
       padding: 5px;
     }
   }

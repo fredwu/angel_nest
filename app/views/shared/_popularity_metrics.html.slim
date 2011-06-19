@@ -1,5 +1,6 @@
-.follow_button
-  = follow_button(resource)
+- unless resource == current_user
+  .follow_button
+    = follow_button(resource)
 
 ul.popularity_metrics
   li
