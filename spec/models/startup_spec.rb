@@ -67,6 +67,10 @@ describe Startup do
       subject.attach_user(member, :member)
     end
 
+    it "has all the roles listed" do
+      Startup.roles.should == I18n.t('startup.role_identifiers')
+    end
+
     it "has a founding user and role" do
       subject.users.count.should == 1
       subject.users.first.should == member
@@ -107,6 +111,14 @@ describe Startup do
       user.startups.involved.count.should == 0
       user.startups.invested.count.should == 1
       subject.investors.first.should == user
+    end
+
+    it "recognises the founder user" do
+      User.make!
+      subject.attach_user(user)
+      subject.attach_user(User.last)
+
+      subject.founder.should == user
     end
 
     it "recognises user meta" do
@@ -169,10 +181,15 @@ describe Startup do
     it "reads the saved logo" do
       uploader.store!(load_file('file.jpg'))
       uploader.to_s.should match(/startup.*file\.jpg/)
+      uploader.thumb.to_s.should match(/startup.*file\.jpg/)
     end
 
     it "reads the default logo" do
       subject.logo_full.should == 'startup_400x300.png'
+    end
+
+    it "reads the default thumb logo" do
+      subject.logo_thumb.should == 'startup_133x100.png'
     end
   end
 end
