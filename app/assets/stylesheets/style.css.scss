@@ -29,6 +29,11 @@ $link_colour_h: $primary_colour_h;
 
 // sizes & calculations
 
+$font_size:        13px;
+$font_size_big:    14px;
+$font_size_small:  12px;
+$font_size_tiny:   11px;
+
 $h1_size:          20px;
 $h2_size:          16px;
 $h3_size:          14px;
@@ -98,6 +103,10 @@ a {
   &:hover   { color: $link_colour_h; text-decoration: underline; }
 }
 
+.create_new {
+  font-weight: bold;
+}
+
 div.message {
   border-width: 1px;
   border-style: solid;
@@ -153,7 +162,7 @@ form {
     text-align: right;
     margin: 2px $grid_cell_margin;
     font-weight: bold;
-    font-size: 12px;
+    font-size: $font_size_small;
   }
 
   .input {
@@ -163,7 +172,7 @@ form {
   input.string,
   select.select,
   textarea.text {
-    font-size: 14px;
+    font-size: $font_size_big;
     width: grid_cells(6);
   }
 
@@ -183,12 +192,12 @@ form {
   }
 
   span.error {
-    font-size: 13px;
+    font-size: $font_size;
     color: $error_colour;
   }
 
   span.hint {
-    font-size: 11px;
+    font-size: $font_size_tiny;
   }
 }
 
@@ -267,23 +276,54 @@ form#add_micro_post {
   sidebar
 ------------------------------ */
 
+.sidebar {
+  position: relative;
+
+  h3 {
+    margin-bottom: 5px;
+  }
+}
+
 #private_sidebar {
   .mini_profile {
     position: relative;
-    $h2_margin_bottom: 5px;
 
-    h2 {
-      margin-bottom: $h2_margin_bottom;
+    .profile_pic {
+      float: left;
+      margin-right: 10px;
+      margin-bottom: 20px;
     }
 
-    #avatar {
+    .profile_meta {
+      h2 {
+        margin-bottom: 5px;
+      }
 
+      ul {
+        list-style: none;
+      }
     }
 
-    ul {
-      position: absolute;
-      top: $h1_size + $h2_margin_bottom;
-      left: 60px;
+    .profile_details {
+      clear: both;
+
+      ul.popularity_metrics {
+        list-style: none;
+        margin: 0;
+
+        li {
+          float: left;
+          margin-right: 20px;
+
+          .label {
+            font-size: $font_size_tiny;
+          }
+
+          .count {
+            font-weight: bold;
+          }
+        }
+      }
     }
   }
 }
@@ -310,11 +350,12 @@ form#add_micro_post {
   }
 
   .editable {
-    font-size: 14px;
+    position: absolute;
+    right: 0;
+    font-size: $font_size_small;
     font-weight: bold;
     text-align: right;
-    clear: both;
-    margin-bottom: 10px;
+    z-index: 3;
   }
 
   ul#micro_posts {
@@ -334,7 +375,7 @@ form#add_micro_post {
 
         .micro_post_meta {
           color: $secondary_colour_h;
-          font-size: 12px;
+          font-size: $font_size_small;
           margin-bottom: 5px;
         }
       }
@@ -352,7 +393,7 @@ form#add_micro_post {
   text-align: center;
 
   p {
-    font-size: 11px;
+    font-size: $font_size_tiny;
     color: $secondary_colour_h;
   }
 }

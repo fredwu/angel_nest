@@ -1,1 +1,4 @@
-.editable= link_to t('label.edit'), edit_resource_path(resource)
+.editable
+  ' (
+  = link_to t('label.edit'), (defined?(path) ? path : edit_resource_path(resource))
+  |  )

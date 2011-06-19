@@ -36,7 +36,7 @@ body
 
   #main.container_12
     - unless @hide_sidebar
-      aside.grid_3
+      aside.grid_3.sidebar
         - if current_user
           #private_sidebar= render 'layouts/sidebars/private'
         - else

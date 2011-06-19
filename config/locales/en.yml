@@ -71,6 +71,9 @@ en:
     resend_confirmation_instructions: Resend confirmation instructions
     resend_unlock_instructions: Resend unlock instructions
     edit_my_profile: Edit my profile
+    startup: Startup
+    startups: Startups
+    investor: Investor
     create_new: create new
     create_one_now: create one now!
     apply_now: apply now!
@@ -79,7 +82,7 @@ en:
     follow: Follow
     unfollow: Unfollow
     followed: Followed
-    micro_posts: Micro posts
+    micro_posts: Posts
     add_micro_post: Post
     whats_on_your_mind: What's on your mind?
     startup_profile: Startup profile

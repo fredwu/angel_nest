@@ -2,10 +2,9 @@
 
 hr
 
-h3 Startups
+h3= t('label.startups')
 - if current_user.is_entrepreneur?
-  = render 'ventures/mini_index', :collection => current_user.startups.involved
-  p= link_to t('label.create_new'), new_user_startup_path(current_user)
+  = render 'ventures/mini_index', :collection => current_user.startups.involved, :user => current_user
 - else
   p
     =' t('text.have_no_startups')
@@ -13,7 +12,7 @@ h3 Startups
 
 hr
 
-h3 Investor
+h3= t('label.investor')
 - if current_user.is_investor?
   = render 'ventures/mini_index', :collection => current_user.startups.invested
 - else

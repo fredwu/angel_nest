@@ -1,0 +1,11 @@
+ul.popularity_metrics
+  li
+    .label= t 'label.following'
+    .count= resource.followed_count
+  li
+    .label= t 'label.followers'
+    .count= resource.followers_count
+  - if resource.is_a?(User)
+    li
+      .label= t 'label.micro_posts'
+      .count= resource.micro_posts.count

@@ -1,13 +1,15 @@
-.mini_profile
-  h2
-    = link_to user.name, user_path(user.username)
-    - if user == current_user
-      |  (
-      = link_to t('label.edit'), edit_registration_path(user)
-      | )
-  .avatar= render 'users/avatar', :user => user, :size => 50
+- if user == current_user
+  = render 'shared/editable', :path => edit_registration_path(user)
 
-  ul
-    li= "#{t 'label.following'}: #{user.followed_count}"
-    li= "#{t 'label.followers'}: #{user.followers_count}"
-    li= "#{t 'label.micro_posts'}: #{user.micro_posts.count}"
+.mini_profile
+  .profile_pic
+    = render 'users/avatar', :user => user, :size => 50
+
+  .profile_meta
+    h2= link_to user.name, user_path(user.username)
+    ul
+      li= user.location
+
+  .profile_details
+    = render 'shared/popularity_metrics', :resource => user
+  .clear
