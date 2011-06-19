@@ -1,13 +1,19 @@
-h2= startup.name
+- if startup.founder == current_user
+  = render 'shared/editable'
 
-= image_tag(startup.logo_thumb)
+.mini_profile
+  .profile_pic
+    = image_tag(startup.logo_thumb)
 
-ul
-  li= startup.location
-  li= startup.market
+  .profile_meta
+    h2= startup.name
+    ul
+      li= startup.location
+      li= startup.market
+      li.pitch= startup.pitch
 
-p= startup.pitch
-
-= follow_button(startup)
-
-p= startup.description
+  .profile_details
+    = render 'shared/popularity_metrics', :resource => startup
+    hr
+    p= startup.description
+  .clear

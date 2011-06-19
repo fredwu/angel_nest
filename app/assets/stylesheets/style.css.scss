@@ -285,45 +285,67 @@ form#add_micro_post {
 }
 
 #private_sidebar {
-  .mini_profile {
-    position: relative;
 
-    .profile_pic {
-      float: left;
-      margin-right: 10px;
-      margin-bottom: 20px;
+}
+
+/* ------------------------------
+  mini profile
+------------------------------ */
+
+.mini_profile {
+  position: relative;
+
+  .profile_pic {
+    float: left;
+    margin-right: 10px;
+    margin-bottom: 20px;
+  }
+
+  .profile_meta {
+    $margin: 5px;
+
+    h2 {
+      margin-bottom: $margin;
     }
 
-    .profile_meta {
-      h2 {
-        margin-bottom: 5px;
-      }
+    ul {
+      list-style: none;
 
-      ul {
-        list-style: none;
-      }
-    }
-
-    .profile_details {
-      clear: both;
-
-      ul.popularity_metrics {
-        list-style: none;
-        margin: 0;
-
-        li {
-          float: left;
-          margin-right: 20px;
-
-          .label {
-            font-size: $font_size_tiny;
-          }
-
-          .count {
-            font-weight: bold;
-          }
+      li {
+        &.pitch {
+          margin-top: $margin;
         }
       }
+    }
+  }
+
+  .profile_details {
+    clear: both;
+
+    ul.popularity_metrics {
+      list-style: none;
+      margin: 0;
+
+      li {
+        float: left;
+        margin-left: 10px;
+
+        .label {
+          font-size: $font_size_tiny;
+        }
+
+        .count {
+          font-weight: bold;
+        }
+      }
+    }
+  }
+
+  .follow_button {
+    float: left;
+    input {
+      margin: 0;
+      padding: 5px;
     }
   }
 }
@@ -335,6 +357,10 @@ form#add_micro_post {
 #main {
   padding-top: $viewport_padding;
   padding-bottom: $viewport_padding;
+
+  .grid_6 {
+    position: relative;
+  }
 
   h1 {
     display: block;

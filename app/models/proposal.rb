@@ -49,6 +49,8 @@ class Proposal < ActiveRecord::Base
 
   def submit(investors)
     self.investors = [investors].flatten
+    self.proposal_stage_identifier = 'submitted'
+    self.save
   end
 
   private

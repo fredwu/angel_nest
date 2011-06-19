@@ -6,9 +6,9 @@ AngelNest::Application.routes.draw do
     resource  :investor
   end
 
-  resources :entrepreneurs, :only => :index
-  resources :startups,      :only => :index
   resources :investors,     :only => :index
+  resources :entrepreneurs, :only => :index
+  resources :startups
 
   match 'u/:username'            => 'users#show',            :via => :get, :as => :user
 

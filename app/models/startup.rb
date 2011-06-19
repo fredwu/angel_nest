@@ -69,6 +69,10 @@ class Startup < ActiveRecord::Base
     users.delete(user)
   end
 
+  def founder
+    members.first
+  end
+
   def user_meta(user)
     startup_users.where(:user_id => user.id).first
   end
