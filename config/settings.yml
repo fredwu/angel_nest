@@ -4,10 +4,10 @@ currencies:
 group:
   logo:
     full:
-      width: 400
+      width: 460
       height: 300
     thumb:
-      width: 133
+      width: 153
       height: 100
 startup:
   proposal:

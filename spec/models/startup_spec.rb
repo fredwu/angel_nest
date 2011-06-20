@@ -185,11 +185,11 @@ describe Startup do
     end
 
     it "reads the default logo" do
-      subject.logo_full.should == 'startup_400x300.png'
+      subject.logo_full.should == 'startup_460x300.png'
     end
 
     it "reads the default thumb logo" do
-      subject.logo_thumb.should == 'startup_133x100.png'
+      subject.logo_thumb.should == 'startup_153x100.png'
     end
   end
 end

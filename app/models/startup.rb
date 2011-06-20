@@ -50,11 +50,11 @@ class Startup < ActiveRecord::Base
   end
 
   def logo_full
-    logo? ? logo : 'startup_400x300.png'
+    logo? ? logo : 'startup_460x300.png'
   end
 
   def logo_thumb
-    logo? ? logo.thumb : 'startup_133x100.png'
+    logo? ? logo.thumb : 'startup_153x100.png'
   end
 
   def attach_user(user, role_identifier = :member, member_title = '')
