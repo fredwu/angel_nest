@@ -1,8 +1,9 @@
 require 'spec_helper'
 
 describe Startup do
-  it_behaves_like "commentables"
-  it_behaves_like "followables"
+  it_behaves_like "commentable"
+  it_behaves_like "followable"
+  it_behaves_like "paramable"
 
   subject do
     Startup.make!({

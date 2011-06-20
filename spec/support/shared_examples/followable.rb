@@ -1,4 +1,4 @@
-shared_examples "followables" do
+shared_examples "followable" do
   let(:user)    { User.make! }
   let(:target)  { described_class.make! }
   let(:target2) { described_class.make! }

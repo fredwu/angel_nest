@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe User do
-  it_behaves_like "commentables"
+  it_behaves_like "commentable"
 
   let :attrs do
     {
@@ -187,7 +187,7 @@ describe User do
       let(:startup) { Startup.make! }
 
       describe "user followers" do
-        it_behaves_like "followables"
+        it_behaves_like "followable"
 
         it "has followings" do
           subject.respond_to?(:followed).should be_true

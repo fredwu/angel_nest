@@ -1,5 +1,5 @@
 ul
   - collection.each do |resource|
-    li= link_to resource.name, eval("user_#{resource.class.to_s.underscore}_path(user, resource)")
+    li= link_to resource.name, eval("#{resource.class.to_s.underscore}_path(resource)")
   - if user == current_user
-    li.create_new= link_to t('label.create_new'), new_user_startup_path(user)
+    li.create_new= link_to t('label.create_new'), eval("new_user_#{collection.name.underscore.singularize}_path(user)")

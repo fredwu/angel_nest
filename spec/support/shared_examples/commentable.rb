@@ -1,4 +1,4 @@
-shared_examples "commentables" do
+shared_examples "commentable" do
   subject    { described_class.make! }
   let(:user) { User.make! }
 
