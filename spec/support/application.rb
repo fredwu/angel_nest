@@ -8,6 +8,12 @@ module AngelNest
       File.open("#{Rails.root}/spec/fixtures/#{file}")
     end
 
+    def sign_in_user(current_user)
+      sign_in current_user
+      controller.stub(:current_user).and_return(current_user)
+      request.env['HTTP_REFERER'] = my_home_url
+    end
+
     module ClassMethods
       def hides_sidebar(request_type = :get, actions = [])
         generic_check('hides the sidebar', request_type, actions) do

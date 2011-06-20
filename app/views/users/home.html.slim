@@ -1,5 +1,2 @@
-= simple_form_for Message.new, :url => my_micro_posts_path, :html => { :id => 'add_micro_post' } do |f|
-  = f.input :content, :label => t('label.whats_on_your_mind')
-  = f.button :submit, t('label.add_micro_post')
-
-= render 'messages/micro_posts', :micro_posts => @micro_posts
+= render 'messages/new', :url => my_micro_posts_path
+= render 'messages/index', :collection => @micro_posts

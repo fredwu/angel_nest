@@ -201,7 +201,7 @@ form {
   }
 }
 
-form#add_micro_post {
+form#new_message {
   position: relative;
 
   $height: 60px;
@@ -212,7 +212,6 @@ form#add_micro_post {
 
   textarea {
     font-size: 22px;
-    width: grid_cells(7.8);
     height: $height;
   }
 
@@ -221,6 +220,19 @@ form#add_micro_post {
     top: 0;
     right: 0;
     height: $height;
+    width: 90px;
+  }
+}
+
+.grid_9 form#new_message {
+  textarea {
+    width: grid_cells(7.8);
+  }
+}
+
+.grid_6 form#new_message {
+  textarea {
+    width: grid_cells(4.8);
   }
 }
 
@@ -384,28 +396,32 @@ form#add_micro_post {
     z-index: 3;
   }
 
-  ul#micro_posts {
+  ul#messages {
     margin: 0;
     list-style: none;
 
-    .micro_post {
+    .message {
       $avatar_size: 50px;
 
-      .micro_post_user {
+      .message_user {
         float: left;
       }
 
-      .micro_post_container {
+      .message_container {
         margin-left: $avatar_size + 10px;
         min-height: $avatar_size;
 
-        .micro_post_meta {
+        .message_meta {
           color: $secondary_colour_h;
           font-size: $font_size_small;
           margin-bottom: 5px;
         }
       }
     }
+  }
+
+  #gallery {
+    margin-bottom: 10px;
   }
 }
 

@@ -22,6 +22,8 @@ en:
       create: 'Add %{model}'
       update: 'Edit %{model}'
       destroy: 'Delete %{model}'
+      message:
+        create: Post
   startup:
     stages: Stages
     markets: Markets

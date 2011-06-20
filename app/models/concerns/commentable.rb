@@ -4,7 +4,7 @@ module Commentable
   included do
     attr_readonly :comments_count
 
-    has_many :comments, :class_name => 'Message', :as => :target
+    has_many :comments, :class_name => 'Message', :as => :target, :order => 'created_at DESC'
   end
 
   def add_comment(user, content, options = {})

@@ -1,9 +1,0 @@
-hr
-.micro_post_user
-  = render 'users/avatar', :user => micro_post.user, :size => 50
-.micro_post_container
-  .micro_post_meta
-    =' link_to micro_post.user.name, resource_path(micro_post.user.username)
-    = time_ago(micro_post.created_at)
-
-  .micro_post_content= micro_post.content

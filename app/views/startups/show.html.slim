@@ -3,4 +3,6 @@
 .grid_6
   = render 'mini_profile', :startup => resource
 .grid_6
-  = image_tag(resource.logo_full)
+  #gallery
+    = image_tag(resource.logo_full)
+  = render 'comments', :resource => resource

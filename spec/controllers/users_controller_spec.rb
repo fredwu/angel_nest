@@ -15,10 +15,7 @@ describe UsersController do
     let(:startup)      { Startup.make! }
 
     before do
-      sign_in current_user
-      controller.stub(:current_user).and_return(current_user)
-
-      request.env['HTTP_REFERER'] = my_home_url
+      sign_in_user(current_user)
 
       current_user.follow(user)
       user.add_micro_post('Hello world!')

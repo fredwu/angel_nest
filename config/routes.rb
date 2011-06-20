@@ -8,9 +8,11 @@ AngelNest::Application.routes.draw do
 
   resources :investors,     :only => :index
   resources :entrepreneurs, :only => :index
-  resources :startups
+  resources :startups do
+    resources :messages,    :only => [:index, :create], :as => :comments
+  end
 
-  match 'u/:username'            => 'users#show',            :via => :get, :as => :user
+  match 'u/:username'            => 'users#show',            :via => :get, :as => :username
 
   match 'my/profile'             => 'users#show',            :via => :get
   match 'my/home'                => 'users#home',            :via => :get

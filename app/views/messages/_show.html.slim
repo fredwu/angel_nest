@@ -1,0 +1,8 @@
+hr
+.message_user
+  = render 'users/avatar', :user => resource.user, :size => 50
+.message_container
+  .message_meta
+    =' link_to resource.user.name, username_path(resource.user.username)
+    = time_ago(resource.created_at)
+  .message_content= resource.content
