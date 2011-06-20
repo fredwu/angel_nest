@@ -155,6 +155,7 @@ div.message {
 
 form {
   $input_margin: $grid_cell * 2;
+  $input_height: 24px;
 
   label {
     float: left;
@@ -174,6 +175,12 @@ form {
   textarea.text {
     font-size: $font_size_big;
     width: grid_cells(6);
+  }
+
+  .string {
+    input {
+      height: $input_height;
+    }
   }
 
   input[type='submit'],
@@ -233,6 +240,24 @@ form#new_message {
 .grid_6 form#new_message {
   textarea {
     width: grid_cells(4.8);
+  }
+}
+
+form.inline {
+  $width: 80px;
+
+  label {
+    width: $width;
+  }
+
+  .string {
+    input {
+      width: 200px;
+    }
+  }
+
+  input[type="submit"] {
+    margin-left: $width + 20px;
   }
 }
 
@@ -370,6 +395,17 @@ ul#user_list {
     margin: 0 10px 0 0;
     float: left;
     width: grid_cells(3);
+
+    .inline_editable {
+      .editable {
+        display: inline;
+        position: relative;
+        margin-right: 5px;
+        text-align: left;
+        font-size: $font_size_tiny;
+        font-weight: normal;
+      }
+    }
   }
 }
 

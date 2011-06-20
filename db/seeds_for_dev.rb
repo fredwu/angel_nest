@@ -18,7 +18,7 @@ end
 10.times { Investor.make! }
 20.times { Startup.make! }
 
-Startup.first.attach_user(user)
+Startup.first.attach_user(user, :member, 'Founder')
 
 Investor.all.each do |investor|
   User.new_users.first.investor = investor

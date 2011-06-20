@@ -66,6 +66,13 @@ class Startup < ActiveRecord::Base
     )
   end
 
+  def update_user(user, attributes = {})
+    user = startup_users.where(
+      :user_id => user,
+    ).first
+    user.update_attributes(attributes)
+  end
+
   def detach_user(user)
     users.delete(user)
   end

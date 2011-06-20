@@ -1,0 +1,2 @@
+- if startup.founder == current_user
+  = render 'shared/editable', :text => t('label.add'), :url => attach_user_to_startup_path(startup, :scope => scope)

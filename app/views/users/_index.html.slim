@@ -8,6 +8,12 @@ ul#user_list
         h2= link_to user.name, username_path(user.username)
         ul
           li
-            - if defined?(startup)
-              - user_meta = startup.user_meta(user)
+            - if defined?(parent)
+              - user_meta = parent.user_meta(user)
               = user_meta.member_title if user_meta.role_identifier == 'member'
+
+      .inline_editable
+        - if defined?(editable) && parent.founder == current_user
+          = render 'shared/editable', :text => t('label.update'), :url => eval("update_user_in_#{parent.class.name.downcase}_path(parent, :uid => #{user.id})")
+        - if defined?(removable) && parent.founder == current_user
+          = render 'shared/editable', :text => t('label.remove'), :url => eval("detach_user_from_#{parent.class.name.downcase}_path(parent, :uid => #{user.id})")

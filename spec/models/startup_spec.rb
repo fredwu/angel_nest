@@ -122,6 +122,13 @@ describe Startup do
       subject.founder.should == user
     end
 
+    it "updates the attached user" do
+      subject.attach_user(user, :member, 'CEO')
+      subject.update_user(user, { :member_title => 'CTO' })
+
+      subject.user_meta(user).member_title.should == 'CTO'
+    end
+
     it "recognises user meta" do
       subject.attach_user(user, :member, 'CEO')
       subject.user_meta(user).member_title.should == 'CEO'

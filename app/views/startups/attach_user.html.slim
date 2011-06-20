@@ -1,0 +1,11 @@
+= form_tag attach_user_to_startup_path(resource), :class => 'inline' do
+  .input.string.required
+    = label_tag      :name, "<abbr title='required'>*</abbr> #{t('label.name')}".html_safe
+    = text_field_tag :name
+  .input.string
+    = label_tag      :member_title, t('label.title')
+    = text_field_tag :member_title
+  .input.string
+    = label_tag      :email, "<abbr title='required'>*</abbr> #{t('label.email')}".html_safe
+    = text_field_tag :email
+  = submit_tag t('label.add')

@@ -58,8 +58,15 @@ en:
   label:
     create: Create
     update: Update
+    add: Add
     edit: Edit
+    update: Update
     delete: Delete
+    remove: Remove
+    confirm: Confirm
+    confirm_deletion: Confirm Deletion
+    name: Name
+    email: Email
     welcome: Welcome
     member: Member
     sign_in: Sign in
@@ -77,6 +84,7 @@ en:
     startups: Startups
     investor: Investor
     team: Team
+    title: Title
     members: Team Members
     investors: Investors
     advisors: Advisors
@@ -94,6 +102,8 @@ en:
     add_micro_post: Post
     whats_on_your_mind: What's on your mind?
     startup_profile: Startup profile
+  message:
+
   text:
     have_no_startups: You have no startups,
     not_an_investor: You are not an investor,

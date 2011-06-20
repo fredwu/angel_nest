@@ -49,7 +49,7 @@ describe StartupsController do
     before do
       startup.attach_user(current_user)
       startup.attach_user(user)
-      controller.stub(:current_user).and_return(current_user)
+      sign_in_user(current_user)
     end
 
     hides_sidebar :get, :show
@@ -71,10 +71,33 @@ describe StartupsController do
                     :id      => startup.id,
                     :startup => startup.attributes.merge(:name => 'Edited Name')
 
-      startup = Startup.last
+      startup.reload
 
       resource.should == startup
       startup.name.should == 'Edited Name'
+    end
+
+    context "users" do
+      it "attaches a user" do
+        pending
+      end
+
+      it "updates a user" do
+        post :update_user, :id => startup.id,
+                           :uid => user.id,
+                           :attributes => { :member_title => 'CTO' }
+
+        startup.user_meta(user).member_title.should == 'CTO'
+      end
+
+      it "detaches a user" do
+        post :detach_user, :id => startup.id,
+                           :uid => user.id
+
+        startup.reload
+
+        startup.users.include?(user).should == false
+      end
     end
   end
 end

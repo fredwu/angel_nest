@@ -1,0 +1,5 @@
+= form_tag update_user_in_startup_path(resource, :uid => params[:uid]), :class => 'inline' do
+  .input.string
+    = label_tag      :'attributes[member_title]', t('label.title')
+    = text_field_tag :'attributes[member_title]'
+  = submit_tag t('label.update')

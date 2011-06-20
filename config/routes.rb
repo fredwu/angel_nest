@@ -10,6 +10,14 @@ AngelNest::Application.routes.draw do
   resources :entrepreneurs, :only => :index
   resources :startups do
     resources :messages,    :only => [:index, :create], :as => :comments
+    member do
+      get  'attach_user', :as => :attach_user_to
+      post 'attach_user', :as => :attach_user_to
+      get  'update_user', :as => :update_user_in
+      post 'update_user', :as => :update_user_in
+      get  'detach_user', :as => :detach_user_from
+      post 'detach_user', :as => :detach_user_from
+    end
   end
 
   match 'u/:username'            => 'users#show',            :via => :get, :as => :username

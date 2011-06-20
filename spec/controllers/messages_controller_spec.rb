@@ -19,7 +19,7 @@ describe MessagesController do
     it "accepts comments" do
       post :create, :startup_id => startup.id, :message => { :content => 'hello world' }
 
-      startup = Startup.last
+      startup.reload
 
       startup.comments.first.content.should == 'hello world'
     end

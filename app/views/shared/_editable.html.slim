@@ -1,4 +1,2 @@
 .editable
-  ' (
-  = link_to t('label.edit'), (defined?(url) ? url : edit_resource_path(resource))
-  |  )
+  = link_to (defined?(text) ? text : t('label.edit')), (defined?(url) ? url : edit_resource_path(resource))

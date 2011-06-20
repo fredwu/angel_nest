@@ -14,12 +14,14 @@ describe Proposal do
   it "edits the details" do
     proposal.pitch = 'Hello ruby'
     proposal.save
-    Proposal.last.pitch.should == 'Hello ruby'
+    proposal.reload
+    proposal.pitch.should == 'Hello ruby'
   end
 
   it "is submitted" do
     proposal.submit(Investor.make)
-    Proposal.last.stage.should == 'Submitted'
+    proposal.reload
+    proposal.stage.should == 'Submitted'
   end
 
   it "rejects invalid inuts" do

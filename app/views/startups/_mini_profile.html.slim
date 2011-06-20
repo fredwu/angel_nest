@@ -19,21 +19,26 @@
 
   hr
   .profile_team
-    - if startup.founder == current_user
-      = render 'shared/editable'
+    .team
+      = render 'add_user_link', :startup => startup, :scope => 'members'
+      h2= t('label.members')
+      = render 'users/index', :removable => true, :editable => true, :parent => startup, :collection => startup.members
+      .clear
 
-    h2= t('label.members')
-    = render 'users/index', :startup => startup, :collection => startup.members
-    .clear
+    .team
+      = render 'add_user_link', :startup => startup, :scope => 'investors'
+      h2= t('label.investors')
+      = render 'users/index', :removable => true, :editable => true, :parent => startup, :collection => startup.investors
+      .clear
 
-    h2= t('label.investors')
-    = render 'users/index', :startup => startup, :collection => startup.investors
-    .clear
+    .team
+      = render 'add_user_link', :startup => startup, :scope => 'advisors'
+      h2= t('label.advisors')
+      = render 'users/index', :removable => true, :editable => true, :parent => startup, :collection => startup.advisors
+      .clear
 
-    h2= t('label.advisors')
-    = render 'users/index', :startup => startup, :collection => startup.advisors
-    .clear
-
-    h2= t('label.incubators')
-    = render 'users/index', :startup => startup, :collection => startup.incubators
-    .clear
+    .team
+      = render 'add_user_link', :startup => startup, :scope => 'incubators'
+      h2= t('label.incubators')
+      = render 'users/index', :removable => true, :editable => true, :parent => startup, :collection => startup.incubators
+      .clear
