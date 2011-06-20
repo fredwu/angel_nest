@@ -16,7 +16,7 @@ describe MessagesController do
       startup.attach_user(current_user)
     end
 
-    it "posts a comment" do
+    it "accepts comments" do
       post :create, :startup_id => startup.id, :message => { :content => 'hello world' }
 
       startup = Startup.last
