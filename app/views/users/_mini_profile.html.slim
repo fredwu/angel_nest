@@ -6,7 +6,7 @@
     = render 'users/avatar', :user => user, :size => 50
 
   .profile_meta
-    h2= link_to user.name, user_path(user.username)
+    h2= link_to user.name, username_path(user.username)
     ul
       li= user.location
 
