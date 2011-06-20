@@ -1,0 +1,13 @@
+ul#user_list
+  - collection.each do |user|
+    li.mini_profile
+      .profile_pic
+        = render 'users/avatar', :user => user, :size => 50
+
+      .profile_meta
+        h2= link_to user.name, username_path(user.username)
+        ul
+          li
+            - if defined?(startup)
+              - user_meta = startup.user_meta(user)
+              = user_meta.member_title if user_meta.role_identifier == 'member'

@@ -16,4 +16,24 @@
     = render 'shared/popularity_metrics', :resource => startup
     hr
     p= startup.description
-  .clear
+
+  hr
+  .profile_team
+    - if startup.founder == current_user
+      = render 'shared/editable'
+
+    h2= t('label.members')
+    = render 'users/index', :startup => startup, :collection => startup.members
+    .clear
+
+    h2= t('label.investors')
+    = render 'users/index', :startup => startup, :collection => startup.investors
+    .clear
+
+    h2= t('label.advisors')
+    = render 'users/index', :startup => startup, :collection => startup.advisors
+    .clear
+
+    h2= t('label.incubators')
+    = render 'users/index', :startup => startup, :collection => startup.incubators
+    .clear

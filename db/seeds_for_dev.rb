@@ -25,7 +25,7 @@ Investor.all.each do |investor|
 end
 
 Startup.all.each do |startup|
-  startup.attach_user(User.new_users.first, :member)
+  startup.attach_user(User.new_users.first, :member, Faker::Lorem.word)
 end
 
 User.limit(10).each do |u|

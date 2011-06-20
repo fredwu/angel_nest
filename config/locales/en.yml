@@ -76,6 +76,11 @@ en:
     startup: Startup
     startups: Startups
     investor: Investor
+    team: Team
+    members: Team Members
+    investors: Investors
+    advisors: Advisors
+    incubators: Incubators
     create_new: create new
     create_one_now: create one now!
     apply_now: apply now!

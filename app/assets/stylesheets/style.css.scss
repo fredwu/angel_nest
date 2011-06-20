@@ -362,6 +362,17 @@ form#new_message {
   }
 }
 
+ul#user_list {
+  margin: 5px 0 10px 0;
+
+  li.mini_profile {
+    list-style: none;
+    margin: 0 10px 0 0;
+    float: left;
+    width: grid_cells(3);
+  }
+}
+
 /* ------------------------------
   main
 ------------------------------ */
