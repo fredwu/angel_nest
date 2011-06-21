@@ -24,6 +24,17 @@ class User < ActiveRecord::Base
                   :password_confirmation,
                   :remember_me
 
+  has_many :messages, :order => 'created_at DESC'
+
+  has_one  :investor
+
+  has_many :startup_users, :foreign_key => 'user_email', :primary_key => 'email'
+  has_many :startups, :through => :startup_users
+
+  has_many :target_followed,   :class_name => 'TargetFollower', :as => :follower
+  has_many :users_followed,    :through => :target_followed, :source => :target, :source_type => 'User'
+  has_many :startups_followed, :through => :target_followed, :source => :target, :source_type => 'Startup'
+
   validates :username, :presence     => true,
                        :uniqueness   => { :case_sensitive => false },
                        :length       => { :within => 4..20 },
@@ -37,19 +48,8 @@ class User < ActiveRecord::Base
                        :confirmation => true,
                        :length       => { :within => 6..40 }
 
-  has_many :messages, :order => 'created_at DESC'
-
-  has_one  :investor
-
-  has_many :startup_users
-  has_many :startups, :through => :startup_users
-
-  has_many :target_followed,   :class_name => 'TargetFollower', :as => :follower
-  has_many :users_followed,    :through => :target_followed, :source => :target, :source_type => 'User'
-  has_many :startups_followed, :through => :target_followed, :source => :target, :source_type => 'Startup'
-
-  scope :new_users,     joins { [startup_users.outer, investor.outer] }.where { (startup_users.user_id == nil) & (investors.user_id == nil) }
-  scope :entrepreneurs, joins { startup_users }.where { startup_users.user_id != nil }
+  scope :new_users,     joins { [startup_users.outer, investor.outer] }.where { (startup_users.user_email == nil) & (investors.user_id == nil) }
+  scope :entrepreneurs, joins { startup_users }.where { startup_users.user_email != nil }
   scope :investors,     joins { investor }.where { investors.user_id != nil }
 
   before_save :email_nomarlisation

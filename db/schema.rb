@@ -83,16 +83,19 @@ ActiveRecord::Schema.define(:version => 20110606072040) do
 
   create_table "startup_users", :force => true do |t|
     t.integer  "startup_id"
-    t.integer  "user_id"
+    t.string   "user_email"
     t.string   "role_identifier"
     t.string   "member_title",    :default => ""
+    t.boolean  "confirmed"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "startup_users", ["startup_id", "user_id"], :name => "index_startup_users_on_startup_id_and_user_id"
+  add_index "startup_users", ["confirmed"], :name => "index_startup_users_on_confirmed"
+  add_index "startup_users", ["startup_id", "confirmed"], :name => "index_startup_users_on_startup_id_and_confirmed"
+  add_index "startup_users", ["startup_id", "user_email"], :name => "index_startup_users_on_startup_id_and_user_email"
   add_index "startup_users", ["startup_id"], :name => "index_startup_users_on_startup_id"
-  add_index "startup_users", ["user_id"], :name => "index_startup_users_on_user_id"
+  add_index "startup_users", ["user_email"], :name => "index_startup_users_on_user_email"
 
   create_table "startups", :force => true do |t|
     t.string   "name"

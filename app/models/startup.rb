@@ -60,7 +60,7 @@ class Startup < ActiveRecord::Base
 
   def attach_user(user, role_identifier = :member, member_title = '')
     startup_users.create(
-      :user_id         => user.id,
+      :user_email      => user.email,
       :role_identifier => role_identifier,
       :member_title    => member_title,
     )
@@ -68,7 +68,7 @@ class Startup < ActiveRecord::Base
 
   def update_user(user, attributes = {})
     user = startup_users.where(
-      :user_id => user,
+      :user_email => user.email,
     ).first
     user.update_attributes(attributes)
   end
@@ -82,7 +82,7 @@ class Startup < ActiveRecord::Base
   end
 
   def user_meta(user)
-    startup_users.where(:user_id => user.id).first
+    startup_users.where(:user_email => user.email).first
   end
 
   def member_title(user)
