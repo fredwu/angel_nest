@@ -81,25 +81,40 @@ describe StartupsController do
 
     context "users" do
       it "attaches a user" do
-        pending
+        post :attach_user, :id              => startup.id,
+                           :role_identifier => 'advisor',
+                           :attributes      => {
+                                                 :name         => 'John Doe',
+                                                 :member_title => 'Awesome Advisor',
+                                                 :email        => 'test@example.com',
+                                               }
+
+        startup.user_meta('test@example.com', :advisor).member_title.should == 'Awesome Advisor'
+        startup.user_meta('test@example.com', :advisor).role_identifier.should == 'advisor'
+        response.should redirect_to(startup_path(startup))
       end
 
       it "updates a user" do
-        post :update_user, :id         => startup.id,
-                           :uid        => user.id,
-                           :attributes => { :member_title => 'CTO' }
+        post :update_user, :id              => startup.id,
+                           :uid             => user.id,
+                           :role_identifier => 'member',
+                           :attributes      => { :member_title => 'CTO' }
 
         startup.user_meta(user).member_title.should == 'CTO'
+        startup.user_meta(user).role_identifier.should == 'member'
         response.should redirect_to(startup_path(startup))
       end
 
       it "detaches a user" do
-        post :detach_user, :id  => startup.id,
-                           :uid => user.id
+        startup.attach_user(user, :investor)
+
+        post :detach_user, :id              => startup.id,
+                           :uid             => user.id,
+                           :role_identifier => 'investor'
 
         startup.reload
 
-        startup.users.include?(user).should == false
+        startup.users.include?(user).should == true # true because user is still a member of the startup
         response.should redirect_to(startup_path(startup))
       end
     end

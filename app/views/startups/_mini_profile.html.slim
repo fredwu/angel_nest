@@ -20,25 +20,25 @@
   hr
   .profile_team
     .team
-      = render 'add_user_link', :startup => startup, :scope => 'members'
+      = render 'add_user_link', :startup => startup, :role_identifier => 'member'
       h2= t('label.members')
-      = render 'users/index', :removable => true, :editable => true, :parent => startup, :collection => startup.members
+      = render 'users/index', :removable => true, :editable => true, :parent => startup, :role_identifier => 'member', :collection => startup.members
       .clear
 
     .team
-      = render 'add_user_link', :startup => startup, :scope => 'investors'
+      = render 'add_user_link', :startup => startup, :role_identifier => 'investor'
       h2= t('label.investors')
-      = render 'users/index', :removable => true, :editable => true, :parent => startup, :collection => startup.investors
+      = render 'users/index', :removable => true, :editable => true, :parent => startup, :role_identifier => 'investor', :collection => startup.investors
       .clear
 
     .team
-      = render 'add_user_link', :startup => startup, :scope => 'advisors'
+      = render 'add_user_link', :startup => startup, :role_identifier => 'advisor'
       h2= t('label.advisors')
-      = render 'users/index', :removable => true, :editable => true, :parent => startup, :collection => startup.advisors
+      = render 'users/index', :removable => true, :editable => true, :parent => startup, :role_identifier => 'advisor', :collection => startup.advisors
       .clear
 
     .team
-      = render 'add_user_link', :startup => startup, :scope => 'incubators'
+      = render 'add_user_link', :startup => startup, :role_identifier => 'incubator'
       h2= t('label.incubators')
-      = render 'users/index', :removable => true, :editable => true, :parent => startup, :collection => startup.incubators
+      = render 'users/index', :removable => true, :editable => true, :parent => startup, :role_identifier => 'incubator', :collection => startup.incubators
       .clear

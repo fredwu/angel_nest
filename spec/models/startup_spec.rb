@@ -122,6 +122,26 @@ describe Startup do
       subject.founder.should == user
     end
 
+    it "attaches a user by email" do
+      subject.attach_user('test@example.com')
+
+      subject.startup_users.last.user_email.should == 'test@example.com'
+    end
+
+    it "doesn't attache the same user twice, if roles are the same" do
+      subject.attach_user(user, :advisor)
+      subject.attach_user(user, :advisor)
+
+      subject.all_users.count.should == 1
+    end
+
+    it "attaches the same user with different roles" do
+      subject.attach_user(user, :advisor)
+      subject.attach_user(user, :investor)
+
+      subject.all_users.count.should == 2
+    end
+
     it "confirms the attached user" do
       subject.attach_user(user)
 
@@ -134,9 +154,18 @@ describe Startup do
 
     it "updates the attached user" do
       subject.attach_user(user, :member, 'CEO')
-      subject.update_user(user, { :member_title => 'CTO' })
+      subject.update_user(user, :member, { :member_title => 'CTO' })
 
       subject.user_meta(user).member_title.should == 'CTO'
+    end
+
+    it "detaches a user" do
+      subject.attach_user(user, :advisor)
+      subject.attach_user(user, :investor)
+      subject.detach_user(user, :advisor)
+
+      subject.user_meta(user, :investor).role_identifier.should == 'investor'
+      subject.all_users.count.should == 1
     end
 
     it "recognises user meta" do

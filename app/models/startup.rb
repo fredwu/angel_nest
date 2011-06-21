@@ -58,36 +58,45 @@ class Startup < ActiveRecord::Base
     logo? ? logo.thumb : 'startup_153x100.png'
   end
 
+  def invite_or_attach_user(role_identifier, attributes)
+    user = User.find_by_email(attributes[:email]) || attributes[:email] # && TODO: send an invitation email
+
+    attach_user(user, role_identifier, attributes[:member_title])
+  end
+
   def attach_user(user, role_identifier = :member, member_title = '')
     startup_users.create(
-      :user_email      => user.email,
-      :role_identifier => role_identifier,
+      :user_email      => (user.try(:email) || user),
+      :role_identifier => role_identifier.to_s,
       :member_title    => member_title,
-    )
+    ) unless user_meta(user, role_identifier)
   end
 
-  def confirm_user(user)
-    user_meta(user).update_attribute(:confirmed, true)
+  def confirm_user(user, role_identifier = :member)
+    user_meta(user, role_identifier).update_attribute(:confirmed, true)
   end
 
-  def update_user(user, attributes = {})
-    user_meta(user).update_attributes(attributes)
+  def update_user(user, role_identifier = :member, attributes = {})
+    user_meta(user, role_identifier).update_attributes(attributes)
   end
 
-  def detach_user(user)
-    users.delete(user)
+  def detach_user(user, role_identifier = :member)
+    user_meta(user, role_identifier).destroy
   end
 
   def founder
     members.first
   end
 
-  def user_meta(user)
-    startup_users.where(:user_email => user.email).first
+  def user_meta(user, role_identifier = :member)
+    startup_users.where(
+      :user_email      => (user.try(:email) || user),
+      :role_identifier => role_identifier.to_s
+    ).first
   end
 
-  def member_title(user)
-    user_meta(user).member_title
+  def member_title(user, role_identifier = :member)
+    user_meta(user, role_identifier).member_title
   end
 
   def user_role(user)
@@ -103,5 +112,9 @@ class Startup < ActiveRecord::Base
     proposal.update_attribute(:proposal_stage_identifier, 'submitted')
     proposal.submit(investors)
     proposal
+  end
+
+  def all_users
+    members + investors + advisors + incubators
   end
 end
