@@ -32,7 +32,7 @@ describe UsersController do
         post :add_micro_post, :message => { :content => 'Hello html!' }
 
         current_user.micro_posts.last.content.should == 'Hello html!'
-        response.should redirect_to(request.env['HTTP_REFERER'])
+        response.should redirect_back
       end
 
       it "adds micro posts via json" do

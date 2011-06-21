@@ -64,6 +64,8 @@ describe StartupsController do
       resource.should == startup
       startup.users.first.should == current_user
       startup.users.count.should == 1
+      startup.user_meta(current_user).member_title.should == 'Founder'
+      startup.user_meta(current_user).confirmed.should == true
     end
 
     it "edits a startup profile" do
@@ -83,20 +85,22 @@ describe StartupsController do
       end
 
       it "updates a user" do
-        post :update_user, :id => startup.id,
-                           :uid => user.id,
+        post :update_user, :id         => startup.id,
+                           :uid        => user.id,
                            :attributes => { :member_title => 'CTO' }
 
         startup.user_meta(user).member_title.should == 'CTO'
+        response.should redirect_to(startup_path(startup))
       end
 
       it "detaches a user" do
-        post :detach_user, :id => startup.id,
+        post :detach_user, :id  => startup.id,
                            :uid => user.id
 
         startup.reload
 
         startup.users.include?(user).should == false
+        response.should redirect_to(startup_path(startup))
       end
     end
   end

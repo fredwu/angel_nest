@@ -19,13 +19,16 @@ end
 20.times { Startup.make! }
 
 Startup.first.attach_user(user, :member, 'Founder')
+Startup.first.confirm_user(user)
 
 Investor.all.each do |investor|
   User.new_users.first.investor = investor
 end
 
 Startup.all.each do |startup|
-  startup.attach_user(User.new_users.first, :member, Faker::Lorem.word)
+  u = User.new_users.first
+  startup.attach_user(u, :member, Faker::Lorem.word)
+  startup.confirm_user(u)
 end
 
 User.limit(10).each do |u|

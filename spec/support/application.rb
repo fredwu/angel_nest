@@ -14,6 +14,10 @@ module AngelNest
       request.env['HTTP_REFERER'] = my_home_url
     end
 
+    def redirect_back
+      redirect_to(request.env['HTTP_REFERER'])
+    end
+
     module ClassMethods
       def hides_sidebar(request_type = :get, actions = [])
         generic_check('hides the sidebar', request_type, actions) do

@@ -66,11 +66,12 @@ class Startup < ActiveRecord::Base
     )
   end
 
+  def confirm_user(user)
+    user_meta(user).update_attribute(:confirmed, true)
+  end
+
   def update_user(user, attributes = {})
-    user = startup_users.where(
-      :user_email => user.email,
-    ).first
-    user.update_attributes(attributes)
+    user_meta(user).update_attributes(attributes)
   end
 
   def detach_user(user)

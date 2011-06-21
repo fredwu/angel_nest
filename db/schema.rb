@@ -86,7 +86,7 @@ ActiveRecord::Schema.define(:version => 20110606072040) do
     t.string   "user_email"
     t.string   "role_identifier"
     t.string   "member_title",    :default => ""
-    t.boolean  "confirmed"
+    t.boolean  "confirmed",       :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

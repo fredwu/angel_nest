@@ -4,7 +4,7 @@ class StartupsController < ApplicationController
   include AutoUserScoping
 
   before_filter :hide_sidebar, :only => [:show, :edit]
-  after_filter  :attach_user_to_startup, :only => :create
+  after_filter  :attach_founder_to_startup, :only => :create
 
   def attach_user
 
@@ -12,20 +12,33 @@ class StartupsController < ApplicationController
 
   def update_user
     if request.post?
-      resource.update_user(User.find(params[:uid]), params[:attributes])
+      result = resource.update_user(User.find(params[:uid]), params[:attributes])
+
+      respond_to do |format|
+        format.json { render :json => result }
+        format.html { redirect_to resource_path(resource) }
+      end
     end
   end
 
   def detach_user
     if request.post?
-      user = User.find(params[:uid])
-      resource.detach_user(user)
+      user   = User.find(params[:uid])
+      result = resource.detach_user(user)
+
+      respond_to do |format|
+        format.json { render :json => result }
+        format.html { redirect_to resource_path(resource) }
+      end
     end
   end
 
   private
 
-  def attach_user_to_startup
-    resource.attach_user(parent) if resource.persisted?
+  def attach_founder_to_startup
+    if resource.persisted?
+      resource.attach_user(parent, :member, t('label.founder'))
+      resource.confirm_user(parent)
+    end
   end
 end

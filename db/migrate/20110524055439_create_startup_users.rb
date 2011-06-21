@@ -5,7 +5,7 @@ class CreateStartupUsers < ActiveRecord::Migration
       t.string  :user_email
       t.string  :role_identifier
       t.string  :member_title, :default => ''
-      t.boolean :confirmed
+      t.boolean :confirmed, :default => false
 
       t.timestamps
     end
