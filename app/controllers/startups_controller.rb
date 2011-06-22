@@ -30,8 +30,7 @@ class StartupsController < ApplicationController
 
   def detach_user
     if request.post?
-      user   = User.find(params[:uid])
-      result = resource.detach_user(user, params[:role_identifier])
+      result = resource.detach_user(User.find(params[:uid]), params[:role_identifier])
 
       respond_to do |format|
         format.json { render :json => result }
