@@ -40,7 +40,6 @@ jQuery ->
   $('.inline_edit').delegate('form', 'submit', ->
     edit_target = $(@).parent()
     target_link = edit_target.data('render_target')
-    console.log(target_link)
 
     $(@).ajaxSubmit(
       success: -> edit_target.slideUp(->
