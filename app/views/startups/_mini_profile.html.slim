@@ -1,8 +1,8 @@
 - if startup.founder == current_user
   = render 'shared/editable', :edit_target => '#profile_details'
 
-.mini_profile
-  #profile_details.inline_edit data-render_target="profile_details/#{startup.id}"
+.mini_profile.inline_edit_container
+  #profile_details data-render_target="profile_details/#{startup.id}"
     = render 'profile_details', :startup => startup
   .clear
 

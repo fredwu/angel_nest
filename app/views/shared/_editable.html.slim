@@ -1,2 +1,2 @@
-.editable data-edit_target=(defined?(edit_target) && edit_target)
+.editable data-edit_target=(defined?(edit_target) && edit_target) data-add_element=(defined?(add_element) && add_element)
   = link_to (defined?(text) ? text : t('label.edit')), (defined?(url) ? url : edit_resource_path(resource))

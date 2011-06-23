@@ -243,7 +243,7 @@ form#new_message {
   }
 }
 
-.grid_6 form {
+.grid_6 form.simple_form {
   label {
     width: grid_cells(6);
     text-align: left;
