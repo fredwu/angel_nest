@@ -243,6 +243,22 @@ form#new_message {
   }
 }
 
+.grid_6 form {
+  label {
+    width: grid_cells(6);
+    text-align: left;
+    margin: 0 0 5px 0;
+  }
+
+  span.hint {
+    margin-left: 0;
+  }
+
+  input.button {
+    float: right;
+  }
+}
+
 form.inline {
   $width: 80px;
 

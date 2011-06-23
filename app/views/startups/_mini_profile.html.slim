@@ -1,21 +1,10 @@
 - if startup.founder == current_user
-  = render 'shared/editable'
+  = render 'shared/editable', :edit_target => '#profile_details'
 
 .mini_profile
-  .profile_pic
-    = image_tag(startup.logo_thumb)
-
-  .profile_meta
-    h2= startup.name
-    ul
-      li= startup.location
-      li= startup.market
-      li.pitch= startup.pitch
-
-  .profile_details
-    = render 'shared/popularity_metrics', :resource => startup
-    hr
-    p= startup.description
+  #profile_details.inline_edit data-render_target="profile_details/#{startup.id}"
+    = render 'profile_details', :startup => startup
+  .clear
 
   hr
   .profile_team

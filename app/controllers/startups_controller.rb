@@ -6,6 +6,10 @@ class StartupsController < ApplicationController
   before_filter :hide_sidebar, :only => [:show, :edit]
   after_filter  :attach_founder_to_startup, :only => :create
 
+  def profile_details
+    render :partial => 'startups/profile_details', :locals => { :startup => resource }
+  end
+
   def attach_user
     if request.post?
       result = resource.invite_or_attach_user(params[:role_identifier], params[:attributes])

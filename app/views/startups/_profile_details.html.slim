@@ -1,0 +1,14 @@
+.profile_pic
+  = image_tag(startup.logo_thumb)
+
+.profile_meta
+  h2= startup.name
+  ul
+    li= startup.location
+    li= startup.market
+    li.pitch= startup.pitch
+
+.profile_details
+  = render 'shared/popularity_metrics', :resource => startup
+  hr
+  p= startup.description

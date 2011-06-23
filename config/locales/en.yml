@@ -63,6 +63,7 @@ en:
     update: Update
     delete: Delete
     remove: Remove
+    close: Close
     confirm: Confirm
     confirm_deletion: Confirm Deletion
     name: Name
