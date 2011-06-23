@@ -16,7 +16,7 @@ jQuery ->
         $('.cached', edit_target).slideUp(->
           $.get(target_link, (partial) ->
             $('.edits', edit_target).html(partial).slideDown()
-            $('a', self).text('X')
+            $('a', self).text(window.label.cancel)
             $(self).addClass('closable')
           )
         )
@@ -30,7 +30,7 @@ jQuery ->
 
     $('.edits', edit_target).slideUp(->
       $('.cached', edit_target).slideDown()
-      $('a', self).text('Edit')
+      $('a', self).text(window.label.edit)
       $(self).removeClass('closable')
     )
 
