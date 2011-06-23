@@ -1,7 +1,5 @@
 ul#user_list
   - collection.each do |user|
-    - pos = cycle('odd', 'even')
-    = '<div class="profile_row">'.html_safe if pos == 'odd'
     li.mini_profile
       .profile_pic
         = render 'users/avatar', :user => user, :size => 50
@@ -16,4 +14,3 @@ ul#user_list
           = render 'shared/editable', :text => t('label.update'), :url => eval("update_user_in_#{parent.class.name.downcase}_path(parent, :role_identifier => :#{role_identifier}, :uid => #{user.id})")
         - if defined?(removable) && parent.founder == current_user
           = render 'shared/editable', :text => t('label.remove'), :url => eval("detach_user_from_#{parent.class.name.downcase}_path(parent, :role_identifier => :#{role_identifier}, :uid => #{user.id})")
-    = '</div>'.html_safe if pos == 'even'

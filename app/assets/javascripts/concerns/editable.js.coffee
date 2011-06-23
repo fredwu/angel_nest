@@ -1,4 +1,5 @@
 jQuery ->
+  # inline editable controlls
   $('.inline_editable .editable').hide()
   $('.profile_team .mini_profile').mouseenter(->
     if $('.inline_editable .closable', @).length > 0
@@ -7,6 +8,12 @@ jQuery ->
       $('.inline_editable .editable', @).show()
   ).mouseleave(->
     $('.inline_editable .editable', @).not('.closable').hide()
+  )
+
+  # team member profile row wrappers
+  $('.profile_team ul#user_list > li:even').wrap('<div class="profile_row" />')
+  $('.profile_team ul#user_list > li').each(->
+    $(@).prev().append($(@))
   )
 
   flip_cancel_label = (parent) ->
