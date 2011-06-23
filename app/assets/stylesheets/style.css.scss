@@ -243,7 +243,10 @@ form#new_message {
   }
 }
 
-.grid_6 form.simple_form {
+.grid_6 form.simple_form,
+form.inline {
+  margin-bottom: 20px;
+
   label {
     width: grid_cells(6);
     text-align: left;
@@ -254,27 +257,19 @@ form#new_message {
     margin-left: 0;
   }
 
-  input.button {
+  input.string,
+  .string input {
+    width: 99%;
+  }
+
+  input.button,
+  input[type="submit"] {
     float: right;
   }
 }
 
-form.inline {
-  $width: 80px;
-
-  label {
-    width: $width;
-  }
-
-  .string {
-    input {
-      width: 200px;
-    }
-  }
-
-  input[type="submit"] {
-    margin-left: $width + 20px;
-  }
+.inline_popup {
+  clear: both;
 }
 
 /* ------------------------------

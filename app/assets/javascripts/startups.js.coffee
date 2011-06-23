@@ -1,7 +1,3 @@
-jQuery ->
-  $('.inline_editable').hide()
-  $('.profile_team .mini_profile').mouseenter(->
-    $('.inline_editable', this).show()
-  ).mouseleave(->
-    $('.inline_editable').hide()
-  )
+# Place all the behaviors and hooks related to the matching controller here.
+# All this logic will automatically be available in application.js.
+# You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
