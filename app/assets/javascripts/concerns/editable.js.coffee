@@ -1,14 +1,17 @@
 jQuery ->
   $('.inline_editable .editable').hide()
   $('.profile_team .mini_profile').mouseenter(->
-    $('.inline_editable .editable', @).show()
+    if $('.inline_editable .closable', @).length > 0
+      $('.inline_editable .closable', @).show()
+    else
+      $('.inline_editable .editable', @).show()
   ).mouseleave(->
     $('.inline_editable .editable', @).not('.closable').hide()
   )
 
   flip_cancel_label = (parent) ->
     $('a', parent).text(window.label.cancel)
-    parent.addClass('closable')
+    parent.show().addClass('closable')
 
   add_action = (parent) ->
     target_link = $('a', parent).attr('href')
@@ -83,6 +86,7 @@ jQuery ->
         $('.cached', parent.data('edit_target')).slideDown()
       else if inline_editable
         text_label = window.label.update
+        parent.hide()
 
       $('a', parent).text(text_label)
       parent.removeClass('closable')

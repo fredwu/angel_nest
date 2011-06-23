@@ -420,6 +420,12 @@ ul#user_list {
   }
 }
 
+.profile_team {
+  ul#user_list .profile_row {
+    float: left;
+  }
+}
+
 /* ------------------------------
   main
 ------------------------------ */
