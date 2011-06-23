@@ -37,13 +37,14 @@ jQuery ->
   )
 
   $('.inline_edit').delegate('form', 'submit', ->
-    edit_target = $(@).parent()
+    edit_target = $(@).parent().parent()
     target_link = edit_target.data('render_target')
 
     $(@).ajaxSubmit(
-      success: -> edit_target.slideUp(->
+      success: -> $('.edits', edit_target).slideUp(->
         $.get(target_link, (partial) ->
-          $(edit_target).html(partial).slideDown()
+          $('.cached', edit_target).html(partial)
+          $('.closable a').click()
         )
       )
     )
