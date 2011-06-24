@@ -38,6 +38,8 @@ $h1_size:          20px;
 $h2_size:          16px;
 $h3_size:          14px;
 
+$max_width:        99%;
+
 $grid_cell_width:  60px;
 $grid_cell_margin: 10px;
 $grid_cell:        $grid_cell_width + $grid_cell_margin * 2;
@@ -220,26 +222,12 @@ form#new_message {
   textarea {
     font-size: 22px;
     height: $height;
+    width: $max_width;
   }
 
   input.button {
-    position: absolute;
-    top: 0;
-    right: 0;
-    height: $height;
-    width: 90px;
-  }
-}
-
-.grid_9 form#new_message {
-  textarea {
-    width: grid_cells(7.8);
-  }
-}
-
-.grid_6 form#new_message {
-  textarea {
-    width: grid_cells(4.8);
+    display: none;
+    float: right;
   }
 }
 
@@ -259,10 +247,9 @@ form.inline {
 
   input.string,
   .string input {
-    width: 99%;
+    width: $max_width;
   }
 
-  input.button,
   input[type="submit"] {
     float: right;
   }
