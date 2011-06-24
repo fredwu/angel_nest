@@ -22,13 +22,17 @@ class StartupsController < ApplicationController
   end
 
   def update_user
+    user = User.find(params[:uid])
+
     if request.post?
-      result = resource.update_user(User.find(params[:uid]), params[:role_identifier], params[:attributes])
+      result = resource.update_user(user, params[:role_identifier], params[:attributes])
 
       respond_to do |format|
         format.json { render :json => result }
         format.html { redirect_to resource_path(resource) }
       end
+    else
+      @user_meta = resource.user_meta(user)
     end
   end
 
