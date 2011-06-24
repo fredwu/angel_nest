@@ -117,7 +117,7 @@ jQuery ->
       success: -> $('.inline_edit', edit_target).slideUp(->
         $.get(target_link, (partial) ->
           if inline_popup
-            $(edit_target.data('edit_target') or edit_target).hide().html(partial).fadeIn()
+            $(edit_target.data('edit_target') or edit_target).fadeTo(300, 0.2).html(partial).fadeTo(700, 1)
           else
             $('.cached', edit_target).html(partial)
         ) if target_link
