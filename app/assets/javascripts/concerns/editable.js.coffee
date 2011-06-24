@@ -1,19 +1,25 @@
 jQuery ->
   # inline editable controlls
-  $('.inline_editable .editable').hide()
-  $('.profile_team .mini_profile').mouseenter(->
+  $('.inline_editable .editable').livequery(->
+    $(@).hide()
+  )
+  $('.inline_edtiable_container .mini_profile').live('mouseenter', ->
     if $('.inline_editable .closable', @).length > 0
       $('.inline_editable .closable', @).show()
     else
       $('.inline_editable .editable', @).show()
-  ).mouseleave(->
+  ).live('mouseleave', ->
     $('.inline_editable .editable', @).not('.closable').hide()
   )
 
   # team member profile row wrappers
-  $('.profile_team ul#user_list > li:even').wrap('<div class="profile_row" />')
-  $('.profile_team ul#user_list > li').each(->
-    $(@).prev().append($(@))
+  $('#profile_team ul#user_list > li:even').livequery(->
+    $(@).wrap('<div class="profile_row" />')
+  )
+  $('#profile_team ul#user_list > li').livequery(->
+    $(@).each(->
+      $(@).prev().append($(@))
+    )
   )
 
   flip_cancel_label = (parent) ->
@@ -67,7 +73,7 @@ jQuery ->
       flip_cancel_label(parent)
     )
 
-  $('.editable a').click((e) ->
+  $('.editable a').live('click', (e) ->
     parent = $(@).parent()
     unless parent.hasClass('closable')
       add_element     = parent.data('add_element')
@@ -103,13 +109,17 @@ jQuery ->
   )
 
   $('.inline_edit_container').delegate('form', 'submit', ->
-    edit_target = $(@).parent().parent()
-    target_link = edit_target.data('render_target')
+    inline_popup = $(@).parent().hasClass('inline_popup')
+    edit_target  = $(@).parent().parent()
+    target_link  = edit_target.data('target_link')
 
     $(@).ajaxSubmit(
       success: -> $('.inline_edit', edit_target).slideUp(->
         $.get(target_link, (partial) ->
-          $('.cached', edit_target).html(partial)
+          if inline_popup
+            $(edit_target.data('edit_target') or edit_target).hide().html(partial).fadeIn()
+          else
+            $('.cached', edit_target).html(partial)
         ) if target_link
         $('.closable a').click()
       )

@@ -1,6 +1,6 @@
 ul#user_list
   - collection.each do |user|
-    li.mini_profile
+    li.mini_profile data-target_link="profile_team/#{defined?(parent) && parent.id}" data-edit_target="#profile_team"
       .profile_pic
         = render 'users/avatar', :user => user, :size => 50
 

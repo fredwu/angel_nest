@@ -2,32 +2,10 @@
   = render 'shared/editable', :edit_target => '#profile_details'
 
 .mini_profile.inline_edit_container
-  #profile_details data-render_target="profile_details/#{startup.id}"
+  #profile_details data-target_link="profile_details/#{startup.id}"
     = render 'profile_details', :startup => startup
   .clear
 
   hr
-  .profile_team
-    .team
-      h2= t('label.members')
-      = render 'add_user_link', :startup => startup, :role_identifier => 'member'
-      = render 'users/index', :removable => true, :editable => true, :parent => startup, :role_identifier => 'member', :collection => startup.members
-      .clear
-
-    .team
-      h2= t('label.investors')
-      = render 'add_user_link', :startup => startup, :role_identifier => 'investor'
-      = render 'users/index', :removable => true, :editable => true, :parent => startup, :role_identifier => 'investor', :collection => startup.investors
-      .clear
-
-    .team
-      h2= t('label.advisors')
-      = render 'add_user_link', :startup => startup, :role_identifier => 'advisor'
-      = render 'users/index', :removable => true, :editable => true, :parent => startup, :role_identifier => 'advisor', :collection => startup.advisors
-      .clear
-
-    .team
-      h2= t('label.incubators')
-      = render 'add_user_link', :startup => startup, :role_identifier => 'incubator'
-      = render 'users/index', :removable => true, :editable => true, :parent => startup, :role_identifier => 'incubator', :collection => startup.incubators
-      .clear
+  #profile_team.inline_edtiable_container
+    = render 'profile_team', :startup => startup

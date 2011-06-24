@@ -1,0 +1,23 @@
+.team
+  h2= t('label.members')
+  = render 'add_user_link', :startup => startup, :role_identifier => 'member'
+  = render 'users/index', :removable => true, :editable => true, :parent => startup, :role_identifier => 'member', :collection => startup.members
+  .clear
+
+.team
+  h2= t('label.investors')
+  = render 'add_user_link', :startup => startup, :role_identifier => 'investor'
+  = render 'users/index', :removable => true, :editable => true, :parent => startup, :role_identifier => 'investor', :collection => startup.investors
+  .clear
+
+.team
+  h2= t('label.advisors')
+  = render 'add_user_link', :startup => startup, :role_identifier => 'advisor'
+  = render 'users/index', :removable => true, :editable => true, :parent => startup, :role_identifier => 'advisor', :collection => startup.advisors
+  .clear
+
+.team
+  h2= t('label.incubators')
+  = render 'add_user_link', :startup => startup, :role_identifier => 'incubator'
+  = render 'users/index', :removable => true, :editable => true, :parent => startup, :role_identifier => 'incubator', :collection => startup.incubators
+  .clear
