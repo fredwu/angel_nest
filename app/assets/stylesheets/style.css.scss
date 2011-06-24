@@ -245,7 +245,7 @@ form#new_message {
 
 .grid_6 form.simple_form,
 form.inline {
-  margin-bottom: 20px;
+  margin: 10px 0 20px 0;
 
   label {
     width: grid_cells(6);
@@ -421,8 +421,16 @@ ul#user_list {
 }
 
 .profile_team {
-  ul#user_list .profile_row {
-    float: left;
+  .team {
+    position: relative;
+
+    .editable {
+      top: 0;
+    }
+
+    ul#user_list .profile_row {
+      float: left;
+    }
   }
 }
 
