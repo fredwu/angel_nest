@@ -108,7 +108,7 @@ jQuery ->
     e.preventDefault()
   )
 
-  $('.inline_edit_container').delegate('form', 'submit', ->
+  $('.inline_edtiable_container').delegate('form', 'submit', ->
     inline_popup = $(@).parent().hasClass('inline_popup')
     edit_target  = $(@).parent().parent()
     target_link  = edit_target.data('target_link')
