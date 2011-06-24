@@ -98,7 +98,7 @@ jQuery ->
         text_label = window.label.edit
         $('.cached', parent.data('edit_target')).slideDown()
       else if inline_editable
-        text_label = window.label.update
+        text_label = parent.data('text')
         parent.hide()
 
       $('a', parent).text(text_label)
