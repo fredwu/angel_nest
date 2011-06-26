@@ -94,6 +94,14 @@ describe StartupsController do
         response.should redirect_to(startup_path(startup))
       end
 
+      it "shows update user partial" do
+        get :update_user, :id              => startup.id,
+                          :uid             => user.id,
+                          :role_identifier => 'member'
+
+        assigns(:user_meta).should == startup.user_meta(user)
+      end
+
       it "updates a user" do
         post :update_user, :id              => startup.id,
                            :uid             => user.id,

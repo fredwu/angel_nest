@@ -56,11 +56,13 @@ $header_hr_height: 5px;
   @return $grid_cell * $n - $grid_cell_margin * 2;
 }
 
+$labe_width:   grid_cells(2);
+$input_margin: $grid_cell * 2;
+
 // mixins
 
 @mixin base_tab() {
   display: block;
-
 }
 
 @mixin anchor_tab() {
@@ -105,8 +107,12 @@ a {
   &:hover   { color: $link_colour_h; text-decoration: underline; }
 }
 
-.create_new {
-  font-weight: bold;
+.first {
+  margin-left: 0 !important;
+}
+
+.last {
+  margin-right: 0 !important;
 }
 
 div.message {
@@ -156,12 +162,17 @@ div.message {
 ------------------------------ */
 
 form {
-  $input_margin: $grid_cell * 2;
   $input_height: 24px;
+
+  fieldset {
+    legend {
+      display: none;
+    }
+  }
 
   label {
     float: left;
-    width: grid_cells(2);
+    width: $labe_width;
     text-align: right;
     margin: 2px $grid_cell_margin;
     font-weight: bold;
@@ -173,13 +184,14 @@ form {
   }
 
   input.string,
+  input.numeric,
   select.select,
   textarea.text {
     font-size: $font_size_big;
     width: grid_cells(6);
   }
 
-  .string {
+  .string, .numeric {
     input {
       height: $input_height;
     }
@@ -187,7 +199,8 @@ form {
 
   input[type='submit'],
   input[type='button'],
-  input.button {
+  input.button,
+  button {
     margin-left: $input_margin;
     @include action_button();
   }
@@ -246,7 +259,9 @@ form.inline {
   }
 
   input.string,
-  .string input {
+  input.numeric,
+  .string input,
+  .numeric input {
     width: $max_width;
   }
 
@@ -257,6 +272,15 @@ form.inline {
 
 .inline_popup {
   clear: both;
+}
+
+.grouped_buttons {
+  margin-left: $input_margin;
+
+  input, button {
+    float: left;
+    margin: 0 10px 0 0 !important;
+  }
 }
 
 /* ------------------------------
@@ -422,6 +446,40 @@ ul#user_list {
 }
 
 /* ------------------------------
+  proposal form
+------------------------------ */
+
+ul#proposal_section_selector {
+  list-style: none;
+  margin-bottom: $viewport_padding;
+
+  li {
+    float: left;
+
+    a {
+      $margin: 20px;
+      @include anchor_tab;
+      padding-left: 0;
+      padding-right: 0;
+      font-size: $h2_size;
+      margin-right: $margin;
+      width: 118px;
+      text-align: center;
+    }
+  }
+}
+
+form.multistage {
+  fieldset {
+    display: none;
+  }
+
+  h2 {
+    margin-bottom: 10px;
+  }
+}
+
+/* ------------------------------
   main
 ------------------------------ */
 
@@ -429,7 +487,7 @@ ul#user_list {
   padding-top: $viewport_padding;
   padding-bottom: $viewport_padding;
 
-  .grid_3, .grid_6, .grid_9 {
+  .grid_3, .grid_6, .grid_9, .grid_12 {
     position: relative;
   }
 
@@ -444,6 +502,10 @@ ul#user_list {
 
   h2 {
     font-size: $h2_size;
+  }
+
+  .create_new {
+    font-weight: bold;
   }
 
   .editable {

@@ -190,8 +190,16 @@ describe Startup do
       subject.proposals.first.proposal_stage_identifier.should == 'draft'
     end
 
+    it "submits proposal to no investor" do
+      subject.submit_proposal([], proposal.attributes)
+
+      subject.proposals.count.should == 1
+      subject.proposals.draft.count.should == 1
+      subject.proposals.submitted.count.should == 0
+    end
+
     it "submits proposal to one investor" do
-      subject.submit_proposal(investor1, proposal.attributes)
+      subject.submit_proposal(investor1, proposal.attributes, 'submitted')
 
       subject.proposals.count.should == 1
       subject.proposals.draft.count.should == 0
@@ -201,13 +209,22 @@ describe Startup do
     end
 
     it "submits proposal to many investors" do
-      subject.submit_proposal([investor1, investor2], proposal.attributes)
+      subject.submit_proposal([investor1, investor2], proposal.attributes, 'submitted')
 
       subject.proposals.count.should == 1
       subject.proposals.draft.count.should == 0
       subject.proposals.submitted.count.should == 1
       investor1.proposals.count.should == 1
       investor2.proposals.count.should == 1
+    end
+
+    it "edits a proposal" do
+      subject.submit_proposal(investor1, proposal.attributes)
+      subject.update_proposal(Proposal.last, investor2, Proposal.make(:pitch => 'Hello world').attributes)
+
+      Proposal.last.pitch.should == 'Hello world'
+      Proposal.last.investors.count.should == 1
+      Proposal.last.investors.first.should == investor2
     end
 
     it "preserves proposal details structure" do

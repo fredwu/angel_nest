@@ -68,6 +68,8 @@ en:
     close: Close
     confirm: Confirm
     confirm_deletion: Confirm Deletion
+    next: Next
+    prev: Prev
     name: Name
     email: Email
     welcome: Welcome
@@ -93,8 +95,10 @@ en:
     investors: Investors
     advisors: Advisors
     incubators: Incubators
-    create_new: create new
+    create_new: Create new
     create_one_now: create one now!
+    save_draft: Save draft
+    submit_proposal: Submit proposal
     apply_now: apply now!
     following: Following
     followers: Followers
@@ -106,8 +110,17 @@ en:
     add_micro_post: Post
     whats_on_your_mind: What's on your mind?
     startup_profile: Startup profile
+    business_proposal: Business Proposal
+    business_proposals: Business Proposals
+    product: Product
+    market: Market
+    competition: Competition
+    investment: Investment
+    one_year_market: Market in One Year
+    five_year_market: Market in Five Years
   message:
-
+    proposal_saved: The proposal has been saved!
+    proposal_submitted: The proposal has been submitted to the investors!
   text:
     have_no_startups: You have no startups,
     not_an_investor: You are not an investor,

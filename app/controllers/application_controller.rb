@@ -19,6 +19,8 @@ class ApplicationController < ActionController::Base
       deny_access unless current_user == resource
     elsif params.key?(:user_id)
       deny_access unless current_user == User.find(params[:user_id])
+    elsif params.key?(:startup_id)
+      deny_access unless current_user == Startup.find(params[:startup_id]).founder
     end
   end
 

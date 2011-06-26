@@ -54,25 +54,32 @@ ActiveRecord::Schema.define(:version => 20110606072040) do
 
   create_table "proposals", :force => true do |t|
     t.string   "proposal_stage_identifier"
-    t.boolean  "new_business_model",         :default => false
-    t.boolean  "new_product",                :default => false
+    t.boolean  "new_business_model",                   :default => false
+    t.boolean  "new_product",                          :default => false
     t.string   "pitch"
     t.text     "introduction"
-    t.text     "target_audience"
-    t.integer  "per_capita_annual_spending", :default => 0
-    t.integer  "number_of_users",            :default => 0
-    t.integer  "market_cap",                 :default => 0
-    t.integer  "penetration_rate",           :default => 0
-    t.text     "marketing_strategy"
-    t.integer  "gross_profit_margin",        :default => 0
+    t.text     "one_year_target_audience"
+    t.integer  "one_year_per_capita_annual_spending",  :default => 0
+    t.integer  "one_year_number_of_users",             :default => 0
+    t.integer  "one_year_market_cap",                  :default => 0
+    t.integer  "one_year_penetration_rate",            :default => 0
+    t.text     "one_year_marketing_strategy"
+    t.integer  "one_year_gross_profit_margin",         :default => 0
+    t.text     "five_year_target_audience"
+    t.integer  "five_year_per_capita_annual_spending", :default => 0
+    t.integer  "five_year_number_of_users",            :default => 0
+    t.integer  "five_year_market_cap",                 :default => 0
+    t.integer  "five_year_penetration_rate",           :default => 0
+    t.text     "five_year_marketing_strategy"
+    t.integer  "five_year_gross_profit_margin",        :default => 0
     t.text     "competitors_details"
     t.text     "competitive_edges"
     t.text     "competing_strategy"
-    t.integer  "investment_amount",          :default => 0
+    t.integer  "investment_amount",                    :default => 0
     t.string   "investment_currency"
-    t.integer  "equity_percentage",          :default => 0
+    t.integer  "equity_percentage",                    :default => 0
     t.text     "spending_plan"
-    t.integer  "next_investment_round",      :default => 0
+    t.integer  "next_investment_round",                :default => 0
     t.integer  "startup_id"
     t.datetime "created_at"
     t.datetime "updated_at"

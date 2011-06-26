@@ -107,14 +107,25 @@ class Startup < ActiveRecord::Base
     proposals.create(attributes)
   end
 
-  def submit_proposal(investors = [], attributes = {})
+  def submit_proposal(investors = [], attributes = {}, stage = 'draft')
     proposal = create_proposal(attributes)
-    proposal.update_attribute(:proposal_stage_identifier, 'submitted')
-    proposal.submit(investors)
-    proposal
+    update_and_submit_proposal(proposal, investors, attributes, stage)
+  end
+
+  def update_proposal(proposal, investors = [], attributes = {}, stage = 'draft')
+    proposal.update_attributes(attributes)
+    update_and_submit_proposal(proposal, investors, attributes, stage)
   end
 
   def all_users
     members + investors + advisors + incubators
+  end
+
+  private
+
+  def update_and_submit_proposal(proposal, investors, attributes, stage)
+    proposal.update_attribute(:proposal_stage_identifier, stage)
+    proposal.submit(investors)
+    proposal
   end
 end

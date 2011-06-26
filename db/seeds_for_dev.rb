@@ -29,6 +29,7 @@ Startup.all.each do |startup|
   u = User.new_users.first
   startup.attach_user(u, :member, Faker::Lorem.word)
   startup.confirm_user(u)
+  2.times { Proposal.make!(:startup => startup) }
 end
 
 User.limit(10).each do |u|

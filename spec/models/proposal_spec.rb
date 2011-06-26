@@ -19,13 +19,14 @@ describe Proposal do
   end
 
   it "is submitted" do
-    proposal.submit(Investor.make)
+    investor = Investor.make
+    proposal.submit(investor)
     proposal.reload
-    proposal.stage.should == 'Submitted'
+    proposal.investors.last == investor
   end
 
   it "rejects invalid inuts" do
-    proposal.penetration_rate = 101
+    proposal.one_year_penetration_rate = 101
     expect { proposal.save! }.to raise_exception
   end
 end

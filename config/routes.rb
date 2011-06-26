@@ -10,6 +10,7 @@ AngelNest::Application.routes.draw do
   resources :entrepreneurs, :only => :index
   resources :startups do
     resources :messages,    :only => [:index, :create], :as => :comments
+    resources :proposals,   :only => [:new, :edit, :create, :update]
     member do
       get  'attach_user', :as => :attach_user_to
       post 'attach_user', :as => :attach_user_to

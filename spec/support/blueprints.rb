@@ -33,25 +33,37 @@ Message.blueprint do
 end
 
 Proposal.blueprint do
-  proposal_stage_identifier  { Proposal.stages.keys.sample }
-  new_business_model         { [true, false].sample }
-  new_product                { [true, false].sample }
-  pitch                      { Faker::Company.catch_phrase }
-  introduction               { Faker::Lorem.paragraph }
-  target_audience            { Faker::Lorem.paragraph }
-  per_capita_annual_spending { rand(1_000) }
-  number_of_users            { rand(1_000_000) }
-  market_cap                 { rand(1_000_000_000) }
-  penetration_rate           { rand(20.0) }
-  marketing_strategy         { Faker::Lorem.paragraph }
-  gross_profit_margin        { rand(20.0) }
-  competitors_details        { Faker::Lorem.paragraph }
-  competitive_edges          { Faker::Lorem.paragraph }
-  competing_strategy         { Faker::Lorem.paragraph }
-  investment_amount          { rand(3_000_000) }
-  investment_currency        { Settings.currencies.sample }
-  equity_percentage          { rand(30) }
-  spending_plan              { Faker::Lorem.paragraph }
-  next_investment_round      { rand(24) }
-  startup                    { Startup.make }
+  proposal_stage_identifier            { Proposal.stages.keys.sample }
+  new_business_model                   { [true, false].sample }
+  new_product                          { [true, false].sample }
+  pitch                                { Faker::Company.catch_phrase }
+  introduction                         { Faker::Lorem.paragraph }
+
+  one_year_target_audience             { Faker::Lorem.paragraph }
+  one_year_per_capita_annual_spending  { rand(1_000) }
+  one_year_number_of_users             { rand(1_000_000) }
+  one_year_market_cap                  { rand(1_000_000_000) }
+  one_year_penetration_rate            { rand(20.0) }
+  one_year_marketing_strategy          { Faker::Lorem.paragraph }
+  one_year_gross_profit_margin         { rand(20.0) }
+
+  five_year_target_audience            { Faker::Lorem.paragraph }
+  five_year_per_capita_annual_spending { rand(1_000) }
+  five_year_number_of_users            { rand(1_000_000) }
+  five_year_market_cap                 { rand(1_000_000_000) }
+  five_year_penetration_rate           { rand(20.0) }
+  five_year_marketing_strategy         { Faker::Lorem.paragraph }
+  five_year_gross_profit_margin        { rand(20.0) }
+
+  competitors_details                  { Faker::Lorem.paragraph }
+  competitive_edges                    { Faker::Lorem.paragraph }
+  competing_strategy                   { Faker::Lorem.paragraph }
+
+  investment_amount                    { rand(3_000_000) }
+  investment_currency                  { Settings.currencies.sample }
+  equity_percentage                    { rand(30) }
+  spending_plan                        { Faker::Lorem.paragraph }
+  next_investment_round                { rand(24) }
+
+  startup                              { Startup.make }
 end
