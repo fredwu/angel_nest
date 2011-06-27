@@ -16,6 +16,12 @@ class ProposalsController < ApplicationController
     redirect_to parent_path
   end
 
+  def edit
+    @investors = resource.investors.for_auto_suggest.to_json
+
+    edit!
+  end
+
   private
 
   def investors

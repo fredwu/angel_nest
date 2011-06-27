@@ -3,10 +3,9 @@ class InvestorsController < ApplicationController
   belongs_to :user, :optional => true
 
   def index
-    render 'users/index'
-  end
-
-  def collection
-    User.investors
+    respond_to do |format|
+      format.json { render :json => collection.for_auto_suggest }
+      format.html { render 'users/index' }
+    end
   end
 end

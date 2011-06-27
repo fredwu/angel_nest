@@ -12,6 +12,20 @@ describe ProposalsController do
     startup.attach_user(current_user)
   end
 
+  it "shows the edit page" do
+    investors = Investor.make!(2)
+    proposal  = Proposal.make!(
+      :startup   => startup,
+      :investors => investors
+    )
+
+    get :edit, :startup_id => startup.id,
+               :id         => proposal.id
+
+    assigns(:investors).should be_a(String)
+    assigns(:investors).should == investors.for_auto_suggest.to_json
+  end
+
   it "submits to an investor" do
     proposal = Proposal.make
 

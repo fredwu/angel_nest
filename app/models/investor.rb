@@ -10,4 +10,12 @@ class Investor < ActiveRecord::Base
                              :length       => { :within => 10..140 }
   validates :funds_to_offer, :presence     => true,
                              :numericality => true
+
+  default_scope includes(:user)
+end
+
+class Array
+  def for_auto_suggest
+    map { |r| { :id => r.id, :name => r.name } }
+  end
 end

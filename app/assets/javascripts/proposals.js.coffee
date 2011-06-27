@@ -1,3 +1,12 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
+jQuery ->
+  $('input#investors').autoSuggest(
+    '/investors',
+    asHtmlID: 'investors'
+    selectedValuesProp: 'id'
+    selectedItemProp: 'name'
+    searchObjProps: 'name'
+    preFill: $('input#investors').data('investors')
+  )
+  $('form.proposal').submit(->
+    $('input#investors').attr('value', $('input#as-values-investors').attr('value')[1..-2])
+  )

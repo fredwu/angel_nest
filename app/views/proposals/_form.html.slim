@@ -11,7 +11,7 @@ ul#proposal_section_selector.multistage_selector
     legend= t('label.investors')
     .multi_add.input.string
       = label_tag :investors, t('label.investors')
-      = text_field_tag :investors, resource.investors.map(&:id).join(','), :class => 'string required'
+      = text_field_tag :investors, resource.investors.map(&:id).join(','), :class => 'string required', :'data-investors' => @investors
     .grouped_buttons
       = submit_tag t('label.next'), :class => 'navigation next'
   fieldset#product
