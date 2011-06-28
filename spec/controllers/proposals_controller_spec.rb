@@ -4,7 +4,7 @@ describe ProposalsController do
   include_context "inherited_resources"
 
   let(:current_user) { User.make! }
-  let(:investor)     { Investor.make! }
+  let(:investor)     { User.make!(:investor_profile => InvestorProfile.make!) }
   let(:startup)      { Startup.make! }
 
   before do
@@ -13,7 +13,7 @@ describe ProposalsController do
   end
 
   it "shows the edit page" do
-    investors = Investor.make!(2)
+    investors = User.make!(2)
     proposal  = Proposal.make!(
       :startup   => startup,
       :investors => investors

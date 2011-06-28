@@ -10,8 +10,7 @@ User.blueprint do
   password { 'password' }
 end
 
-Investor.blueprint do
-  name           { Faker::Company.name }
+InvestorProfile.blueprint do
   tagline        { Faker::Company.catch_phrase }
   funds_to_offer { rand(2_000_000) }
   description    { Faker::Lorem.paragraphs * "\n\n" }

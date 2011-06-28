@@ -12,20 +12,16 @@
 
 ActiveRecord::Schema.define(:version => 20110606072040) do
 
-  create_table "investors", :force => true do |t|
-    t.string   "name"
+  create_table "investor_profiles", :force => true do |t|
     t.string   "tagline"
     t.string   "funds_to_offer"
     t.text     "description"
-    t.integer  "followers_count", :default => 0
-    t.integer  "followed_count",  :default => 0
-    t.integer  "comments_count",  :default => 0
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "investors", ["name"], :name => "index_investors_on_name"
+  add_index "investor_profiles", ["user_id"], :name => "index_investor_profiles_on_user_id"
 
   create_table "messages", :force => true do |t|
     t.text     "content"
@@ -43,14 +39,14 @@ ActiveRecord::Schema.define(:version => 20110606072040) do
 
   create_table "proposal_for_investors", :id => false, :force => true do |t|
     t.integer  "proposal_id"
-    t.integer  "investor_id"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "proposal_for_investors", ["investor_id"], :name => "index_proposal_for_investors_on_investor_id"
-  add_index "proposal_for_investors", ["proposal_id", "investor_id"], :name => "index_proposal_for_investors_on_proposal_id_and_investor_id"
+  add_index "proposal_for_investors", ["proposal_id", "user_id"], :name => "index_proposal_for_investors_on_proposal_id_and_user_id"
   add_index "proposal_for_investors", ["proposal_id"], :name => "index_proposal_for_investors_on_proposal_id"
+  add_index "proposal_for_investors", ["user_id"], :name => "index_proposal_for_investors_on_user_id"
 
   create_table "proposals", :force => true do |t|
     t.string   "proposal_stage_identifier"

@@ -142,7 +142,7 @@ describe User do
       end
 
       it "responds to investor" do
-        subject.association(:investor).should be_a(ActiveRecord::Associations::HasOneAssociation)
+        subject.association(:investor_profile).should be_a(ActiveRecord::Associations::HasOneAssociation)
       end
 
       it "responds to 'is_entrepreneur?'" do
@@ -159,7 +159,7 @@ describe User do
       end
 
       it "adds investor" do
-        subject.investor = Investor.make!
+        subject.investor_profile = InvestorProfile.make!
         subject.is_investor?.should == true
       end
 
@@ -173,7 +173,7 @@ describe User do
 
       it "finds investor users" do
         2.times { User.make! }
-        subject.investor = Investor.make!
+        subject.investor_profile = InvestorProfile.make!
         User.new_users.count.should == 2
         User.entrepreneurs.count.should == 0
         User.investors.count.should == 1

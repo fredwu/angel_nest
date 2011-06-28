@@ -178,8 +178,8 @@ describe Startup do
 
   describe "proposals" do
     let(:proposal)  { Proposal.make }
-    let(:investor1) { Investor.make! }
-    let(:investor2) { Investor.make! }
+    let(:investor1) { User.make!(:investor_profile => InvestorProfile.make!) }
+    let(:investor2) { User.make!(:investor_profile => InvestorProfile.make!) }
 
     it "creates a draft proposal" do
       subject.create_proposal(proposal.attributes)

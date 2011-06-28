@@ -8,4 +8,10 @@ class InvestorsController < ApplicationController
       format.html { render 'users/index' }
     end
   end
+
+  private
+
+  def collection
+    User.investors
+  end
 end

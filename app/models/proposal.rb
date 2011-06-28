@@ -1,6 +1,6 @@
 class Proposal < ActiveRecord::Base
   belongs_to              :startup
-  has_and_belongs_to_many :investors, :join_table => :proposal_for_investors
+  has_and_belongs_to_many :investors, :join_table => :proposal_for_investors, :class_name => 'User'
 
   validates :pitch,                                :presence     => true,
                                                    :length       => { :within => 10..140 }

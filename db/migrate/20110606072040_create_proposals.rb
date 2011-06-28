@@ -43,12 +43,12 @@ class CreateProposals < ActiveRecord::Migration
 
     create_table :proposal_for_investors, :id => false do |t|
       t.integer :proposal_id
-      t.integer :investor_id
+      t.integer :user_id
       t.timestamps
     end
 
     add_index :proposal_for_investors, :proposal_id
-    add_index :proposal_for_investors, :investor_id
-    add_index :proposal_for_investors, [:proposal_id, :investor_id]
+    add_index :proposal_for_investors, :user_id
+    add_index :proposal_for_investors, [:proposal_id, :user_id]
   end
 end

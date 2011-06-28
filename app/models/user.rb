@@ -26,7 +26,9 @@ class User < ActiveRecord::Base
 
   has_many :messages, :order => 'created_at DESC'
 
-  has_one  :investor
+  has_one  :investor_profile
+
+  has_and_belongs_to_many :proposals, :join_table => :proposal_for_investors
 
   has_many :startup_users, :foreign_key => 'user_email', :primary_key => 'email'
   has_many :startups, :through => :startup_users
@@ -48,9 +50,9 @@ class User < ActiveRecord::Base
                        :confirmation => true,
                        :length       => { :within => 6..40 }
 
-  scope :new_users,     joins { [startup_users.outer, investor.outer] }.where { (startup_users.user_email == nil) & (investors.user_id == nil) }
+  scope :new_users,     joins { [startup_users.outer, investor_profile.outer] }.where { (startup_users.user_email == nil) & (investor_profiles.user_id == nil) }
   scope :entrepreneurs, joins { startup_users }.where { startup_users.user_email != nil }
-  scope :investors,     joins { investor }.where { investors.user_id != nil }
+  scope :investors,     joins { investor_profile }.where { investor_profiles.user_id != nil }
 
   before_save :email_nomarlisation
 
@@ -67,7 +69,7 @@ class User < ActiveRecord::Base
   end
 
   def is_investor?
-    investor.present?
+    investor_profile.present?
   end
 
   def avatar(size = 80)
@@ -126,5 +128,11 @@ class User < ActiveRecord::Base
 
   def email_nomarlisation
     self.email = email.strip.downcase
+  end
+end
+
+class Array
+  def for_auto_suggest
+    map { |r| { :id => r.id, :name => r.name } }
   end
 end

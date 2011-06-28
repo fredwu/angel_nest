@@ -25,7 +25,7 @@ class ProposalsController < ApplicationController
   private
 
   def investors
-    Investor.find(params[:investors].split(',')) if params[:investors]
+    User.find(params[:investors].split(',')) if params[:investors]
   end
 
   def proposal_stage

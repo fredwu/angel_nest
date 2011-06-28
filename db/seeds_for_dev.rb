@@ -15,21 +15,23 @@ user.confirm!
   u.confirm!
 end
 
-10.times { Investor.make! }
+10.times { InvestorProfile.make! }
 20.times { Startup.make! }
 
 Startup.first.attach_user(user, :member, 'Founder')
 Startup.first.confirm_user(user)
 
-Investor.all.each do |investor|
-  User.new_users.first.investor = investor
+InvestorProfile.all.each do |investor|
+  User.new_users.first.investor_profile = investor
 end
 
 Startup.all.each do |startup|
   u = User.new_users.first
   startup.attach_user(u, :member, Faker::Lorem.word)
   startup.confirm_user(u)
-  2.times { Proposal.make!(:startup => startup) }
+  2.times do
+    startup.submit_proposal(User.investors.sample, Proposal.make.attributes, 'draft')
+  end
 end
 
 User.limit(10).each do |u|

@@ -19,7 +19,7 @@ describe Proposal do
   end
 
   it "is submitted" do
-    investor = Investor.make
+    investor = User.make!(:investor_profile => InvestorProfile.make!)
     proposal.submit(investor)
     proposal.reload
     proposal.investors.last == investor
