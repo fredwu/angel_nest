@@ -1,13 +1,13 @@
 ul#user_list
   - collection.each do |user|
-    li.mini_profile data-target_link="profile_team/#{defined?(parent) && parent.id}" data-edit_target="#profile_team"
+    li.mini_profile data-target_link="profile_team/#{defined?(parent) && parent && parent.id}" data-edit_target="#profile_team"
       .profile_pic
         = render 'users/avatar', :user => user, :size => 50
 
       .profile_meta
         h2= link_to user.name, username_path(user.username)
         ul
-          li= "#{parent.user_meta(user, role_identifier).member_title}&nbsp;".html_safe if defined?(parent)
+          li= "#{parent.user_meta(user, (role_identifier)).member_title}&nbsp;".html_safe if defined?(parent) && defined?(role_identifier)
 
       .inline_editable
         - if defined?(editable) && parent.founder == current_user
