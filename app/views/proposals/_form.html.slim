@@ -6,7 +6,7 @@ ul#proposal_section_selector.multistage_selector
   li= link_to t('label.investment'), '#investment', :class => 'last'
   .clear
 
-= simple_form_for resource, :as => resource_name, :url => submit_path, :validate => true, :html => { :class => 'multistage' } do |f|
+= simple_form_for resource, :url => submit_path, :validate => true, :html => { :class => 'multistage' } do |f|
   fieldset#investors
     legend= t('label.investors')
     .multi_add.input.string

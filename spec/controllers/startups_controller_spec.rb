@@ -79,6 +79,20 @@ describe StartupsController do
       startup.name.should == 'Edited Name'
     end
 
+    context "ajax partials" do
+      it "shows profile details" do
+        get :profile_details, :id => startup.id
+
+        resource.should == startup
+      end
+
+      it "shows profile team" do
+        get :profile_team, :id => startup.id
+
+        resource.should == startup
+      end
+    end
+
     context "users" do
       it "attaches a user" do
         post :attach_user, :id              => startup.id,

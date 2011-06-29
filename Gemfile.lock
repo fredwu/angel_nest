@@ -83,6 +83,9 @@ GEM
       orm_adapter (~> 0.0.3)
       warden (~> 1.0.3)
     diff-lcs (1.1.2)
+    email_spec (1.2.1)
+      mail (~> 2.2)
+      rspec (~> 2.0)
     erubis (2.7.0)
     execjs (1.1.2)
       multi_json (~> 1.0)
@@ -269,6 +272,7 @@ DEPENDENCIES
   database_cleaner
   delorean
   devise (~> 1.4.0)
+  email_spec
   ffaker
   geo_location
   inherited_resources (~> 1.2.0)

@@ -7,6 +7,8 @@ describe "user session" do
     u
   end
 
+  let(:user_unconfirmed) { User.make! }
+
   def sign_in_user(login = user.email)
     post user_session_path, :user => {
                               :login    => login,
@@ -44,5 +46,21 @@ describe "user session" do
     response.should redirect_to(root_path)
     follow_redirect!
     response.body.should_not include(user.name)
+  end
+
+  it "sends user confirmation instructions" do
+    post user_confirmation_path, :user => {
+                                   :email => user_unconfirmed.email
+                                 }
+
+    response.should redirect_to(new_user_session_path)
+  end
+
+  it "sends reset password instructions" do
+    post user_password_path, :user => {
+                               :login => user.email
+                             }
+
+    response.should redirect_to(new_user_session_path)
   end
 end

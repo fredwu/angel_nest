@@ -29,6 +29,8 @@ RSpec.configure do |config|
   config.use_transactional_fixtures = false
 
   config.include Delorean
+  config.include EmailSpec::Helpers
+  config.include EmailSpec::Matchers
 
   DatabaseCleaner.strategy = :truncation
   config.before do

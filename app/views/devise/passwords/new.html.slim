@@ -1,6 +1,6 @@
 h1= t('label.forgot_your_password')
 
-= simple_form_for resource, :as => resource_name, :url => password_path(resource_name) do |f|
+= simple_form_for resource, :url => password_path(resource_name) do |f|
   = f.error_notification
   = f.input :login, :required => true
   = f.button :submit, t('label.send_reset_password_instructions')
