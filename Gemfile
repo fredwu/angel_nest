@@ -11,7 +11,6 @@ gem 'inherited_resources', '~> 1.2.0'
 gem 'simple_form',         '~> 1.4.0'
 gem 'squeel',              '~> 0.8.0'
 gem 'rails_config'
-gem 'virtus'
 
 # geo related gems
 gem 'carmen'

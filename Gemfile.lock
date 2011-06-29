@@ -255,7 +255,6 @@ GEM
     uglifier (1.0.0)
       execjs (>= 0.3.0)
       multi_json (>= 1.0.2)
-    virtus (0.0.3)
     warden (1.0.4)
       rack (>= 1.0)
     xpath (0.1.4)
@@ -298,4 +297,3 @@ DEPENDENCIES
   squeel (~> 0.8.0)
   turn
   uglifier
-  virtus
