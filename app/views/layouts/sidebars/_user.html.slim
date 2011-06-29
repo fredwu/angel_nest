@@ -1,0 +1,4 @@
+= render 'users/mini_profile', :user => user, :meta => {}
+= render 'users/startups', :user => user
+= render 'users/investor', :user => user
+= render 'users/invested_in', :user => user if user.is_investor?

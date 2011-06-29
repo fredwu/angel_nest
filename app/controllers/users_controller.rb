@@ -6,6 +6,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    hide_sidebar
     @micro_posts = resource.micro_posts
   end
 

@@ -1,0 +1,9 @@
+hr
+
+h3= t('label.investor')
+- if user.is_investor?
+  = render 'ventures/mini_index', :collection => [user], :user => user, :can_create_new => false
+- else
+  p
+    =' t('text.not_an_investor')
+    = link_to t('label.apply_now'), new_user_investor_path(user)

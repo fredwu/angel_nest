@@ -6,7 +6,9 @@
     = render 'users/avatar', :user => user, :size => 50
 
   .profile_meta
-    h2= link_to user.name, username_path(user.username)
+    h2
+      = link_to user.name, username_path(user.username)
+      = show_user_roles(user) if meta[:show_user_roles]
     ul
       li= user.location
 

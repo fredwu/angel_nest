@@ -1,2 +1,7 @@
-= render 'mini_profile', :user => resource
-= render 'messages/index', :collection => @micro_posts
+.grid_6
+  = render 'users/mini_profile', :user => resource, :meta => { :show_user_roles => true }
+  = render 'users/startups', :user => resource if resource.is_entrepreneur?
+  = render 'users/invested_in', :user => resource if resource.is_investor?
+
+.grid_6
+  = render 'messages/index', :collection => @micro_posts

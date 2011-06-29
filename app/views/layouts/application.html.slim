@@ -37,7 +37,7 @@ body
     - unless @hide_sidebar
       aside.grid_3.sidebar
         - if current_user
-          #private_sidebar= render 'layouts/sidebars/private'
+          #private_sidebar= render 'layouts/sidebars/user', :user => current_user
         - else
           #public_sidebar= render 'layouts/sidebars/public'
     article class=(@hide_sidebar ? "grid_12" : "grid_9" unless @custom_grids)

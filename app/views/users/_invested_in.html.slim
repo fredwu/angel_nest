@@ -1,0 +1,7 @@
+hr
+
+h3= t('label.invested_in')
+- if user.startups.invested.any?
+  = render 'ventures/mini_index', :collection => user.startups.invested, :user => user, :can_create_new => false
+- else
+  = t('text.no_invested_startups_found')

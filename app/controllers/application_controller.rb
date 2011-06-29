@@ -30,5 +30,6 @@ class ApplicationController < ActionController::Base
 
   def hide_sidebar
     @hide_sidebar = true
+    @custom_grids = true
   end
 end

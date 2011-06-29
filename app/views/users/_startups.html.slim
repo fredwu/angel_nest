@@ -1,0 +1,9 @@
+hr
+
+h3= t('label.startups')
+- if user.is_entrepreneur?
+  = render 'ventures/mini_index', :collection => user.startups.involved, :user => user, :can_create_new => true
+- else
+  p
+    =' t('text.have_no_startups')
+    = link_to t('label.create_one_now'), new_user_startup_path(user)

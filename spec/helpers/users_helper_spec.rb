@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe UsersHelper do
   context "geo location detectors" do
+    let(:user) { User.make! }
     let(:geo_location_hash) do
       {
         :city         => 'Mountain View',
@@ -68,6 +69,15 @@ describe UsersHelper do
 
     it "detects the timezone of the current user" do
       helper.detected_timezone.should == 'America/Los_Angeles'
+    end
+
+    it "shows user roles" do
+      user.investor_profile = InvestorProfile.make!
+      helper.show_user_roles(user).should == " (#{I18n.t('label.investor')})"
+    end
+
+    it "shows nothing when there is no user roles" do
+      helper.show_user_roles(user).should == ''
     end
   end
 end

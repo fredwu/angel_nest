@@ -89,6 +89,7 @@ en:
     startups: Startups
     investor: Investor
     founder: Founder
+    invested_in: Invested In
     team: Team
     title: Title
     members: Team Members
@@ -124,3 +125,4 @@ en:
   text:
     have_no_startups: You have no startups,
     not_an_investor: You are not an investor,
+    no_invested_startups_found: No invested startups found.
