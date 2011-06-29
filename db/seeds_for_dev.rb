@@ -42,8 +42,10 @@ User.limit(20).each do |u|
   u.follow(user)
 end
 
-User.order('RAND()').each do |u|
-  u.add_micro_post(Faker::Lorem.sentences * ' ')
+(5 + rand(5)).times do
+  User.order('RAND()').each do |u|
+    u.add_micro_post(Faker::Lorem.sentences * ' ')
+  end
 end
 
 p 'Finished creating seeds data for development.'
