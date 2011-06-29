@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '= 3.1.0.rc1'
+gem 'rails', '~> 3.1.0.rc4'
 gem 'mysql2'
 
 # core function gems
@@ -9,7 +9,7 @@ gem 'omniauth',            '~> 0.2.0'
 gem 'cancan',              '~> 1.6.0'
 gem 'inherited_resources', '~> 1.2.0'
 gem 'simple_form',         '~> 1.4.0'
-gem 'squeel',              '~> 0.7.0'
+gem 'squeel',              '~> 0.8.0'
 gem 'rails_config'
 gem 'virtus'
 
@@ -27,11 +27,11 @@ gem 'modernizr-rails'
 gem 'jquery-rails'
 gem 'mini_magick'
 gem 'carrierwave'
-gem 'client_side_validations', '~> 3.1.0.rc.1'
+gem 'client_side_validations', '~> 3.1.0'
 
 group :development, :test do
   gem 'cucumber-rails'
-  gem 'capybara',    '~> 1.0.0.rc1'
+  gem 'capybara',    '~> 1.0.0'
   gem 'rspec-rails', '~> 2.6.1'
   gem 'machinist',   '~> 2.0.0.beta2'
   gem 'pickle'
