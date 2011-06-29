@@ -38,7 +38,7 @@ Proposal.blueprint do
   pitch                                { Faker::Company.catch_phrase }
   introduction                         { Faker::Lorem.paragraph }
 
-  one_year_target_audience             { Faker::Lorem.paragraph }
+  one_year_target_audience             { Faker::Lorem.sentence }
   one_year_per_capita_annual_spending  { rand(1_000) }
   one_year_number_of_users             { rand(1_000_000) }
   one_year_market_cap                  { rand(1_000_000_000) }
@@ -46,7 +46,7 @@ Proposal.blueprint do
   one_year_marketing_strategy          { Faker::Lorem.paragraph }
   one_year_gross_profit_margin         { rand(20.0) }
 
-  five_year_target_audience            { Faker::Lorem.paragraph }
+  five_year_target_audience            { Faker::Lorem.sentence }
   five_year_per_capita_annual_spending { rand(1_000) }
   five_year_number_of_users            { rand(1_000_000) }
   five_year_market_cap                 { rand(1_000_000_000) }

@@ -17,7 +17,6 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.recoverable
       t.rememberable
       t.trackable
-      t.lockable :lock_strategy => :failed_attempts, :unlock_strategy => :both
 
       t.timestamps
     end
@@ -29,7 +28,6 @@ class DeviseCreateUsers < ActiveRecord::Migration
     add_index :users, :is_admin
     add_index :users, :reset_password_token, :unique   => true
     add_index :users, :confirmation_token,   :unique   => true
-    add_index :users, :unlock_token,         :unique   => true
     add_index :users, :authentication_token, :unique   => true
   end
 end

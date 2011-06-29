@@ -159,9 +159,6 @@ ActiveRecord::Schema.define(:version => 20110606072040) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.integer  "failed_attempts",                       :default => 0
-    t.string   "unlock_token"
-    t.datetime "locked_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -173,7 +170,6 @@ ActiveRecord::Schema.define(:version => 20110606072040) do
   add_index "users", ["location"], :name => "index_users_on_location"
   add_index "users", ["name"], :name => "index_users_on_name"
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
-  add_index "users", ["unlock_token"], :name => "index_users_on_unlock_token", :unique => true
   add_index "users", ["username"], :name => "index_users_on_username", :unique => true
 
 end

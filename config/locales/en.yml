@@ -9,6 +9,7 @@ en:
     access_denied: Access denied!
   simple_form:
     labels:
+      login: Username or Email
       name: Name
       pitch: Pitch
       funds_to_raise: Funds to raise
