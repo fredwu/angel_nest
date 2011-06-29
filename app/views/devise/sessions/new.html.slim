@@ -1,5 +1,5 @@
 h1= t('label.sign_in')
-= simple_form_for resource, :url => session_path(resource_name) do |f|
+= simple_form_for resource, :as => resource_name, :url => session_path(resource_name) do |f|
   = f.input :email
   = f.input :password
   = f.input :remember_me, :as => :boolean

@@ -1,7 +1,7 @@
 h1= t('label.resend_confirmation_instructions')
 
-= simple_form_for resource, :url => confirmation_path(resource_name) do |f|
-  = devise_error_messages!
+= simple_form_for resource, :as => resource_name, :url => confirmation_path(resource_name) do |f|
+  = f.error_notification
   = f.input :email
   = f.button :submit, t('label.resend_confirmation_instructions')
 

@@ -5,10 +5,10 @@ class ApplicationController < ActionController::Base
 
   layout proc { |controller| controller.request.xhr? ? nil : 'application' }
 
-  before_filter :require_login, :unless => :devise_controller?
-  before_filter :ensure_ownership, :except => [:index, :show], :unless => :devise_controller?
+  before_filter :require_login,    :unless => :devise_controller?
+  before_filter :ensure_ownership, :unless => :devise_controller?, :except => [:index, :show]
 
-  private
+  protected
 
   def require_login
     redirect_to new_user_session_url unless current_user

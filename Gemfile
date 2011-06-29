@@ -4,7 +4,7 @@ gem 'rails', '= 3.1.0.rc1'
 gem 'mysql2'
 
 # core function gems
-gem 'devise',              '~> 1.3.0'
+gem 'devise',              '~> 1.4.0'
 gem 'omniauth',            '~> 0.2.0'
 gem 'cancan',              '~> 1.6.0'
 gem 'inherited_resources', '~> 1.2.0'

@@ -43,12 +43,6 @@ class User < ActiveRecord::Base
                        :format       => { :with => /^[A-Za-z0-9_]+$/ }
   validates :name,     :presence     => true,
                        :length       => { :within => 4..30 }
-  validates :email,    :presence     => true,
-                       :uniqueness   => { :case_sensitive => false },
-                       :format       => { :with => /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }
-  validates :password, :presence     => true,
-                       :confirmation => true,
-                       :length       => { :within => 6..40 }
 
   scope :new_users,     joins { [startup_users.outer, investor_profile.outer] }.where { (startup_users.user_email == nil) & (investor_profiles.user_id == nil) }
   scope :entrepreneurs, joins { startup_users }.where { startup_users.user_email != nil }

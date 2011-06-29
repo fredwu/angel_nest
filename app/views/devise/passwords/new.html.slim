@@ -1,7 +1,7 @@
 h1= t('label.forgot_your_password')
 
-= simple_form_for resource, :url => password_path(resource_name) do |f|
-  = devise_error_messages!
+= simple_form_for resource, :as => resource_name, :url => password_path(resource_name) do |f|
+  = f.error_notification
   = f.input :email
   = f.button :submit, t('label.send_reset_password_instructions')
 
