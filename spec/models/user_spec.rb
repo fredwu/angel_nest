@@ -78,7 +78,7 @@ describe User do
   end
 
   describe "password validation" do
-    def test_user_password(password, password_confirmation = nil)
+    def test_invalid_user_password(password, password_confirmation = nil)
       User.new(attrs.merge(
         :password              => password,
         :password_confirmation => (password || password_confirmation)
@@ -86,19 +86,15 @@ describe User do
     end
 
     it "requires a password" do
-      test_user_password('')
+      test_invalid_user_password('')
     end
 
     it "requires a matching password confirmation" do
-      test_user_password('a', 'b')
+      test_invalid_user_password('a', 'b')
     end
 
     it "rejects a password that is too short" do
-      test_user_password('a')
-    end
-
-    it "rejects a password that is too long" do
-      test_user_password('a' * 50)
+      test_invalid_user_password('a')
     end
   end
 
