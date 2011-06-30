@@ -1,4 +1,7 @@
 jQuery ->
+  # auto-sizing textareas
+  $('textarea').elastic()
+
   # new message submission
   $('form#new_message input[type=submit]').hide().bind('hover', ->
     $(@).parent().parent().find('textarea').unbind('blur')
