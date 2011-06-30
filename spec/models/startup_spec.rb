@@ -255,5 +255,9 @@ describe Startup do
     it "reads the default thumb logo" do
       subject.logo_thumb.should == 'startup_153x100.png'
     end
+
+    it "reads the default avatar logo" do
+      subject.logo_avatar.should == 'startup_50x50.png'
+    end
   end
 end

@@ -9,6 +9,9 @@ group:
     thumb:
       width: 153
       height: 100
+    avatar:
+      width: 50
+      height: 50
 startup:
   proposal:
     questions:

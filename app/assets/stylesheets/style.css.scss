@@ -440,7 +440,7 @@ nav.pagination {
       top: 0;
     }
 
-    ul.user_list .profile_row {
+    ul.resource_list .profile_row {
       float: left;
     }
   }
@@ -512,7 +512,7 @@ nav.pagination {
 ------------------------------ */
 
 #main {
-  ul.user_list {
+  ul.resource_list {
     margin: 5px 0 10px 0;
 
     li.mini_profile {
@@ -536,7 +536,7 @@ nav.pagination {
     }
   }
 
-  .grid_6 ul.user_list {
+  .grid_6 ul.resource_list {
     li.mini_profile {
       $profile_width: grid_cells(3);
 
@@ -550,9 +550,10 @@ nav.pagination {
     }
   }
 
-  .grid_9 ul.user_list {
+  .grid_9 ul.resource_list {
     li.mini_profile {
       $profile_width: grid_cells(9);
+      $avatar_width: 60px;
       $metrics_width: grid_cells(1.2);
       $metrics_padding: 10px;
 
@@ -561,7 +562,7 @@ nav.pagination {
 
       .profile_meta {
         float: left;
-        width: $profile_width - $metrics_width - $metrics_padding - 60px;
+        width: $profile_width - $metrics_width - $metrics_padding - $avatar_width;
       }
 
       .profile_metrics {

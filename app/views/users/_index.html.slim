@@ -1,4 +1,4 @@
-ul.user_list
+ul.resource_list.user_list
   - collection.each do |user|
     li.mini_profile data-target_link="profile_team/#{meta[:parent].try(:id)}" data-edit_target="#profile_team"
       - unless meta[:role_identifier]

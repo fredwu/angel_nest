@@ -1,4 +1,18 @@
-ul
-  - collection.each do |resource|
-    li= link_to resource.name, resource_path(resource)
+ul.resource_list.startup_list
+  - collection.each do |startup|
+    li.mini_profile
+      hr
+
+      .profile_pic
+        = render 'avatar', :startup => startup
+
+      .profile_meta
+        h2= link_to startup.name, startup_path(startup)
+        ul
+          li.introduction= startup.pitch
+          li.location= startup.location
+
+      .profile_metrics
+        .follow_button= follow_button(startup)
+
 = show_pagination collection

@@ -58,6 +58,10 @@ class Startup < ActiveRecord::Base
     logo? ? logo.thumb : 'startup_153x100.png'
   end
 
+  def logo_avatar
+    logo? ? logo.avatar : 'startup_50x50.png'
+  end
+
   def invite_or_attach_user(role_identifier, attributes)
     user = User.find_by_email(attributes[:email]) || attributes[:email] # && TODO: send an invitation email
 
