@@ -13,10 +13,10 @@ jQuery ->
   )
 
   # team member profile row wrappers
-  $('#profile_team ul#user_list > li:even').livequery(->
+  $('#profile_team ul.user_list > li:even').livequery(->
     $(@).wrap('<div class="profile_row" />')
   )
-  $('#profile_team ul#user_list > li').livequery(->
+  $('#profile_team ul.user_list > li').livequery(->
     $(@).each(->
       $(@).prev().append($(@))
     )

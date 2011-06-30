@@ -346,6 +346,73 @@ nav.pagination {
 }
 
 /* ------------------------------
+  main
+------------------------------ */
+
+#main {
+  padding-top: $viewport_padding;
+  padding-bottom: $viewport_padding;
+
+  .grid_3, .grid_6, .grid_9, .grid_12 {
+    position: relative;
+  }
+
+  h1 {
+    display: block;
+    font-size: $h1_size;
+    text-transform: capitalize;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    border-bottom: 3px dotted $secondary_colour_h;
+  }
+
+  h2 {
+    font-size: $h2_size;
+  }
+
+  .create_new {
+    font-weight: bold;
+  }
+
+  .editable {
+    position: absolute;
+    right: 0;
+    font-size: $font_size_small;
+    font-weight: bold;
+    text-align: right;
+    z-index: 3;
+  }
+
+  ul#messages {
+    margin: 0;
+    list-style: none;
+
+    .message {
+      $avatar_size: 50px;
+
+      .message_user {
+        float: left;
+      }
+
+      .message_container {
+        margin-left: $avatar_size + 10px;
+        min-height: $avatar_size;
+
+        .message_meta {
+          color: $secondary_colour_h;
+          font-size: $font_size_small;
+          margin-bottom: 5px;
+        }
+      }
+    }
+  }
+
+  #gallery {
+    margin-bottom: 10px;
+  }
+}
+
+/* ------------------------------
   sidebar
 ------------------------------ */
 
@@ -373,7 +440,7 @@ nav.pagination {
       top: 0;
     }
 
-    ul#user_list .profile_row {
+    ul.user_list .profile_row {
       float: left;
     }
   }
@@ -444,57 +511,61 @@ nav.pagination {
   user list
 ------------------------------ */
 
-ul#user_list {
-  margin: 5px 0 10px 0;
+#main {
+  ul.user_list {
+    margin: 5px 0 10px 0;
 
-  li.mini_profile {
-    list-style: none;
-    margin: 0 10px 10px 0;
-    float: left;
-    width: grid_cells(3);
+    li.mini_profile {
+      list-style: none;
+      margin: 0 10px 10px 0;
+      float: left;
+      width: grid_cells(3);
 
-    .inline_editable {
-      .editable {
-        display: inline;
-        position: relative;
-        margin-right: 5px;
-        text-align: left;
-        font-size: $font_size_tiny;
-        font-weight: normal;
+      .inline_editable {
+        float: left;
+
+        .editable {
+          display: inline;
+          position: relative;
+          margin-right: 5px;
+          text-align: left;
+          font-size: $font_size_tiny;
+          font-weight: normal;
+        }
       }
     }
   }
-}
 
-.grid_6 ul#user_list {
-  li.mini_profile {
-    $profile_width: grid_cells(3);
+  .grid_6 ul.user_list {
+    li.mini_profile {
+      $profile_width: grid_cells(3);
 
-    .profile_pic {
-      padding-bottom: 10px;
-    }
+      .profile_pic {
+        padding-bottom: 10px;
+      }
 
-    .profile_meta {
-      width: $profile_width - 60px;
+      .profile_meta {
+        width: $profile_width - 60px;
+      }
     }
   }
-}
 
-.grid_9 ul#user_list {
-  li.mini_profile {
-    $profile_width: grid_cells(9);
+  .grid_9 ul.user_list {
+    li.mini_profile {
+      $profile_width: grid_cells(9);
 
-    width: $profile_width;
-    margin: 0;
+      width: $profile_width;
+      margin: 0;
 
-    .profile_meta {
-      width: $profile_width - 60px;
-    }
+      .profile_meta {
+        width: $profile_width - 60px;
+      }
 
-    ul {
-      li.location {
-        color: $secondary_colour_h;
-        font-size: $font_size_tiny;
+      ul {
+        li.location {
+          color: $secondary_colour_h;
+          font-size: $font_size_tiny;
+        }
       }
     }
   }
@@ -532,73 +603,6 @@ form.multistage {
   }
 
   h2 {
-    margin-bottom: 10px;
-  }
-}
-
-/* ------------------------------
-  main
------------------------------- */
-
-#main {
-  padding-top: $viewport_padding;
-  padding-bottom: $viewport_padding;
-
-  .grid_3, .grid_6, .grid_9, .grid_12 {
-    position: relative;
-  }
-
-  h1 {
-    display: block;
-    font-size: $h1_size;
-    text-transform: capitalize;
-    padding-bottom: 10px;
-    margin-bottom: 20px;
-    border-bottom: 3px dotted $secondary_colour_h;
-  }
-
-  h2 {
-    font-size: $h2_size;
-  }
-
-  .create_new {
-    font-weight: bold;
-  }
-
-  .editable {
-    position: absolute;
-    right: 0;
-    font-size: $font_size_small;
-    font-weight: bold;
-    text-align: right;
-    z-index: 3;
-  }
-
-  ul#messages {
-    margin: 0;
-    list-style: none;
-
-    .message {
-      $avatar_size: 50px;
-
-      .message_user {
-        float: left;
-      }
-
-      .message_container {
-        margin-left: $avatar_size + 10px;
-        min-height: $avatar_size;
-
-        .message_meta {
-          color: $secondary_colour_h;
-          font-size: $font_size_small;
-          margin-bottom: 5px;
-        }
-      }
-    }
-  }
-
-  #gallery {
     margin-bottom: 10px;
   }
 }
