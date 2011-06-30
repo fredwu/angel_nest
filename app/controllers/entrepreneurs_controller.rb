@@ -2,7 +2,7 @@ class EntrepreneursController < ApplicationController
   inherit_resources
 
   def index
-    render 'users/index'
+    render 'users/_index', :locals => { :meta => {} }
   end
 
   def collection

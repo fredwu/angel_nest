@@ -3,11 +3,12 @@ require 'machinist/active_record'
 User.blueprint do
   u_name  = Faker::Name.name
 
-  username { "user_#{sn}" }
-  name     { u_name }
-  email    { Faker::Internet.email(u_name) }
-  location { Faker::Address.city }
-  password { 'password' }
+  username     { "user_#{sn}" }
+  name         { u_name }
+  email        { Faker::Internet.email(u_name) }
+  location     { Faker::Address.city }
+  introduction { Faker::Lorem.sentence }
+  password     { 'password' }
 end
 
 InvestorProfile.blueprint do

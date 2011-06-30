@@ -365,17 +365,32 @@ nav.pagination {
   mini profile
 ------------------------------ */
 
+#profile_team {
+  .team {
+    position: relative;
+
+    .editable {
+      top: 0;
+    }
+
+    ul#user_list .profile_row {
+      float: left;
+    }
+  }
+}
+
 .mini_profile {
   position: relative;
 
   .profile_pic {
     float: left;
     margin-right: 10px;
-    margin-bottom: 20px;
   }
 
   .profile_meta {
     $margin: 5px;
+
+    float: left;
 
     h2 {
       margin-bottom: $margin;
@@ -383,6 +398,7 @@ nav.pagination {
 
     ul {
       list-style: none;
+      margin: 0;
 
       li {
         &.pitch {
@@ -394,6 +410,7 @@ nav.pagination {
 
   .profile_details {
     clear: both;
+    padding-top: 10px;
 
     ul.popularity_metrics {
       list-style: none;
@@ -423,12 +440,16 @@ nav.pagination {
   }
 }
 
+/* ------------------------------
+  user list
+------------------------------ */
+
 ul#user_list {
   margin: 5px 0 10px 0;
 
   li.mini_profile {
     list-style: none;
-    margin: 0 10px 0 0;
+    margin: 0 10px 10px 0;
     float: left;
     width: grid_cells(3);
 
@@ -445,16 +466,36 @@ ul#user_list {
   }
 }
 
-#profile_team {
-  .team {
-    position: relative;
+.grid_6 ul#user_list {
+  li.mini_profile {
+    $profile_width: grid_cells(3);
 
-    .editable {
-      top: 0;
+    .profile_pic {
+      padding-bottom: 10px;
     }
 
-    ul#user_list .profile_row {
-      float: left;
+    .profile_meta {
+      width: $profile_width - 60px;
+    }
+  }
+}
+
+.grid_9 ul#user_list {
+  li.mini_profile {
+    $profile_width: grid_cells(9);
+
+    width: $profile_width;
+    margin: 0;
+
+    .profile_meta {
+      width: $profile_width - 60px;
+    }
+
+    ul {
+      li.location {
+        color: $secondary_colour_h;
+        font-size: $font_size_tiny;
+      }
     }
   }
 }
@@ -472,7 +513,9 @@ ul#proposal_section_selector {
 
     a {
       $margin: 20px;
+
       @include anchor_tab;
+
       padding-left: 0;
       padding-right: 0;
       font-size: $h2_size;

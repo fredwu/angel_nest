@@ -5,6 +5,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string  :name
       t.string  :email
       t.string  :location
+      t.string  :introduction
       t.integer :followers_count, :default => 0
       t.integer :followed_count, :default => 0
       t.integer :comments_count, :default => 0

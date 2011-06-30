@@ -22,4 +22,10 @@ module ApplicationHelper
       button_to t('label.follow'), follow_target_path(target, :target_type => target_type)
     end
   end
+
+  def show_pagination(collection, *params)
+    pagination = paginate(collection, *params) rescue nil
+
+    "<div class='clear'></div><hr />#{pagination}".html_safe if pagination
+  end
 end

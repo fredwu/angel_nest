@@ -28,4 +28,11 @@ describe ApplicationHelper do
 
     helper.follow_button(target).should include(I18n.t('label.unfollow'))
   end
+
+  it "shows the pagination" do
+    helper.show_pagination([]).should == nil
+
+    helper.stub(:paginate).and_return('pagination_stub')
+    helper.show_pagination([]).should include("<div class='clear'></div><hr />pagination_stub")
+  end
 end

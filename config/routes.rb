@@ -1,7 +1,7 @@
 AngelNest::Application.routes.draw do
   devise_for :users
 
-  resources :users do
+  resources :users, :except => :index do
     resources :startups
     resource  :investor
   end

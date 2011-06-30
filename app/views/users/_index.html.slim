@@ -1,17 +1,26 @@
 ul#user_list
   - collection.each do |user|
-    li.mini_profile data-target_link="profile_team/#{defined?(parent) && parent && parent.id}" data-edit_target="#profile_team"
+    li.mini_profile data-target_link="profile_team/#{meta[:parent].try(:id)}" data-edit_target="#profile_team"
+      - unless meta[:role_identifier]
+        hr
+
       .profile_pic
         = render 'users/avatar', :user => user, :size => 50
 
       .profile_meta
         h2= link_to user.name, username_path(user.username)
         ul
-          li= "#{parent.user_meta(user, (role_identifier)).member_title}&nbsp;".html_safe if defined?(parent) && defined?(role_identifier)
+          - if meta[:role_identifier]
+            li= "#{meta[:parent].user_meta(user, meta[:role_identifier]).member_title}&nbsp;".html_safe
+          - else
+            li.introduction= user.introduction
+            li.location= user.location
 
-      .inline_editable
-        - if defined?(editable) && parent.founder == current_user
-          = render 'shared/editable', :text => t('label.update'), :url => eval("update_user_in_#{parent.class.name.downcase}_path(parent, :role_identifier => :#{role_identifier}, :uid => #{user.id})")
-        - if defined?(removable) && parent.founder == current_user
-          = render 'shared/editable', :text => t('label.remove'), :url => eval("detach_user_from_#{parent.class.name.downcase}_path(parent, :role_identifier => :#{role_identifier}, :uid => #{user.id})")
-= paginate collection rescue nil
+      - if meta[:role_identifier]
+        .inline_editable
+          - if meta[:editable] && meta[:parent].founder == current_user
+            = render 'shared/editable', :text => t('label.update'), :url => eval("update_user_in_#{meta[:parent].class.name.downcase}_path(parent, :role_identifier => :#{meta[:role_identifier]}, :uid => #{user.id})")
+          - if meta[:removable] && meta[:parent].founder == current_user
+            = render 'shared/editable', :text => t('label.remove'), :url => eval("detach_user_from_#{meta[:parent].class.name.downcase}_path(parent, :role_identifier => :#{meta[:role_identifier]}, :uid => #{user.id})")
+
+= show_pagination collection

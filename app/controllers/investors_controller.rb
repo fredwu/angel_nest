@@ -6,7 +6,7 @@ class InvestorsController < ApplicationController
   def index
     respond_to do |format|
       format.json { render :json => collection.for_auto_suggest }
-      format.html { render 'users/index' }
+      format.html { render 'users/_index', :locals => { :meta => {} } }
     end
   end
 

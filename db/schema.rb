@@ -141,6 +141,7 @@ ActiveRecord::Schema.define(:version => 20110606072040) do
     t.string   "name"
     t.string   "email",                                 :default => "",    :null => false
     t.string   "location"
+    t.string   "introduction"
     t.integer  "followers_count",                       :default => 0
     t.integer  "followed_count",                        :default => 0
     t.integer  "comments_count",                        :default => 0
