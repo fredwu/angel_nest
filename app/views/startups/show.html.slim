@@ -12,5 +12,5 @@
     ul
       - resource.proposals.each_with_index do |proposal, index|
         li
-          = link_to "#{t('label.business_proposal')} #{index} (#{t("startup.proposal_stage_identifiers.#{proposal.proposal_stage_identifier}")})", edit_startup_proposal_path(resource, proposal)
+          = link_to "#{t('label.business_proposal')} #{index + 1} (#{t("startup.proposal_stage_identifiers.#{proposal.proposal_stage_identifier}")})", edit_startup_proposal_path(resource, proposal)
       li.create_new= link_to t('label.create_new'), new_startup_proposal_path(resource)
