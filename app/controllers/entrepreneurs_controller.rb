@@ -6,6 +6,6 @@ class EntrepreneursController < ApplicationController
   end
 
   def collection
-    User.entrepreneurs
+    User.entrepreneurs.page(params[:page])
   end
 end

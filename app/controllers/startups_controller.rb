@@ -1,7 +1,9 @@
 class StartupsController < ApplicationController
   inherit_resources
 
-  include AutoUserScoping
+  belongs_to :user, :optional => true
+
+  has_scope :page, :default => 1
 
   before_filter :hide_sidebar, :only => [:show, :edit]
   after_filter  :attach_founder_to_startup, :only => :create

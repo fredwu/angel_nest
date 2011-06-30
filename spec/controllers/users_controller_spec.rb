@@ -25,7 +25,7 @@ describe UsersController do
       it "has micro posts" do
         get :home
 
-        assigns(:micro_posts).should == current_user.followed_micro_posts
+        assigns(:micro_posts).should == current_user.followed_micro_posts.page(1)
       end
 
       it "adds micro posts via html" do
@@ -66,7 +66,7 @@ describe UsersController do
       it "has micro posts" do
         get :show
 
-        assigns(:micro_posts).should == current_user.micro_posts
+        assigns(:micro_posts).should == current_user.micro_posts.page(1)
       end
     end
 

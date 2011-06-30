@@ -2,3 +2,4 @@
   ul#messages
     - collection.each do |resource|
       li.message= render 'messages/show', :resource => resource
+  = paginate collection, :param_name => :p

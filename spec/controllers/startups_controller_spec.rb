@@ -16,12 +16,21 @@ describe StartupsController do
     before do
       2.times { Startup.make!.attach_user(current_user) }
       Startup.make!.attach_user(user)
+      sign_in_user(current_user)
     end
 
     it "lists the non-scoped collection" do
       get :index
 
       collection.count.should == 3
+      response.should be_success
+    end
+
+    it "shows pagination" do
+      get :index, :page => 99
+
+      collection.should == Startup.page(99)
+      response.should be_success
     end
 
     it "lists the scoped collection" do
@@ -36,12 +45,11 @@ describe StartupsController do
       collection.count.should == 0
     end
 
-    it "lists the scoped collection for current user" do
-      controller.stub(:current_user).and_return(current_user)
+    it "shows pagination for the scoped collection" do
+      get :index, :user_id => user.id, :page => 99
 
-      get :my_index
-
-      collection.count.should == 2
+      collection.should == user.startups.page(99)
+      response.should be_success
     end
   end
 

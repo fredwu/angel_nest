@@ -13,7 +13,14 @@ describe EntrepreneursController do
   it "shows the index" do
     get :index
 
-    collection.should == User.entrepreneurs
+    collection.should == User.entrepreneurs.page(1)
+    response.should be_success
+  end
+
+  it "shows pagination" do
+    get :index, :page => 99
+
+    collection.should == User.entrepreneurs.page(99)
     response.should be_success
   end
 end

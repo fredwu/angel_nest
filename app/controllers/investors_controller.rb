@@ -1,5 +1,6 @@
 class InvestorsController < ApplicationController
   inherit_resources
+
   belongs_to :user, :optional => true
 
   def index
@@ -12,6 +13,6 @@ class InvestorsController < ApplicationController
   private
 
   def collection
-    User.investors
+    User.investors.page(params[:page])
   end
 end

@@ -1,7 +1,11 @@
 class MessagesController < ApplicationController
   inherit_resources
+
   defaults :collection_name => 'comments'
+
   belongs_to :startup
+
+  has_scope :p, :default => 1
 
   def create
     resource = parent.add_comment(current_user, params[:message][:content])

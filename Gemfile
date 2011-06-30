@@ -11,6 +11,8 @@ gem 'inherited_resources', '~> 1.2.0'
 gem 'simple_form',         '~> 1.4.0'
 gem 'squeel',              '~> 0.8.0'
 gem 'rails_config'
+gem 'has_scope'
+gem 'kaminari'
 
 # geo related gems
 gem 'carmen'

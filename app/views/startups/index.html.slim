@@ -1,3 +1,4 @@
 ul
   - collection.each do |resource|
     li= link_to resource.name, resource_path(resource)
+= paginate collection

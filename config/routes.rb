@@ -9,7 +9,7 @@ AngelNest::Application.routes.draw do
   resources :investors,     :only => :index
   resources :entrepreneurs, :only => :index
   resources :startups do
-    resources :messages,    :only => [:index, :create], :as => :comments
+    resources :messages,    :only => :create, :as => :comments
     resources :proposals,   :only => [:new, :edit, :create, :update]
     member do
       get  'attach_user', :as => :attach_user_to
@@ -26,7 +26,6 @@ AngelNest::Application.routes.draw do
   match 'my/profile'             => 'users#show',            :via => :get
   match 'my/home'                => 'users#home',            :via => :get
   match 'my/micro_posts'         => 'users#add_micro_post',  :via => :post
-  match 'my/startups'            => 'startups#my_index',     :via => :get
 
   match 'my/follow/:target_id'   => 'users#follow_target',   :via => :post, :as => :follow_target
   match 'my/unfollow/:target_id' => 'users#unfollow_target', :via => :post, :as => :unfollow_target

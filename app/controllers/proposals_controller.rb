@@ -1,5 +1,6 @@
 class ProposalsController < ApplicationController
   inherit_resources
+
   belongs_to :startup
 
   def create

@@ -1,13 +1,15 @@
 class UsersController < ApplicationController
   inherit_resources
 
+  has_scope :page, :default => 1
+
   def home
-    @micro_posts = resource.followed_micro_posts
+    @micro_posts = resource.followed_micro_posts.page(params[:p])
   end
 
   def show
     hide_sidebar
-    @micro_posts = resource.micro_posts
+    @micro_posts = resource.micro_posts.page(params[:p])
   end
 
   def add_micro_post

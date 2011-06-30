@@ -108,6 +108,8 @@ GEM
       thor (~> 0.14)
     json (1.5.3)
     json_pure (1.5.3)
+    kaminari (0.12.4)
+      rails (>= 3.0.0)
     launchy (0.4.0)
       configuration (>= 0.0.5)
       rake (>= 0.8.1)
@@ -277,8 +279,10 @@ DEPENDENCIES
   email_spec
   ffaker
   geo_location
+  has_scope
   inherited_resources (~> 1.2.0)
   jquery-rails
+  kaminari
   launchy
   machinist (~> 2.0.0.beta2)
   mini_magick
