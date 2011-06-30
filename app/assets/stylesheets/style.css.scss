@@ -478,22 +478,22 @@ nav.pagination {
   .profile_details {
     clear: both;
     padding-top: 10px;
+  }
 
-    ul.popularity_metrics {
-      list-style: none;
-      margin: 0;
+  ul.popularity_metrics {
+    list-style: none;
+    margin: 0;
 
-      li {
-        float: left;
-        margin-right: 10px;
+    li {
+      float: left;
+      margin-right: 10px;
 
-        .label {
-          font-size: $font_size_tiny;
-        }
+      .label {
+        font-size: $font_size_tiny;
+      }
 
-        .count {
-          font-weight: bold;
-        }
+      .count {
+        font-weight: bold;
       }
     }
   }
@@ -553,12 +553,21 @@ nav.pagination {
   .grid_9 ul.user_list {
     li.mini_profile {
       $profile_width: grid_cells(9);
+      $metrics_width: grid_cells(1.2);
+      $metrics_padding: 10px;
 
       width: $profile_width;
       margin: 0;
 
       .profile_meta {
-        width: $profile_width - 60px;
+        float: left;
+        width: $profile_width - $metrics_width - $metrics_padding - 60px;
+      }
+
+      .profile_metrics {
+        float: left;
+        width: $metrics_width;
+        padding-left: $metrics_padding;
       }
 
       ul {

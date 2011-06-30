@@ -22,5 +22,8 @@ ul.user_list
             = render 'shared/editable', :text => t('label.update'), :url => eval("update_user_in_#{meta[:parent].class.name.downcase}_path(parent, :role_identifier => :#{meta[:role_identifier]}, :uid => #{user.id})")
           - if meta[:removable] && meta[:parent].founder == current_user
             = render 'shared/editable', :text => t('label.remove'), :url => eval("detach_user_from_#{meta[:parent].class.name.downcase}_path(parent, :role_identifier => :#{meta[:role_identifier]}, :uid => #{user.id})")
+      - else
+        .profile_metrics
+          .follow_button= follow_button(user)
 
 = show_pagination collection
