@@ -4,4 +4,9 @@ h3
   | ! (
   = link_to t('label.edit'), edit_registration_path(current_user)
   ' ) |
+  - if current_user.has_new_messages?
+    = link_to pluralize(current_user.private_messages.unread.count, "#{t('label.new_message')}!"), '#', :class => 'new'
+  - else
+    = link_to "#{t('label.messages')} (#{current_user.private_messages.count})", '#'
+  '  |
   = link_to t('label.sign_out'), destroy_user_session_path

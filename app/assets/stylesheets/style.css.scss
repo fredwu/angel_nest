@@ -4,9 +4,9 @@
 
 // colours
 
-$error_colour:              #990D0D;
+$error_colour:              #e3302c;
 
-$primary_colour:            #0E3399;
+$primary_colour:            #0e3399;
 $primary_colour_h:          darken($primary_colour, 15%);
 $primary_colour_dark:       darken($primary_colour, 30%);
 $secondary_colour:          grayscale($primary_colour_dark);
@@ -113,6 +113,14 @@ a {
 
 .last {
   margin-right: 0 !important;
+}
+
+.new {
+  color: $error_colour;
+
+  &:hover {
+    color: darken($error_colour, 20%);
+  }
 }
 
 div.message {

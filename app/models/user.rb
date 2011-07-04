@@ -52,11 +52,15 @@ class User < ActiveRecord::Base
   before_save :email_nomarlisation
 
   def sent_messages
-    messages
+    messages.on_users
   end
 
   def received_messages
     comments
+  end
+
+  def private_messages
+    comments.private
   end
 
   def is_admin?
@@ -77,6 +81,10 @@ class User < ActiveRecord::Base
 
   def avatar(size = 80)
     "http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(email)}?s=#{size}"
+  end
+
+  def has_new_messages?
+    received_messages.unread.any?
   end
 
   def send_private_message(target_user, content)

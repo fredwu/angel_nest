@@ -68,6 +68,10 @@ User.all.each do |u|
   10.times do
     u.send_private_message(User.order('RAND()').first, Faker::Lorem.sentences * ' ')
   end
+
+  u.sent_messages.order('RAND()').limit(5).each do |msg|
+    msg.mark_as_read!
+  end
 end
 
 p 'Finished creating seeds data for development.'
