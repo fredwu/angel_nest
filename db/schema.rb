@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(:version => 20110606072040) do
 
   create_table "messages", :force => true do |t|
     t.text     "content"
+    t.boolean  "is_read",     :default => false
     t.boolean  "is_private",  :default => false
     t.integer  "target_id"
     t.string   "target_type"
@@ -34,6 +35,7 @@ ActiveRecord::Schema.define(:version => 20110606072040) do
   end
 
   add_index "messages", ["is_private", "target_type", "target_id"], :name => "comments_by_type"
+  add_index "messages", ["is_read", "is_private", "target_type", "target_id"], :name => "comments_by_type_by_read"
   add_index "messages", ["user_id", "is_private", "target_type", "target_id"], :name => "comments_by_type_by_user"
   add_index "messages", ["user_id"], :name => "index_messages_on_user_id"
 
@@ -144,8 +146,8 @@ ActiveRecord::Schema.define(:version => 20110606072040) do
     t.string   "introduction"
     t.integer  "followers_count",                       :default => 0
     t.integer  "followed_count",                        :default => 0
-    t.integer  "comments_count",                        :default => 0
     t.integer  "messages_count",                        :default => 0
+    t.integer  "comments_count",                        :default => 0
     t.boolean  "is_admin",                              :default => false
     t.string   "encrypted_password",     :limit => 128, :default => "",    :null => false
     t.string   "authentication_token"

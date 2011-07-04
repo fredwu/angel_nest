@@ -41,11 +41,23 @@ describe Message do
         startup = Startup.make!
         startup.add_comment(subject, 'this is a comment for a startup')
 
-        subject.messages.count.should    == 4 # all messages (including comments)
-        subject.messages_count.should    == 3 # all sent and received messages of a user
-        subject.micro_posts.count.should == 2 # only micro posts
+        subject.sent_messages.count.should == 4 # all messages (including comments)
+        subject.messages_count.should == 3 # all sent and received messages of a user
+        subject.micro_posts.count.should   == 2 # only micro posts
+
         subject.micro_posts.first.content.should == 'hello ruby'
         subject.micro_posts.last.content.should == 'hello world'
+      end
+
+      it "sends private messages" do
+        subject.send_private_message(user, 'hey there!')
+
+        user.comments.count.should == 1
+        user.received_messages.count.should == 1
+        user.received_messages.public.count.should == 0
+        user.received_messages.private.count.should == 1
+        user.received_messages.private.unread.count.should == 1
+        user.received_messages.private.read.count.should == 0
       end
     end
   end

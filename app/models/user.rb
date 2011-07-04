@@ -51,6 +51,14 @@ class User < ActiveRecord::Base
 
   before_save :email_nomarlisation
 
+  def sent_messages
+    messages
+  end
+
+  def received_messages
+    comments
+  end
+
   def is_admin?
     !!is_admin
   end
@@ -74,6 +82,7 @@ class User < ActiveRecord::Base
   def send_private_message(target_user, content)
     messages.create(
       :content     => content,
+      :is_private  => true,
       :target_id   => target_user.id,
       :target_type => 'User'
     ) && reload
