@@ -2,6 +2,7 @@ class CreateMessages < ActiveRecord::Migration
   def change
     create_table :messages do |t|
       t.text    :content
+      t.boolean :is_read,    :default => false
       t.boolean :is_private, :default => false
       t.integer :target_id
       t.string  :target_type
@@ -11,6 +12,7 @@ class CreateMessages < ActiveRecord::Migration
 
     add_index :messages, :user_id
     add_index :messages, [:is_private, :target_type, :target_id], :name => :comments_by_type
+    add_index :messages, [:is_read, :is_private, :target_type, :target_id], :name => :comments_by_type_by_read
     add_index :messages, [:user_id, :is_private, :target_type, :target_id], :name => :comments_by_type_by_user
   end
 end

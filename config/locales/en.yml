@@ -50,8 +50,6 @@ en:
     proposal_stage_identifiers:
       draft: Draft
       submitted: Submitted
-      reviewing: Reviewing
-      accepted: Accpeted
   meta:
     posted_by: Posted by
     time_ago: '%{time} ago'
@@ -120,6 +118,8 @@ en:
     investment: Investment
     one_year_market: Market in One Year
     five_year_market: Market in Five Years
+    messages: Messages
+    new_message: New message
   message:
     proposal_saved: The proposal has been saved!
     proposal_submitted: The proposal has been submitted to the investors!
