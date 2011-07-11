@@ -6,7 +6,6 @@ gem 'mysql2'
 # core function gems
 gem 'devise',              '~> 1.4.2'
 gem 'omniauth',            '~> 0.2.0'
-gem 'cancan',              '~> 1.6.0'
 gem 'inherited_resources', '~> 1.2.0'
 gem 'simple_form',         '~> 1.4.0'
 gem 'squeel',              '~> 0.8.0'
@@ -30,7 +29,7 @@ gem 'mini_magick'
 gem 'carrierwave'
 gem 'client_side_validations', '~> 3.1.0'
 
-#production environment
+# asset compilation
 gem 'execjs'
 gem 'therubyracer'
 
