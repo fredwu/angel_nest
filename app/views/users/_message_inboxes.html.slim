@@ -3,12 +3,12 @@
 hr
 h3= t('label.private_messages')
 ul
- li= link_to t('label.inbox_messages'), my_messages_path(:inbox_messages)
- li= link_to t('label.sent_messages') , my_messages_path(:sent_messages)
- li= link_to t('label.archived_messages') , my_messages_path(:archived_messages)
+ li= link_to_current t('label.inbox_messages'), my_messages_path(:inbox_messages)
+ li= link_to_current t('label.sent_messages') , my_messages_path(:sent_messages)
+ li= link_to_current t('label.archived_messages') , my_messages_path(:archived_messages)
 hr
 h3= t('label.startup_proposals')
 ul
-  li= link_to t('label.inbox_proposals') , my_messages_path(:inbox_proposals)
-  li= link_to t('label.sent_proposals') , my_messages_path(:sent_proposals)
-  li= link_to t('label.archived_proposals') , my_messages_path(:archived_proposals)
+  li= link_to_current t('label.inbox_proposals') , my_messages_path(:inbox_proposals)
+  li= link_to_current t('label.sent_proposals') , my_messages_path(:sent_proposals)
+  li= link_to_current t('label.archived_proposals') , my_messages_path(:archived_proposals)

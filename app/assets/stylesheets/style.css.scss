@@ -107,6 +107,10 @@ a {
   &:hover   { color: $link_colour_h; text-decoration: underline; }
 }
 
+li a.current {
+  font-weight: bold;
+}
+
 .first {
   margin-left: 0 !important;
 }
