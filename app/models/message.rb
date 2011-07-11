@@ -27,35 +27,14 @@ class Message < ActiveRecord::Base
     !!is_private
   end
 
-  def is_read?
-    !!is_read
-  end
-
-  def is_unread?
-    !is_read
-  end
-
-  def is_archived?
-    !!is_archived
-  end
-
-  def is_unarchived?
-    !is_archived
-  end
-
-  def mark_as_read!
-    update_attribute :is_read, true
-  end
-
-  def mark_as_unread!
-    update_attribute :is_read, false
-  end
-
-  def mark_as_archived!
-    update_attribute :is_archived, true
-  end
-
-  def mark_as_unarchived!
-    update_attribute :is_archived, false
+  def method_missing(symbol, *args)
+    case symbol
+      when /^is_(un)?(.*)\?/
+        eval "#{$1 ? '!' : '!!'}is_#{$2}"
+      when /^mark_as_(un)?(.*)!/
+        update_attribute :"is_#{$2}", ($1 ? false : true)
+    else
+      super
+    end
   end
 end
