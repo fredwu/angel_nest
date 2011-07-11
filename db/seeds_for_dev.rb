@@ -44,7 +44,8 @@ Startup.all.each do |startup|
   startup.submit_proposal(User.investors.sample, Proposal.make.attributes, 'submitted', Faker::Lorem.sentences * ' ')
   startup.submit_proposal(user, Proposal.make.attributes, 'submitted', Faker::Lorem.sentences * ' ') if rand(5) == 0
   if rand(10) == 0
-    startup.submit_proposal(user, Proposal.make.attributes, 'submitted', Faker::Lorem.sentences * ' ').mark_as_archived!
+    startup.submit_proposal(user, Proposal.make.attributes, 'submitted', Faker::Lorem.sentences * ' ')
+    Message.last.mark_as_archived!
   end
 end
 
