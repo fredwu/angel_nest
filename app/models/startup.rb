@@ -111,14 +111,18 @@ class Startup < ActiveRecord::Base
     proposals.create(attributes)
   end
 
-  def submit_proposal(investors = [], attributes = {}, stage = 'draft')
+  def submit_proposal(investors = [], attributes = {}, stage = 'draft', private_message = I18n.t('default_text_for_proposal_review'))
     proposal = create_proposal(attributes)
     update_and_submit_proposal(proposal, investors, attributes, stage)
+    send_private_message_to_investors(proposal, investors, private_message)
+    proposal
   end
 
-  def update_proposal(proposal, investors = [], attributes = {}, stage = 'draft')
+  def update_proposal(proposal, investors = [], attributes = {}, stage = 'draft', private_message = I18n.t('default_text_for_proposal_review'))
     proposal.update_attributes(attributes)
     update_and_submit_proposal(proposal, investors, attributes, stage)
+    send_private_message_to_investors(proposal, investors, private_message) if stage == 'submitted'
+    proposal
   end
 
   def all_users
@@ -131,5 +135,11 @@ class Startup < ActiveRecord::Base
     proposal.update_attribute(:proposal_stage_identifier, stage)
     proposal.submit(investors)
     proposal
+  end
+
+  def send_private_message_to_investors(proposal, investors, private_message)
+    [investors].flatten.each do |investor|
+      founder.send_private_message(investor, private_message, :proposal_id => proposal.id)
+    end
   end
 end

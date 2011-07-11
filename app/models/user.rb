@@ -51,16 +51,36 @@ class User < ActiveRecord::Base
 
   before_save :email_nomarlisation
 
-  def sent_messages
-    messages.on_users
-  end
-
-  def received_messages
-    comments
-  end
-
-  def private_messages
+  def incoming_messages
     comments.private
+  end
+
+  def outgoing_messages
+    messages.on_users.private
+  end
+
+  def inbox_messages
+    incoming_messages.without_proposal.unarchived
+  end
+
+  def sent_messages
+    outgoing_messages.without_proposal
+  end
+
+  def archived_messages
+    incoming_messages.without_proposal.archived
+  end
+
+  def inbox_proposals
+    incoming_messages.with_proposal.unarchived
+  end
+
+  def sent_proposals
+    outgoing_messages.with_proposal
+  end
+
+  def archived_proposals
+    incoming_messages.with_proposal.archived
   end
 
   def is_admin?
@@ -84,16 +104,16 @@ class User < ActiveRecord::Base
   end
 
   def has_new_messages?
-    received_messages.unread.any?
+    incoming_messages.unread.any?
   end
 
-  def send_private_message(target_user, content)
-    messages.create(
+  def send_private_message(target_user, content, extras = {})
+    messages.create({
       :content     => content,
       :is_private  => true,
       :target_id   => target_user.id,
       :target_type => 'User'
-    ) && reload
+    }.merge(extras)) && reload
   end
 
   def add_micro_post(content)

@@ -39,8 +39,12 @@ Startup.all.each do |startup|
   u = User.new_users.first
   startup.attach_user(u, :member, Faker::Lorem.word)
   startup.confirm_user(u)
-  2.times do
-    startup.submit_proposal(User.investors.sample, Proposal.make.attributes, 'draft')
+
+  2.times { startup.submit_proposal(User.investors.sample, Proposal.make.attributes, 'draft') }
+  startup.submit_proposal(User.investors.sample, Proposal.make.attributes, 'submitted', Faker::Lorem.sentences * ' ')
+  startup.submit_proposal(user, Proposal.make.attributes, 'submitted', Faker::Lorem.sentences * ' ') if rand(5) == 0
+  if rand(10) == 0
+    startup.submit_proposal(user, Proposal.make.attributes, 'submitted', Faker::Lorem.sentences * ' ').mark_as_archived!
   end
 end
 
@@ -65,13 +69,12 @@ end
 # private messages
 
 User.all.each do |u|
-  10.times do
+  20.times do
     u.send_private_message(User.order('RAND()').first, Faker::Lorem.sentences * ' ')
   end
 
-  u.sent_messages.order('RAND()').limit(5).each do |msg|
-    msg.mark_as_read!
-  end
+  u.sent_messages.order('RAND()').limit(5).each { |msg| msg.mark_as_read! }
+  u.sent_messages.order('RAND()').limit(5).each { |msg| msg.mark_as_archived! }
 end
 
 p 'Finished creating seeds data for development.'

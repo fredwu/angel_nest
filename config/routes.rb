@@ -25,6 +25,7 @@ AngelNest::Application.routes.draw do
 
   match 'my/profile'             => 'users#show',            :via => :get
   match 'my/home'                => 'users#home',            :via => :get
+  match 'my/messages(/:type)'    => 'users#messages',        :via => :get, :as => :my_messages
   match 'my/micro_posts'         => 'users#add_micro_post',  :via => :post
 
   match 'my/follow/:target_id'   => 'users#follow_target',   :via => :post, :as => :follow_target

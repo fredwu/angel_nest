@@ -3,13 +3,25 @@ class UsersController < ApplicationController
 
   has_scope :page, :default => 1
 
+  before_filter :hide_sidebar, :only => [:show, :messages]
+
   def home
     @micro_posts = resource.followed_micro_posts.page(params[:p])
   end
 
   def show
-    hide_sidebar
     @micro_posts = resource.micro_posts.page(params[:p])
+  end
+
+  def messages
+    @messages = case params[:type].try(:to_sym)
+      when :sent_messages      then current_user.sent_messages
+      when :archived_messages  then current_user.archived_messages
+      when :inbox_proposals    then current_user.inbox_proposals
+      when :sent_proposals     then current_user.sent_proposals
+      when :archived_proposals then current_user.archived_proposals
+      else                          current_user.inbox_messages
+    end
   end
 
   def add_micro_post

@@ -118,7 +118,8 @@ a {
 .new {
   color: $error_colour;
 
-  &:hover {
+  &:hover,
+  &:visited {
     color: darken($error_colour, 20%);
   }
 }

@@ -87,6 +87,9 @@ en:
     startup: Startup
     startups: Startups
     investor: Investor
+    investors: Investors
+    entrepreneur: Entrepreneur
+    entrepreneurs: Entrepreneurs
     founder: Founder
     invested_in: Invested In
     team: Team
@@ -120,6 +123,14 @@ en:
     five_year_market: Market in Five Years
     messages: Messages
     new_message: New message
+    private_messages: Private messages
+    inbox: Inbox
+    inbox_messages: Inbox messages
+    sent_messages: Sent messages
+    startup_proposals: Startup proposals
+    inbox_proposals: Inbox proposals
+    sent_proposals: Sent proposals
+    archived_proposals: Archived proposals
   message:
     proposal_saved: The proposal has been saved!
     proposal_submitted: The proposal has been submitted to the investors!
@@ -127,3 +138,4 @@ en:
     have_no_startups: You have no startups,
     not_an_investor: You are not an investor,
     no_invested_startups_found: No invested startups found.
+    default_text_for_proposal_review: Please review this proposal.
