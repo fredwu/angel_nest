@@ -111,14 +111,14 @@ class Startup < ActiveRecord::Base
     proposals.create(attributes)
   end
 
-  def submit_proposal(investors = [], attributes = {}, stage = 'draft', private_message = I18n.t('default_text_for_proposal_review'))
+  def submit_proposal(investors = [], attributes = {}, stage = 'draft', private_message = I18n.t('text.default_text_for_proposal_review'))
     proposal = create_proposal(attributes)
     update_and_submit_proposal(proposal, investors, attributes, stage)
     send_private_message_to_investors(proposal, investors, private_message)
     proposal
   end
 
-  def update_proposal(proposal, investors = [], attributes = {}, stage = 'draft', private_message = I18n.t('default_text_for_proposal_review'))
+  def update_proposal(proposal, investors = [], attributes = {}, stage = 'draft', private_message = I18n.t('text.default_text_for_proposal_review'))
     proposal.update_attributes(attributes)
     update_and_submit_proposal(proposal, investors, attributes, stage)
     send_private_message_to_investors(proposal, investors, private_message) if stage == 'submitted'

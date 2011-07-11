@@ -72,7 +72,7 @@ describe Proposal do
       investor1.proposals.count.should == 1
       investor1.inbox_proposals.count.should == 1
       startup.proposals.first.proposal_stage_identifier.should == 'submitted'
-      startup.founder.sent_proposals.first.content.should == I18n.t('default_text_for_proposal_review')
+      startup.founder.sent_proposals.first.content.should == I18n.t('text.default_text_for_proposal_review')
     end
 
     it "submits proposal to many investors" do
