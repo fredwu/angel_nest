@@ -9,8 +9,8 @@ ul.resource_list.startup_list
       .profile_meta
         h2= link_to startup.name, startup_path(startup)
         ul
-          li.introduction= startup.pitch
-          li.location= startup.location
+          li= startup.pitch
+          li.secondary= startup.location
 
       .profile_metrics
         .follow_button= follow_button(startup)
