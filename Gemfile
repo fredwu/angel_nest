@@ -30,10 +30,6 @@ gem 'mini_magick'
 gem 'carrierwave'
 gem 'client_side_validations', '~> 3.1.0'
 
-#production environment
-gem 'execjs'
-gem 'therubyracer'
-
 group :development, :test do
   gem 'cucumber-rails'
   gem 'capybara',    '~> 1.0.0'
