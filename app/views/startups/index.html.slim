@@ -4,7 +4,7 @@ ul.resource_list.startup_list
       hr
 
       .profile_pic
-        = render 'avatar', :startup => startup
+        = render 'avatar', :startup => startup, :meta => {}
 
       .profile_meta
         h2= link_to startup.name, startup_path(startup)
