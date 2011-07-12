@@ -60,6 +60,10 @@ class UsersController < ApplicationController
 
   private
 
+  def collection
+    User.page(params[:page])
+  end
+
   def resource
     if params.key?(:username)
       User.find_by_username(params[:username])

@@ -21,6 +21,13 @@ describe UsersController do
       user.add_micro_post('Hello world!')
     end
 
+    it "shows the index" do
+      get :index
+
+      collection.should == User.page(1)
+      response.should be_success
+    end
+
     context "messages" do
       it "shows inbox messages by default" do
         get :message_inboxes
