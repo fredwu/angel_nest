@@ -23,7 +23,7 @@ shared_examples "commentable" do
 
     subject.comments.count.should == 1
     subject.comments_count.should == 1
-    subject.comments.public.count.should == 0
-    subject.comments.private.count.should == 1
+    subject.comments.public_only.count.should == 0
+    subject.comments.private_only.count.should == 1
   end
 end

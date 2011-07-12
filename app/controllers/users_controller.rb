@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 
   has_scope :page, :default => 1
 
-  before_filter :hide_sidebar, :only => [:show, :messages]
+  before_filter :hide_sidebar, :only => [:show, :message_inboxes]
 
   def home
     @micro_posts = resource.followed_micro_posts.page(params[:p])
@@ -13,7 +13,7 @@ class UsersController < ApplicationController
     @micro_posts = resource.micro_posts.page(params[:p])
   end
 
-  def messages
+  def message_inboxes
     @messages = case params[:type].try(:to_sym)
       when :sent_messages      then current_user.sent_messages
       when :archived_messages  then current_user.archived_messages

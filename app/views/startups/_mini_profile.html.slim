@@ -2,7 +2,7 @@
   = render 'shared/editable', :edit_target => '#profile_details'
 
 .mini_profile.inline_edtiable_container
-  #profile_details data-target_link="profile_details/#{startup.id}"
+  #profile_details data-target_link="#{startup_profile_details_path(startup)}"
     = render 'profile_details', :startup => startup
   .clear
 

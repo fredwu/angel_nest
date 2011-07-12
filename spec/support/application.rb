@@ -26,7 +26,7 @@ module AngelNest
       end
 
       def authenticates_gets(*actions)
-        authenticates(:get, (actions + [:index, :show, :new, :edit]))
+        authenticates(:get, actions)
       end
 
       def authenticates_posts(*actions)

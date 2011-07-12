@@ -3,12 +3,17 @@ class Message < ActiveRecord::Base
   belongs_to :user, :counter_cache => :messages_count
   belongs_to :target, :polymorphic => true, :counter_cache => :comments_count
 
+  belongs_to :topic, :class_name => 'Message', :foreign_key => 'topic_id'
+  has_many :replies, :class_name => 'Message', :foreign_key => 'topic_id'
+
   validates :content, :presence => true,
                       :length   => { :maximum => 140 }
 
   scope :default_order,    order('created_at DESC')
-  scope :public,           where(:is_private => false)
-  scope :private,          where(:is_private => true)
+  scope :topics,           where { topic_id == nil }
+  scope :replies,          where { topic_id != nil }
+  scope :public_only,      where(:is_private => false)
+  scope :private_only,     where(:is_private => true)
   scope :read,             where(:is_read => true)
   scope :unread,           where(:is_read => false)
   scope :archived,         where(:is_archived => true)

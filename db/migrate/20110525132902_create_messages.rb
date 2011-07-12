@@ -9,10 +9,12 @@ class CreateMessages < ActiveRecord::Migration
       t.string  :target_type
       t.integer :user_id
       t.integer :proposal_id
+      t.integer :topic_id
       t.timestamps
     end
 
     add_index :messages, :user_id
+    add_index :messages, :topic_id
     add_index :messages, [:user_id, :proposal_id]
     add_index :messages, [:is_private, :target_type, :target_id], :name => :comments_by_type
     add_index :messages, [:is_read, :is_private, :target_type, :target_id], :name => :comments_by_type_by_read

@@ -23,43 +23,43 @@ describe UsersController do
 
     context "messages" do
       it "shows inbox messages by default" do
-        get :messages
+        get :message_inboxes
 
         assigns(:messages).should == current_user.inbox_messages
       end
 
       it "shows inbox messages" do
-        get :messages, :type => :inbox
+        get :message_inboxes, :type => :inbox
 
         assigns(:messages).should == current_user.inbox_messages
       end
 
       it "shows sent messages" do
-        get :messages, :type => :sent_messages
+        get :message_inboxes, :type => :sent_messages
 
         assigns(:messages).should == current_user.sent_messages
       end
 
       it "shows archived messages" do
-        get :messages, :type => :archived_messages
+        get :message_inboxes, :type => :archived_messages
 
         assigns(:messages).should == current_user.archived_messages
       end
 
       it "shows new proposals" do
-        get :messages, :type => :inbox_proposals
+        get :message_inboxes, :type => :inbox_proposals
 
         assigns(:messages).should == current_user.inbox_proposals
       end
 
       it "shows sent proposals" do
-        get :messages, :type => :sent_proposals
+        get :message_inboxes, :type => :sent_proposals
 
         assigns(:messages).should == current_user.sent_proposals
       end
 
       it "shows archived proposals" do
-        get :messages, :type => :archived_proposals
+        get :message_inboxes, :type => :archived_proposals
 
         assigns(:messages).should == current_user.archived_proposals
       end

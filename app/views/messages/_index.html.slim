@@ -1,5 +1,5 @@
 - if collection.any?
   ul#messages
     - collection.each do |resource|
-      li.message= render 'messages/show', :resource => resource
+      li.message= render 'messages/show', :resource => resource, :meta => meta
   = show_pagination collection, :param_name => :p

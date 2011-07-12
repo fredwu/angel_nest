@@ -21,15 +21,20 @@ AngelNest::Application.routes.draw do
     end
   end
 
-  match 'u/:username'            => 'users#show',            :via => :get, :as => :username
+  match 'startups/profile_details/:id' => 'startups#profile_details',       :via => :get,  :as => :startup_profile_details
+  match 'startups/profile_team/:id'    => 'startups#profile_team',          :via => :get,  :as => :startup_profile_team
 
-  match 'my/profile'             => 'users#show',            :via => :get
-  match 'my/home'                => 'users#home',            :via => :get
-  match 'my/messages(/:type)'    => 'users#messages',        :via => :get, :as => :my_messages
-  match 'my/micro_posts'         => 'users#add_micro_post',  :via => :post
+  match 'u/:username'                  => 'users#show',                     :via => :get,  :as => :username
 
-  match 'my/follow/:target_id'   => 'users#follow_target',   :via => :post, :as => :follow_target
-  match 'my/unfollow/:target_id' => 'users#unfollow_target', :via => :post, :as => :unfollow_target
+  match 'my/profile'                   => 'users#show',                     :via => :get
+  match 'my/home'                      => 'users#home',                     :via => :get
+  match 'my/private_messages/:id'      => 'messages#show_private_message',  :via => :get,  :as => :my_private_message
+  match 'my/private_messages/:id'      => 'messages#reply_private_message', :via => :post, :as => :my_private_message
+  match 'my/message_inboxes(/:type)'   => 'users#message_inboxes',          :via => :get,  :as => :my_message_inbox
+  match 'my/micro_posts'               => 'users#add_micro_post',           :via => :post
+
+  match 'my/follow/:target_id'         => 'users#follow_target',            :via => :post, :as => :follow_target
+  match 'my/unfollow/:target_id'       => 'users#unfollow_target',          :via => :post, :as => :unfollow_target
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -86,5 +91,5 @@ AngelNest::Application.routes.draw do
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
-  match ':controller(/:action(/:id(.:format)))'
+  # match ':controller(/:action(/:id(.:format)))'
 end

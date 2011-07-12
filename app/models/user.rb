@@ -52,11 +52,11 @@ class User < ActiveRecord::Base
   before_save :email_nomarlisation
 
   def incoming_messages
-    comments.private
+    comments.private_only.topics
   end
 
   def outgoing_messages
-    messages.on_users.private
+    messages.on_users.private_only.topics
   end
 
   def inbox_messages
@@ -108,11 +108,21 @@ class User < ActiveRecord::Base
   end
 
   def send_private_message(target_user, content, extras = {})
-    messages.create({
+    messages.create!({
       :content     => content,
       :is_private  => true,
       :target_id   => target_user.id,
       :target_type => 'User'
+    }.merge(extras)) && reload
+  end
+
+  def reply_private_message(topic, content, extras = {})
+    messages.create!({
+      :content     => content,
+      :is_private  => true,
+      :target_id   => topic.user.id,
+      :target_type => 'User',
+      :topic_id    => topic.id
     }.merge(extras)) && reload
   end
 

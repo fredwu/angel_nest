@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe EntrepreneursController do
-  it_behaves_like "ensure_ownership"
   include_context "inherited_resources"
 
   let(:current_user) { User.make! }

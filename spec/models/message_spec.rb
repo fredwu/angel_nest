@@ -67,7 +67,7 @@ describe Message do
         it "sends private messages" do
           user.comments.count.should == 1
           user.incoming_messages.count.should == 1
-          user.incoming_messages.public.count.should == 0
+          user.incoming_messages.public_only.count.should == 0
           user.inbox_messages.count.should == 1
           user.inbox_messages.unread.count.should == 1
           user.inbox_messages.read.count.should == 0
@@ -76,6 +76,15 @@ describe Message do
 
           private_message.is_private?.should == true
           private_message.is_public?.should == false
+        end
+
+        it "adds a reply to a topic" do
+          topic = Message.first
+          user.reply_private_message(topic, 'hey!!')
+
+          topic.replies.count.should == 1
+          topic.replies.first.content.should == 'hey!!'
+          topic.replies.first.topic.content.should == 'hey there!'
         end
 
         it "marks as read" do

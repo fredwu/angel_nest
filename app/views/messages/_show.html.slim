@@ -5,4 +5,9 @@ hr
   .message_meta
     =' link_to resource.user.name, username_path(resource.user.username)
     = time_ago(resource.created_at)
-  .message_content= resource.content
+  .message_content
+    - if meta[:linkable]
+      = link_to resource.content, my_private_message_path(resource)
+    - else
+      = resource.content
+

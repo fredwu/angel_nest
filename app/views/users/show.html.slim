@@ -4,4 +4,4 @@
   = render 'users/invested_in', :user => resource if resource.is_investor?
 
 .grid_6
-  = render 'messages/index', :collection => @micro_posts
+  = render 'messages/index', :collection => @micro_posts, :meta => {}
