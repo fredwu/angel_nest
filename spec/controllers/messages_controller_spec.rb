@@ -32,6 +32,13 @@ describe MessagesController do
       current_user.send_private_message(target_user, 'Hello there!')
     end
 
+    it "sends a message (topic)" do
+      post :send_private_message, :users => target_user.id, :message => { :content => 'Hello world!' }
+
+      current_user.outgoing_messages.count.should == 2
+      current_user.outgoing_messages[1].content.should == 'Hello world!'
+    end
+
     it "shows a topic" do
       get :show_private_message, :id => 1
 

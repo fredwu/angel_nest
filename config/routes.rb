@@ -1,7 +1,7 @@
 AngelNest::Application.routes.draw do
   devise_for :users
 
-  resources :users, :except => :index do
+  resources :users do
     resources :startups
     resource  :investor
   end
@@ -28,6 +28,7 @@ AngelNest::Application.routes.draw do
 
   match 'my/profile'                   => 'users#show',                     :via => :get
   match 'my/home'                      => 'users#home',                     :via => :get
+  match 'my/private_messages'          => 'messages#send_private_message',  :via => :post, :as => :my_private_messages
   match 'my/private_messages/:id'      => 'messages#show_private_message',  :via => :get,  :as => :my_private_message
   match 'my/private_messages/:id'      => 'messages#reply_private_message', :via => :post, :as => :my_private_message
   match 'my/message_inboxes(/:type)'   => 'users#message_inboxes',          :via => :get,  :as => :my_message_inbox

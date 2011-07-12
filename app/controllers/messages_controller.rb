@@ -19,6 +19,15 @@ class MessagesController < ApplicationController
     end
   end
 
+  def send_private_message
+    result = current_user.send_private_message(User.find(params[:users]), params[:message][:content])
+
+    respond_to do |format|
+      format.json { render :json => result }
+      format.html { redirect_to :back }
+    end
+  end
+
   def show_private_message
     @topic = Message.topics.find(params[:id])
   end

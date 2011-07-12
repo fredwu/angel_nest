@@ -175,6 +175,10 @@ div.message {
   margin-left: $input_margin;
 }
 
+#new_private_message .as-results {
+  margin-left: 0;
+}
+
 /* ------------------------------
   form
 ------------------------------ */

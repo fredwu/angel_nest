@@ -5,6 +5,13 @@ class UsersController < ApplicationController
 
   before_filter :hide_sidebar, :only => [:show, :message_inboxes]
 
+  def index
+    respond_to do |format|
+      format.json { render :json => collection.for_auto_suggest }
+      format.html { render 'users/_index', :locals => { :meta => {} } }
+    end
+  end
+
   def home
     @micro_posts = resource.followed_micro_posts.page(params[:p])
   end
