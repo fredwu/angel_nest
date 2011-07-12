@@ -76,6 +76,8 @@ describe Message do
 
           private_message.is_private?.should == true
           private_message.is_public?.should == false
+          private_message.is_with_proposal?.should == false
+          private_message.is_without_proposal?.should == true
         end
 
         it "adds a reply to a topic" do

@@ -41,21 +41,12 @@ describe Proposal do
       startup.attach_user(founder, :member)
     end
 
-    it "creates a draft proposal" do
-      startup.create_proposal(proposal.attributes)
-
-      startup.proposals.count.should == 1
-      startup.proposals.draft.count.should == 1
-      startup.proposals.submitted.count.should == 0
-      startup.proposals.first.proposal_stage_identifier.should == 'draft'
-    end
-
     it "returns the proposal itself" do
-      startup.submit_proposal([], proposal.attributes).should == Proposal.last
+      startup.create_proposal([], proposal.attributes).should == Proposal.last
     end
 
     it "submits proposal to no investor" do
-      startup.submit_proposal([], proposal.attributes)
+      startup.create_proposal([], proposal.attributes)
 
       startup.proposals.count.should == 1
       startup.proposals.draft.count.should == 1
@@ -63,7 +54,7 @@ describe Proposal do
     end
 
     it "submits proposal to one investor" do
-      startup.submit_proposal(investor1, proposal.attributes, 'submitted')
+      startup.create_proposal(investor1, proposal.attributes, 'submitted')
 
       startup.proposals.count.should == 1
       startup.proposals.draft.count.should == 0
@@ -73,10 +64,12 @@ describe Proposal do
       investor1.inbox_proposals.count.should == 1
       startup.proposals.first.proposal_stage_identifier.should == 'submitted'
       startup.founder.sent_proposals.first.content.should == I18n.t('text.default_text_for_proposal_review')
+      Message.last.is_with_proposal?.should == true
+      Message.last.is_without_proposal?.should == false
     end
 
     it "submits proposal to many investors" do
-      startup.submit_proposal([investor1, investor2], proposal.attributes, 'submitted', 'Hey man!')
+      startup.create_proposal([investor1, investor2], proposal.attributes, 'submitted', 'Hey man!')
 
       startup.proposals.count.should == 1
       startup.proposals.draft.count.should == 0
@@ -92,7 +85,7 @@ describe Proposal do
     end
 
     it "edits a proposal" do
-      startup.submit_proposal(investor1, proposal.attributes)
+      startup.create_proposal(investor1, proposal.attributes)
       startup.update_proposal(Proposal.last, investor2, Proposal.make(:pitch => 'Hello world').attributes)
 
       Proposal.last.pitch.should == 'Hello world'
@@ -105,7 +98,7 @@ describe Proposal do
     end
 
     it "edits and submits a proposal" do
-      startup.submit_proposal(investor1, proposal.attributes)
+      startup.create_proposal(investor1, proposal.attributes)
       startup.update_proposal(Proposal.last, investor2, Proposal.make(:pitch => 'Hello world').attributes, 'submitted')
 
       Proposal.last.pitch.should == 'Hello world'
@@ -118,7 +111,7 @@ describe Proposal do
     end
 
     it "archives a proposal message" do
-      startup.submit_proposal(investor1, proposal.attributes)
+      startup.create_proposal(investor1, proposal.attributes, 'submitted')
 
       investor1.inbox_proposals.count.should == 1
       investor1.archived_proposals.count.should == 0
@@ -135,7 +128,7 @@ describe Proposal do
 
     it "preserves proposal details structure" do
       proposal_attributes = proposal.attributes.merge(:pitch => 'Hello world')
-      startup.submit_proposal(investor1, proposal_attributes)
+      startup.create_proposal(investor1, proposal_attributes)
 
       Proposal.last.pitch.should == 'Hello world'
     end

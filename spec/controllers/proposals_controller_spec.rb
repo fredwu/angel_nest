@@ -22,8 +22,7 @@ describe ProposalsController do
     get :edit, :startup_id => startup.id,
                :id         => proposal.id
 
-    assigns(:investors).should be_a(String)
-    assigns(:investors).should == investors.for_auto_suggest.to_json
+    response.should be_success
   end
 
   it "submits to an investor" do

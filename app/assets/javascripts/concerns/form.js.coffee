@@ -30,3 +30,6 @@ jQuery ->
 
     e.preventDefault()
   )
+
+  # read only forms
+  $('.read_only form :input:not([type=submit])').attr('disabled', 'disabled')

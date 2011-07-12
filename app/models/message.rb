@@ -32,6 +32,14 @@ class Message < ActiveRecord::Base
     !!is_private
   end
 
+  def is_with_proposal?
+    !!proposal_id
+  end
+
+  def is_without_proposal?
+    !proposal_id
+  end
+
   def method_missing(symbol, *args)
     case symbol
       when /^is_(un)?(.*)\?/

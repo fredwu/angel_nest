@@ -40,11 +40,11 @@ Startup.all.each do |startup|
   startup.attach_user(u, :member, Faker::Lorem.word)
   startup.confirm_user(u)
 
-  2.times { startup.submit_proposal(User.investors.sample, Proposal.make.attributes, 'draft') }
-  startup.submit_proposal(User.investors.sample, Proposal.make.attributes, 'submitted', Faker::Lorem.sentence)
-  startup.submit_proposal(user, Proposal.make.attributes, 'submitted', Faker::Lorem.sentence) if rand(5) == 0
+  2.times { startup.create_proposal(User.investors.sample, Proposal.make.attributes, 'draft') }
+  3.times { startup.create_proposal(User.investors.sample, Proposal.make.attributes, 'submitted', Faker::Lorem.sentence) }
+  startup.create_proposal(user, Proposal.make.attributes, 'submitted', Faker::Lorem.sentence) if rand(5) == 0
   if rand(10) == 0
-    startup.submit_proposal(user, Proposal.make.attributes, 'submitted', Faker::Lorem.sentence)
+    startup.create_proposal(user, Proposal.make.attributes, 'submitted', Faker::Lorem.sentence)
     Message.last.mark_as_archived!
   end
 end

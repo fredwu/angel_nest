@@ -4,7 +4,7 @@ class ProposalsController < ApplicationController
   belongs_to :startup
 
   def create
-    parent.submit_proposal(investors, params[:proposal], proposal_stage)
+    parent.create_proposal(investors, params[:proposal], proposal_stage)
     show_flash_message
     redirect_to parent_path
   end
@@ -15,12 +15,6 @@ class ProposalsController < ApplicationController
     parent.update_proposal(resource, investors, params[:proposal], proposal_stage)
     show_flash_message
     redirect_to parent_path
-  end
-
-  def edit
-    @investors = resource.investors.for_auto_suggest.to_json
-
-    edit!
   end
 
   private
