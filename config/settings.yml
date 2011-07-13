@@ -1,6 +1,9 @@
 currencies:
   - USD
   - CNY
+recipient_limit:
+  private_messages: 1
+  proposals: 5
 group:
   logo:
     full:

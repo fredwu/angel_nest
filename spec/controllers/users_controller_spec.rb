@@ -21,6 +21,57 @@ describe UsersController do
       user.add_micro_post('Hello world!')
     end
 
+    it "shows the index" do
+      get :index
+
+      collection.should == User.page(1)
+      response.should be_success
+    end
+
+    context "messages" do
+      it "shows inbox messages by default" do
+        get :message_inboxes
+
+        assigns(:messages).should == current_user.inbox_messages
+      end
+
+      it "shows inbox messages" do
+        get :message_inboxes, :type => :inbox
+
+        assigns(:messages).should == current_user.inbox_messages
+      end
+
+      it "shows sent messages" do
+        get :message_inboxes, :type => :sent_messages
+
+        assigns(:messages).should == current_user.sent_messages
+      end
+
+      it "shows archived messages" do
+        get :message_inboxes, :type => :archived_messages
+
+        assigns(:messages).should == current_user.archived_messages
+      end
+
+      it "shows new proposals" do
+        get :message_inboxes, :type => :inbox_proposals
+
+        assigns(:messages).should == current_user.inbox_proposals
+      end
+
+      it "shows sent proposals" do
+        get :message_inboxes, :type => :sent_proposals
+
+        assigns(:messages).should == current_user.sent_proposals
+      end
+
+      it "shows archived proposals" do
+        get :message_inboxes, :type => :archived_proposals
+
+        assigns(:messages).should == current_user.archived_proposals
+      end
+    end
+
     context "micro posts" do
       it "has micro posts" do
         get :home

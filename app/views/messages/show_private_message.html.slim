@@ -1,0 +1,13 @@
+.grid_3
+  = render 'users/message_inboxes'
+.grid_9
+  ul#messages
+    li.message= render 'show', :resource => @topic, :meta => {}
+    - @topic.replies.each do |reply|
+      li.message= render 'show', :resource => reply, :meta => {}
+  br
+  = render 'new', :url => my_private_message_path(@topic)
+  - if @topic.is_with_proposal?
+    hr
+    h1= t('label.business_proposal')
+    .read_only= render 'proposals/form', :resource => @topic.proposal, :submit_path => '/'

@@ -107,6 +107,10 @@ a {
   &:hover   { color: $link_colour_h; text-decoration: underline; }
 }
 
+li a.current {
+  font-weight: bold;
+}
+
 .first {
   margin-left: 0 !important;
 }
@@ -118,7 +122,8 @@ a {
 .new {
   color: $error_colour;
 
-  &:hover {
+  &:hover,
+  &:visited {
     color: darken($error_colour, 20%);
   }
 }
@@ -168,6 +173,10 @@ div.message {
 // jQuery AutoSuggest
 .as-results {
   margin-left: $input_margin;
+}
+
+#new_private_message .as-results {
+  margin-left: 0;
 }
 
 /* ------------------------------
@@ -581,7 +590,7 @@ nav.pagination {
       }
 
       ul {
-        li.location {
+        li.secondary {
           color: $secondary_colour_h;
           font-size: $font_size_tiny;
         }

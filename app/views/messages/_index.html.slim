@@ -1,5 +1,15 @@
+- if meta[:new_message?]
+  h1= params[:type].titleize
+  #new_private_message
+    = simple_form_for Message.new, :url => my_private_messages_path do |f|
+      .multi_add.input.string data-target="users" data-start_text="#{t('text.enter_recipient_names')}" data-selection_limit="#{Settings.recipient_limit.private_messages}"
+        = label_tag :users, t('label.recipients')
+        = text_field_tag :users, User.all.map(&:id).join(','), :class => 'string required'
+      = f.input :content
+      = f.button :submit
+    .clear
 - if collection.any?
   ul#messages
     - collection.each do |resource|
-      li.message= render 'messages/show', :resource => resource
+      li.message= render 'messages/show', :resource => resource, :meta => meta
   = show_pagination collection, :param_name => :p

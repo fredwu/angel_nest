@@ -24,4 +24,34 @@ describe MessagesController do
       startup.comments.first.content.should == 'hello world'
     end
   end
+
+  context "private messages" do
+    let(:target_user) { User.make! }
+
+    before do
+      current_user.send_private_message(target_user, 'Hello there!')
+    end
+
+    it "sends a message (topic)" do
+      post :send_private_message, :users => target_user.id, :message => { :content => 'Hello world!' }
+
+      current_user.outgoing_messages.count.should == 2
+      current_user.outgoing_messages[1].content.should == 'Hello world!'
+    end
+
+    it "shows a topic" do
+      get :show_private_message, :id => 1
+
+      assigns(:topic).should == Message.topics.find(1)
+    end
+
+    it "replies to a topic" do
+      post :reply_private_message, :id => 1, :message => { :content => 'Yes dear!' }
+
+      topic = Message.topics.find(1)
+
+      assigns(:topic).should == topic
+      topic.replies.first.content.should == 'Yes dear!'
+    end
+  end
 end

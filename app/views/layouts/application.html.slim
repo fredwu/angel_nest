@@ -25,9 +25,9 @@ body
       h1= link_to t('site.name'), root_path
       nav
         ul
-          li= link_to_current 'Startups', startups_path
-          li= link_to_current 'Entrepreneurs', entrepreneurs_path
-          li= link_to_current 'Investors', investors_path
+          li= link_to_current t('label.startups'), startups_path
+          li= link_to_current t('label.entrepreneurs'), entrepreneurs_path
+          li= link_to_current t('label.investors'), investors_path
       - if current_user
         #userbar= render 'layouts/userbars/topnav'
       .clear

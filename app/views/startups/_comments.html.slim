@@ -1,2 +1,2 @@
 = render 'messages/new', :url => startup_comments_path(resource)
-= render 'messages/index', :collection => resource.comments.page(params[:p])
+= render 'messages/index', :collection => resource.comments.page(params[:p]), :meta => {}

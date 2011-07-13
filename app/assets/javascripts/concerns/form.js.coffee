@@ -30,3 +30,22 @@ jQuery ->
 
     e.preventDefault()
   )
+
+  # AutoSuggest
+  $('.multi_add input').autoSuggest(
+    '/' + $('.multi_add').data('target'),
+    asHtmlID: $('.multi_add').data('target')
+    startText: $('.multi_add').data('start_text')
+    selectionLimit: ($('.multi_add').data('selection_limit') || false)
+    limitText: window.label.no_more_selections_allowed
+    selectedValuesProp: 'id'
+    selectedItemProp: 'name'
+    searchObjProps: 'name'
+    preFill: $('.multi_add input').data('source')
+  )
+  $('.multi_add').parents('form').submit(->
+    $('.multi_add input').attr('value', $('input#as-values-' + $('.multi_add').data('target')).attr('value')[1..-2])
+  )
+
+  # read only forms
+  $('.read_only form :input:not([type=submit])').attr('disabled', 'disabled')
