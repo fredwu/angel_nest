@@ -39,6 +39,12 @@ describe "user session" do
     response.body.should include(user.name)
   end
 
+  it "rejects signing in with incorrect login" do
+    sign_in_user('dummy')
+
+    response.body.should include('Invalid email or password.')
+  end
+
   it "signs out" do
     sign_in_user
     get destroy_user_session_path
@@ -49,17 +55,13 @@ describe "user session" do
   end
 
   it "sends user confirmation instructions" do
-    post user_confirmation_path, :user => {
-                                   :email => user_unconfirmed.email
-                                 }
+    post user_confirmation_path, :user => { :email => user_unconfirmed.email }
 
     response.should redirect_to(new_user_session_path)
   end
 
   it "sends reset password instructions" do
-    post user_password_path, :user => {
-                               :login => user.email
-                             }
+    post user_password_path, :user => { :login => user.email }
 
     response.should redirect_to(new_user_session_path)
   end

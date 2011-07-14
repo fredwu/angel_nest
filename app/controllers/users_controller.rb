@@ -22,12 +22,13 @@ class UsersController < ApplicationController
 
   def message_inboxes
     @messages = case params[:type].try(:to_sym)
+      when :inbox_messages     then current_user.inbox_messages
       when :sent_messages      then current_user.sent_messages
       when :archived_messages  then current_user.archived_messages
       when :inbox_proposals    then current_user.inbox_proposals
       when :sent_proposals     then current_user.sent_proposals
       when :archived_proposals then current_user.archived_proposals
-      else                          current_user.inbox_messages
+      else redirect_to my_message_inbox_path(:inbox_messages)
     end
   end
 
