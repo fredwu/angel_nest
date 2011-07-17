@@ -5,9 +5,9 @@ class ApplicationController < ActionController::Base
 
   layout proc { |controller| controller.request.xhr? ? nil : 'application' }
 
-  before_filter :require_login,           :unless => :devise_controller?
-  before_filter :ensure_ownership,        :unless => :devise_controller?, :except => [:index, :show]
-  after_filter  :record_last_visted_page, :unless => :devise_controller?, :if => Proc.new { request.get? && !request.xhr? }
+  before_filter :require_login,            :unless => :devise_controller?
+  before_filter :ensure_ownership,         :unless => :devise_controller?, :except => [:index, :show]
+  after_filter  :record_last_visited_page, :unless => :devise_controller?, :if => Proc.new { request.get? && !request.xhr? }
 
   protected
 
@@ -25,7 +25,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def record_last_visted_page
+  def record_last_visited_page
     session[:user_return_to] = request.path
   end
 
