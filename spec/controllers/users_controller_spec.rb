@@ -32,11 +32,11 @@ describe UsersController do
       it "shows inbox messages by default" do
         get :message_inboxes
 
-        assigns(:messages).should == current_user.inbox_messages
+        response.should redirect_to(my_message_inbox_path(:inbox_messages))
       end
 
       it "shows inbox messages" do
-        get :message_inboxes, :type => :inbox
+        get :message_inboxes, :type => :inbox_messages
 
         assigns(:messages).should == current_user.inbox_messages
       end
