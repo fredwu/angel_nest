@@ -202,7 +202,7 @@ form {
   }
 
   .input {
-    margin-bottom: 10px;
+    margin-bottom: $viewport_padding;
   }
 
   input.string,
@@ -632,6 +632,19 @@ form.multistage {
 
   h2 {
     margin-bottom: 10px;
+  }
+}
+
+form.read_only {
+  input.string, input.numeric, textarea {
+    border: none;
+    background: none;
+    resize: none;
+  }
+
+  .attribute {
+    display: table;
+    margin-bottom: $viewport_padding;
   }
 }
 

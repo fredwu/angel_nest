@@ -5,8 +5,9 @@ class ApplicationController < ActionController::Base
 
   layout proc { |controller| controller.request.xhr? ? nil : 'application' }
 
-  before_filter :require_login,    :unless => :devise_controller?
-  before_filter :ensure_ownership, :unless => :devise_controller?, :except => [:index, :show]
+  before_filter :require_login,            :unless => :devise_controller?
+  before_filter :ensure_ownership,         :unless => :devise_controller?, :except => [:index, :show]
+  after_filter  :record_last_visited_page, :unless => :devise_controller?, :if => Proc.new { request.get? && !request.xhr? }
 
   protected
 
@@ -22,6 +23,10 @@ class ApplicationController < ActionController::Base
     elsif params.key?(:startup_id)
       deny_access unless current_user == Startup.find(params[:startup_id]).founder
     end
+  end
+
+  def record_last_visited_page
+    session[:user_return_to] = request.path
   end
 
   def deny_access

@@ -1,66 +1,66 @@
 ul#proposal_section_selector.multistage_selector
-  - unless meta[:hide_investors]
-    li= link_to t('label.investors'), '#investors'
   li= link_to t('label.product'), '#product'
   li= link_to t('label.market'), '#market'
   li= link_to t('label.competition'), '#competition'
   li= link_to t('label.investment'), '#investment', :class => 'last'
   .clear
 
-= simple_form_for resource, :url => submit_path, :validate => true, :html => { :class => 'multistage' } do |f|
-  - unless meta[:hide_investors]
-    fieldset#investors
-      legend= t('label.investors')
-      .multi_add.input.string data-target="investors" data-start_text="#{t('text.enter_investor_names')}" data-selection_limit="#{Settings.recipient_limit.proposals}"
-        = label_tag :investors, t('label.investors')
-        = text_field_tag :investors, resource.investors.map(&:id).join(','), :class => 'string required', :'data-source' => resource.investors.for_auto_suggest.to_json
-      .grouped_buttons
-        = submit_tag t('label.next'), :class => 'navigation next'
+= simple_form_for resource, :url => '/', :html => { :class => 'multistage read_only' } do |f|
   fieldset#product
     legend= t('label.product')
-    = f.input :new_business_model
-    = f.input :new_product
-    = f.input :pitch
-    = f.input :introduction
+    = f.input :new_business_model if resource.new_business_model
+    = f.input :new_product if resource.new_product
+    = f.label :pitch
+    .attribute= resource.pitch
+    = f.label :introduction
+    .attribute= resource.introduction
     .grouped_buttons
-      = submit_tag t('label.prev'), :class => 'navigation prev' unless meta[:hide_investors]
       = submit_tag t('label.next'), :class => 'navigation next'
   fieldset#market
     legend= t('label.market')
     h2= t('label.one_year_market')
-    = f.input :one_year_target_audience
+    = f.label :one_year_target_audience
+    .attribute= resource.one_year_target_audience
     = f.input :one_year_per_capita_annual_spending
     = f.input :one_year_number_of_users
     = f.input :one_year_market_cap
     = f.input :one_year_penetration_rate
-    = f.input :one_year_marketing_strategy
+    = f.label :one_year_marketing_strategy
+    .attribute= resource.one_year_marketing_strategy
     = f.input :one_year_gross_profit_margin
     br
     h2= t('label.five_year_market')
-    = f.input :five_year_target_audience
+    = f.label :five_year_target_audience
+    .attribute= resource.five_year_target_audience
     = f.input :five_year_per_capita_annual_spending
     = f.input :five_year_number_of_users
     = f.input :five_year_market_cap
     = f.input :five_year_penetration_rate
-    = f.input :five_year_marketing_strategy
+    = f.label :five_year_marketing_strategy
+    .attribute= resource.five_year_marketing_strategy
     = f.input :five_year_gross_profit_margin
     .grouped_buttons
       = submit_tag t('label.prev'), :class => 'navigation prev'
       = submit_tag t('label.next'), :class => 'navigation next'
   fieldset#competition
     legend= t('label.competition')
-    = f.input :competitors_details
-    = f.input :competitive_edges
-    = f.input :competing_strategy
+    = f.label :competitors_details
+    .attribute= resource.competitors_details
+    = f.label :competitive_edges
+    .attribute= resource.competitive_edges
+    = f.label :competing_strategy
+    .attribute= resource.competing_strategy
     .grouped_buttons
       = submit_tag t('label.prev'), :class => 'navigation prev'
       = submit_tag t('label.next'), :class => 'navigation next'
   fieldset#investment
     legend= t('label.investment')
     = f.input :investment_amount
-    = f.input :investment_currency, :collection => Settings.currencies
+    = f.label :investment_currency
+    .attribute= resource.investment_currency
     = f.input :equity_percentage
-    = f.input :spending_plan
+    = f.label :spending_plan
+    .attribute= resource.spending_plan
     = f.input :next_investment_round
     .grouped_buttons
       = submit_tag t('label.prev'), :class => 'navigation prev'

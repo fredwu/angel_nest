@@ -60,6 +60,7 @@ describe Proposal do
       startup.proposals.draft.count.should == 0
       startup.proposals.submitted.count.should == 1
       startup.founder.sent_proposals.count.should == 1
+      investor1.has_new_proposals?.should == true
       investor1.proposals.count.should == 1
       investor1.inbox_proposals.count.should == 1
       startup.proposals.first.proposal_stage_identifier.should == 'submitted'

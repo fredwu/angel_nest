@@ -57,6 +57,7 @@ describe Message do
         subject.send_private_message(user, 'hey there!')
 
         user.has_new_messages?.should == true
+        user.has_new_proposals?.should == false
       end
 
       context "private messages" do
