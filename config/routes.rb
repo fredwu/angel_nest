@@ -21,8 +21,8 @@ AngelNest::Application.routes.draw do
     end
   end
 
-  match 'startups/profile_details/:id' => 'startups#profile_details',       :via => :get,  :as => :startup_profile_details
-  match 'startups/profile_team/:id'    => 'startups#profile_team',          :via => :get,  :as => :startup_profile_team
+  match 'startups/:id/profile_details' => 'startups#profile_details',       :via => :get,  :as => :startup_profile_details
+  match 'startups/:id/profile_team'    => 'startups#profile_team',          :via => :get,  :as => :startup_profile_team
 
   match 'u/:username'                  => 'users#show',                     :via => :get,  :as => :username
 
