@@ -56,3 +56,5 @@ module AngelNest
     end
   end
 end
+
+require Rails.root + 'lib/monkey_patches/array'

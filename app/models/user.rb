@@ -221,9 +221,3 @@ class User < ActiveRecord::Base
     self.email = email.strip.downcase
   end
 end
-
-class Array
-  def for_auto_suggest
-    map { |r| { :id => r.id, :name => r.name } }
-  end
-end
