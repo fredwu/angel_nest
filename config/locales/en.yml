@@ -126,6 +126,7 @@ en:
     five_year_market: Market in Five Years
     messages: Messages
     new_message: New message
+    new_proposal: New Proposal
     private_messages: Private messages
     inbox: Inbox
     inbox_messages: Inbox messages
@@ -135,6 +136,8 @@ en:
     sent_proposals: Sent proposals
     archived_proposals: Archived proposals
     recipients: Recipients
+    messages_inbox: Messages inbox
+    proposals_inbox: Proposals inbox
   message:
     proposal_saved: The proposal has been saved!
     proposal_submitted: The proposal has been submitted to the investors!

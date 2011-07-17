@@ -1,5 +1,8 @@
 .grid_3
-  = render 'users/message_inboxes'
+  - if @topic.is_with_proposal?
+    = render 'users/proposal_inboxes'
+  - else
+    = render 'users/message_inboxes'
 .grid_9
   - if @topic.is_with_proposal?
     h1= t('label.business_proposal')

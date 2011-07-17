@@ -21,7 +21,9 @@ class UsersController < ApplicationController
   end
 
   def message_inboxes
-    @messages = case params[:type].try(:to_sym)
+    message_type = params[:type].try(:to_sym)
+
+    @messages = case message_type
       when :inbox_messages     then current_user.inbox_messages
       when :sent_messages      then current_user.sent_messages
       when :archived_messages  then current_user.archived_messages
@@ -29,6 +31,11 @@ class UsersController < ApplicationController
       when :sent_proposals     then current_user.sent_proposals
       when :archived_proposals then current_user.archived_proposals
       else redirect_to my_message_inbox_path(:inbox_messages)
+    end
+
+    case message_type
+      when /_messages/  then render 'message_inboxes'
+      when /_proposals/ then render 'proposal_inboxes'
     end
   end
 

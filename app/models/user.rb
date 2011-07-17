@@ -83,6 +83,14 @@ class User < ActiveRecord::Base
     incoming_messages.with_proposal.archived
   end
 
+  def has_new_messages?
+    inbox_messages.unread.any?
+  end
+
+  def has_new_proposals?
+    inbox_proposals.unread.any?
+  end
+
   def is_admin?
     !!is_admin
   end
@@ -101,10 +109,6 @@ class User < ActiveRecord::Base
 
   def avatar(size = 80)
     "http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(email)}?s=#{size}"
-  end
-
-  def has_new_messages?
-    incoming_messages.unread.any?
   end
 
   def send_private_message(target_user, content, extras = {})

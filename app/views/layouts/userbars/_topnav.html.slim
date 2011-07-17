@@ -4,9 +4,14 @@ h3
   | ! (
   = link_to t('label.edit'), edit_registration_path(current_user)
   ' ) |
+  - if current_user.has_new_proposals?
+    = link_to "#{pluralize(current_user.inbox_proposals.unread.count, t('label.new_proposal'))}!", my_message_inbox_path(:inbox_proposals), :class => 'new'
+  - else
+    = link_to t('label.proposals_inbox'), my_message_inbox_path(:inbox_proposals)
+  '  |
   - if current_user.has_new_messages?
     = link_to "#{pluralize(current_user.inbox_messages.unread.count, t('label.new_message'))}!", my_message_inbox_path(:inbox_messages), :class => 'new'
   - else
-    = link_to "#{t('label.messages')} (#{current_user.inbox_messages.count})", my_message_inbox_path(:inbox_messages)
+    = link_to t('label.messages_inbox'), my_message_inbox_path(:inbox_messages)
   '  |
   = link_to t('label.sign_out'), destroy_user_session_path
