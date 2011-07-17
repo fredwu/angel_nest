@@ -55,6 +55,7 @@ en:
     time_ago: '%{time} ago'
     time_ago_by: '%{time} ago by'
   label:
+    home: Home
     loading: Loading
     create: Create
     update: Update

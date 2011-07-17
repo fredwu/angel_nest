@@ -58,3 +58,4 @@ module AngelNest
 end
 
 require Rails.root + 'lib/monkey_patches/array'
+require Rails.root + 'lib/monkey_patches/warden'

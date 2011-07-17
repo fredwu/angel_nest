@@ -25,6 +25,7 @@ body
       h1= link_to t('site.name'), root_path
       nav
         ul
+          li= link_to_current t('label.home'), root_path
           li= link_to_current t('label.startups'), startups_path
           li= link_to_current t('label.entrepreneurs'), entrepreneurs_path
           li= link_to_current t('label.investors'), investors_path
