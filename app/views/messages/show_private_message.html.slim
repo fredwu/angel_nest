@@ -10,7 +10,7 @@
       li= "#{t('label.submitted_by')}: #{link_to @topic.user.name, user_path(@topic.user)} (#{link_to @topic.proposal.startup.name, startup_path(@topic.proposal.startup)})".html_safe
       li= "#{t('label.submitted_to')}: #{link_to @topic.target.name, user_path(@topic.target)}".html_safe
     hr
-    .read_only= render 'proposals/form', :resource => @topic.proposal, :submit_path => '/', :meta => { :hide_investors => true }
+    .read_only= render 'proposals/read_only', :resource => @topic.proposal
 
   h2= t('label.comments')
   ul#messages
