@@ -2,6 +2,6 @@
   #slideshow
     - if startup.photos.any?
       - startup.photos.each do |photo|
-        = image_tag(photo.photo.url)
+        = link_to image_tag(photo.photo.slideshow), photo.photo.url, :rel => 'startup_slideshow'
     - else
       = image_tag(startup.logo_full)

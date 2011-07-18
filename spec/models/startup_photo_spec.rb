@@ -13,7 +13,7 @@ describe StartupPhoto do
     it "reads the saved logo" do
       uploader.store!(load_file('file.jpg'))
       uploader.to_s.should match(/photo\.jpg/)
-      uploader.gallery.to_s.should match(/photo\.jpg/)
+      uploader.slideshow.to_s.should match(/photo\.jpg/)
     end
   end
 end

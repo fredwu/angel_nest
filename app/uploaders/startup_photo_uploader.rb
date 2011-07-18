@@ -23,15 +23,15 @@ class StartupPhotoUploader < CarrierWave::Uploader::Base
   # end
 
   # Process files as they are uploaded:
-  process :resize_to_fill => [Settings.group.logo.full.width, Settings.group.logo.full.height]
+  process :resize_to_fill => [Settings.group.logo.gallery.width, Settings.group.logo.gallery.height]
 
   # def scale(width, height)
   #   # do something
   # end
 
   # Create different versions of your uploaded files:
-  version :gallery do
-    process :resize_to_fill => [Settings.group.logo.gallery.width, Settings.group.logo.gallery.height]
+  version :slideshow do
+    process :resize_to_fill => [Settings.group.logo.full.width, Settings.group.logo.full.height]
   end
 
   # Add a white list of extensions which are allowed to be uploaded.
