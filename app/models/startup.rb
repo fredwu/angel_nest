@@ -5,6 +5,8 @@ class Startup < ActiveRecord::Base
 
   mount_uploader :logo, LogoUploader
 
+  has_many :photos, :class_name => 'StartupPhoto'
+
   has_many :startup_users
   has_many :users,      :through => :startup_users
   has_many :members,    :through => :startup_users, :source => :user, :conditions => { 'startup_users.role_identifier' => 'member' }
@@ -13,6 +15,8 @@ class Startup < ActiveRecord::Base
   has_many :incubators, :through => :startup_users, :source => :user, :conditions => { 'startup_users.role_identifier' => 'incubator' }
 
   has_many :proposals
+
+  accepts_nested_attributes_for :photos, :limit => 5, :allow_destroy => true, :reject_if => :all_blank
 
   validates :name,              :presence     => true,
                                 :uniqueness   => true,

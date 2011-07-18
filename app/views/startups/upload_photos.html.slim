@@ -1,0 +1,15 @@
+= simple_nested_form_for resource, :url => startup_path(resource) do |f|
+  = f.simple_fields_for :photos, resource.photos.build do |p|
+    = p.input :photo, :as => :file
+    = p.input :photo_cache, :as => :hidden
+
+  - resource.photos.all.each do |photo|
+    = f.simple_fields_for :photos, photo do |p|
+      = label_tag ''
+      = p.link_to_remove t('label.delete_the_image_below'),
+      = p.input :photo_cache, :as => :hidden
+      .input
+        = label_tag ''
+        = image_tag(photo.photo.url)
+  = f.button :submit
+.clear

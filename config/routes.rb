@@ -1,4 +1,6 @@
 AngelNest::Application.routes.draw do
+  resources :startup_photos
+
   devise_for :users
 
   resources :users do
@@ -23,6 +25,8 @@ AngelNest::Application.routes.draw do
 
   match 'startups/:id/profile_details' => 'startups#profile_details',       :via => :get,  :as => :startup_profile_details
   match 'startups/:id/profile_team'    => 'startups#profile_team',          :via => :get,  :as => :startup_profile_team
+  match 'startups/:id/photos'          => 'startups#photos',                :via => :get,  :as => :startup_photos
+  match 'startups/:id/upload_photos'   => 'startups#upload_photos',         :via => :get,  :as => :startup_upload_photos
 
   match 'u/:username'                  => 'users#show',                     :via => :get,  :as => :username
 

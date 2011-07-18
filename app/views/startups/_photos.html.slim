@@ -1,0 +1,7 @@
+#gallery data-target_link="#{startup_photos_path(startup)}"
+  #slideshow
+    - if startup.photos.any?
+      - startup.photos.each do |photo|
+        = image_tag(photo.photo.url)
+    - else
+      = image_tag(startup.logo_full)
