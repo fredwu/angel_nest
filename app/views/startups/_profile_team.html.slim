@@ -1,23 +1,23 @@
 .team
   h2= t('label.members')
-  = render 'add_user_link', :startup => startup, :role_identifier => 'member'
+  = render 'startups/add_user_link', :startup => startup, :role_identifier => 'member'
   = render 'users/index', :collection => startup.members, :meta => { :removable => true, :editable => true, :parent => startup, :role_identifier => 'member' }
   .clear
 
 .team
   h2= t('label.investors')
-  = render 'add_user_link', :startup => startup, :role_identifier => 'investor'
+  = render 'startups/add_user_link', :startup => startup, :role_identifier => 'investor'
   = render 'users/index', :collection => startup.investors, :meta => { :removable => true, :editable => true, :parent => startup, :role_identifier => 'investor' }
   .clear
 
 .team
   h2= t('label.advisors')
-  = render 'add_user_link', :startup => startup, :role_identifier => 'advisor'
+  = render 'startups/add_user_link', :startup => startup, :role_identifier => 'advisor'
   = render 'users/index', :collection => startup.advisors, :meta => { :removable => true, :editable => true, :parent => startup, :role_identifier => 'advisor' }
   .clear
 
 .team
   h2= t('label.incubators')
-  = render 'add_user_link', :startup => startup, :role_identifier => 'incubator'
+  = render 'startups/add_user_link', :startup => startup, :role_identifier => 'incubator'
   = render 'users/index', :collection => startup.incubators, :meta => { :removable => true, :editable => true, :parent => startup, :role_identifier => 'incubator' }
   .clear

@@ -4,13 +4,16 @@ ul.resource_list.startup_list
       hr
 
       .profile_pic
-        = render 'avatar', :startup => startup, :meta => {}
+        = render 'avatar', :startup => startup
 
       .profile_meta
         h2= link_to startup.name, startup_path(startup)
         ul
           li= startup.pitch
-          li.secondary= startup.location
+          li.secondary
+            = "#{t('label.founder')}: "
+            =' link_to startup.founder.name, username_path(startup.founder.username)
+            = "#{t('label.from')}: #{startup.founder.location}, #{t('label.raise')}: #{number_to_currency(startup.funds_to_raise)}, #{t('label.stage')}: #{startup.stage}"
 
       .profile_metrics
         .follow_button= follow_button(startup)

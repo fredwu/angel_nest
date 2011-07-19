@@ -1,0 +1,17 @@
+hr
+.message_user
+  = render 'startups/avatar', :startup => resource.proposal.startup
+.message_container
+  .message_meta
+    =' link_to resource.proposal.startup.name, startup_path(resource.proposal.startup)
+    = time_ago(resource.created_at)
+  .message_meta_secondary
+    = "#{t('label.founder')}: "
+    =' link_to resource.user.name, username_path(resource.user.username)
+    = "#{t('label.from')}: #{resource.user.location}, #{t('label.raise')}: #{number_to_currency(resource.proposal.startup.funds_to_raise)}, #{t('label.stage')}: #{resource.proposal.startup.stage}"
+  .message_content
+    - if meta[:linkable]
+      = link_to resource.content, my_private_message_path(resource)
+    - else
+      = resource.content
+

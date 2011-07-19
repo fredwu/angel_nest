@@ -53,5 +53,11 @@ describe MessagesController do
       assigns(:topic).should == topic
       topic.replies.first.content.should == 'Yes dear!'
     end
+
+    it "archives a topic" do
+      post :archive_private_message, :id => 1
+
+      Message.topics.find(1).is_archived.should == true
+    end
   end
 end

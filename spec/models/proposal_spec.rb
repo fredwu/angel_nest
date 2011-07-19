@@ -85,6 +85,14 @@ describe Proposal do
       startup.founder.sent_proposals.first.content.should == 'Hey man!'
     end
 
+    it "submits no more than allowed to" do
+      Settings.startup.proposal.limit.times do
+        startup.create_proposal(investor1, proposal.attributes, 'submitted')
+      end
+
+      expect { startup.create_proposal(investor1, proposal.attributes, 'submitted') }.to raise_exception(Exceptions::NotAllowed)
+    end
+
     it "edits a proposal" do
       startup.create_proposal(investor1, proposal.attributes)
       startup.update_proposal(Proposal.last, investor2, Proposal.make(:pitch => 'Hello world').attributes)
