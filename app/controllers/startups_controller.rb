@@ -16,6 +16,14 @@ class StartupsController < ApplicationController
     render :partial => 'startups/profile_team', :locals => { :startup => resource }
   end
 
+  def photos
+    render :partial => 'startups/photos', :locals => { :startup => resource }
+  end
+
+  def upload_photos
+
+  end
+
   def attach_user
     if request.post?
       result = resource.invite_or_attach_user(params[:role_identifier], params[:attributes])

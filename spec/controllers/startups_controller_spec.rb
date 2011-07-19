@@ -99,6 +99,18 @@ describe StartupsController do
 
         resource.should == startup
       end
+
+      it "shows photos" do
+        get :photos, :id => startup.id
+
+        resource.should == startup
+      end
+
+      it "shows upload photos" do
+        get :upload_photos, :id => startup.id
+
+        resource.should == startup
+      end
     end
 
     context "users" do

@@ -6,6 +6,9 @@ recipient_limit:
   proposals: 5
 group:
   logo:
+    gallery:
+      width: 690
+      height: 450
     full:
       width: 460
       height: 300

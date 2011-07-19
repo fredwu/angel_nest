@@ -1,0 +1,2 @@
+class StartupPhotosController < ApplicationController
+end

@@ -1,4 +1,10 @@
 GIT
+  remote: git://github.com/ryanb/nested_form.git
+  revision: 57f32788f1952bcd633057b4b56b69b51df17610
+  specs:
+    nested_form (0.1.1)
+
+GIT
   remote: git://github.com/stonean/slim.git
   revision: a3465a03f913fb1c724797c785f13703265acd12
   specs:
@@ -290,6 +296,7 @@ DEPENDENCIES
   mini_magick
   modernizr-rails
   mysql2
+  nested_form!
   omniauth (~> 0.2.0)
   pickle
   rails (~> 3.1.0.rc4)

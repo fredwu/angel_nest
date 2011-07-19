@@ -45,7 +45,7 @@ jQuery ->
   edit_action = (parent) ->
     edit_target = parent.data('edit_target')
     cached_html = $(edit_target).html()
-    target_link = $('a', parent).attr('href')
+    target_link = $(parent).data('edit_href') || $('a', parent).attr('href')
 
     $(edit_target).wrapInner('<div class="cached" />') unless $('.cached', edit_target).length > 0
     $('.cached', edit_target).after('<div class="inline_edit"></div>') unless $('.inline_edit', edit_target).length > 0

@@ -1,0 +1,7 @@
+#gallery data-target_link="#{startup_photos_path(startup)}"
+  #slideshow
+    - if startup.photos.any?
+      - startup.photos.each do |photo|
+        = link_to image_tag(photo.photo.slideshow), photo.photo.url, :rel => 'startup_slideshow'
+    - else
+      = image_tag(startup.logo_full)

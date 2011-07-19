@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110606072040) do
+ActiveRecord::Schema.define(:version => 20110717223142) do
 
   create_table "investor_profiles", :force => true do |t|
     t.string   "tagline"
@@ -91,6 +91,15 @@ ActiveRecord::Schema.define(:version => 20110606072040) do
 
   add_index "proposals", ["proposal_stage_identifier"], :name => "index_proposals_on_proposal_stage_identifier"
   add_index "proposals", ["startup_id"], :name => "index_proposals_on_startup_id"
+
+  create_table "startup_photos", :force => true do |t|
+    t.string   "photo"
+    t.integer  "startup_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "startup_photos", ["startup_id"], :name => "index_startup_photos_on_startup_id"
 
   create_table "startup_users", :force => true do |t|
     t.integer  "startup_id"

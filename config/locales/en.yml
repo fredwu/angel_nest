@@ -138,6 +138,7 @@ en:
     recipients: Recipients
     messages_inbox: Messages inbox
     proposals_inbox: Proposals inbox
+    delete_the_image_below: Delete the image below
   message:
     proposal_saved: The proposal has been saved!
     proposal_submitted: The proposal has been submitted to the investors!

@@ -185,8 +185,8 @@ describe Startup do
 
     it "reads the saved logo" do
       uploader.store!(load_file('file.jpg'))
-      uploader.to_s.should match(/startup.*file\.jpg/)
-      uploader.thumb.to_s.should match(/startup.*file\.jpg/)
+      uploader.to_s.should match(/logo\.jpg/)
+      uploader.thumb.to_s.should match(/logo\.jpg/)
     end
 
     it "reads the default logo" do
