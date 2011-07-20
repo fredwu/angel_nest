@@ -23,23 +23,24 @@ AngelNest::Application.routes.draw do
     end
   end
 
-  match 'startups/:id/profile_details' => 'startups#profile_details',       :via => :get,  :as => :startup_profile_details
-  match 'startups/:id/profile_team'    => 'startups#profile_team',          :via => :get,  :as => :startup_profile_team
-  match 'startups/:id/photos'          => 'startups#photos',                :via => :get,  :as => :startup_photos
-  match 'startups/:id/upload_photos'   => 'startups#upload_photos',         :via => :get,  :as => :startup_upload_photos
+  match 'startups/:id/profile_details' => 'startups#profile_details',         :via => :get,    :as => :startup_profile_details
+  match 'startups/:id/profile_team'    => 'startups#profile_team',            :via => :get,    :as => :startup_profile_team
+  match 'startups/:id/photos'          => 'startups#photos',                  :via => :get,    :as => :startup_photos
+  match 'startups/:id/upload_photos'   => 'startups#upload_photos',           :via => :get,    :as => :startup_upload_photos
 
-  match 'u/:username'                  => 'users#show',                     :via => :get,  :as => :username
+  match 'u/:username'                  => 'users#show',                       :via => :get,    :as => :username
 
-  match 'my/profile'                   => 'users#show',                     :via => :get
-  match 'my/home'                      => 'users#home',                     :via => :get
-  match 'my/private_messages'          => 'messages#send_private_message',  :via => :post, :as => :my_private_messages
-  match 'my/private_messages/:id'      => 'messages#show_private_message',  :via => :get,  :as => :my_private_message
-  match 'my/private_messages/:id'      => 'messages#reply_private_message', :via => :post, :as => :my_private_message
-  match 'my/message_inboxes(/:type)'   => 'users#message_inboxes',          :via => :get,  :as => :my_message_inbox
-  match 'my/micro_posts'               => 'users#add_micro_post',           :via => :post
+  match 'my/profile'                   => 'users#show',                       :via => :get
+  match 'my/home'                      => 'users#home',                       :via => :get
+  match 'my/private_messages'          => 'messages#send_private_message',    :via => :post,   :as => :my_private_messages
+  match 'my/private_messages/:id'      => 'messages#show_private_message',    :via => :get,    :as => :my_private_message
+  match 'my/private_messages/:id'      => 'messages#reply_private_message',   :via => :post,   :as => :my_private_message
+  match 'my/private_messages/:id'      => 'messages#archive_private_message', :via => :delete, :as => :my_private_message
+  match 'my/message_inboxes(/:type)'   => 'users#message_inboxes',            :via => :get,    :as => :my_message_inbox
+  match 'my/micro_posts'               => 'users#add_micro_post',             :via => :post
 
-  match 'my/follow/:target_id'         => 'users#follow_target',            :via => :post, :as => :follow_target
-  match 'my/unfollow/:target_id'       => 'users#unfollow_target',          :via => :post, :as => :unfollow_target
+  match 'my/follow/:target_id'         => 'users#follow_target',              :via => :post,   :as => :follow_target
+  match 'my/unfollow/:target_id'       => 'users#unfollow_target',            :via => :post,   :as => :unfollow_target
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

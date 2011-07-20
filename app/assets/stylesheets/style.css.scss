@@ -416,10 +416,15 @@ nav.pagination {
         margin-left: $avatar_size + 10px;
         min-height: $avatar_size;
 
-        .message_meta {
+        .message_meta,
+        .message_meta_secondary {
           color: $secondary_colour_h;
           font-size: $font_size_small;
           margin-bottom: 5px;
+        }
+
+        .message_meta_secondary {
+          color: $secondary_colour;
         }
       }
     }
@@ -558,7 +563,7 @@ nav.pagination {
     }
   }
 
-  .grid_6 ul.resource_list {
+  #profile_team ul.resource_list {
     li.mini_profile {
       $profile_width: grid_cells(3);
 
@@ -649,6 +654,34 @@ form.read_only {
   .attribute {
     display: table;
     margin-bottom: $viewport_padding;
+  }
+}
+
+/* ------------------------------
+  private message
+------------------------------ */
+
+#business_proposal_private_message {
+  > h2 {
+    border-bottom: 1px dotted $secondary_colour_h;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+  }
+
+  ul#messages {
+    li:first-child hr {
+      display: none;
+    }
+  }
+}
+
+#action_buttons {
+  > form {
+    float: left;
+
+    input {
+      margin: 0 20px 10px 0;
+    }
   }
 }
 

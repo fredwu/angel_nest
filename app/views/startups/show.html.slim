@@ -1,5 +1,5 @@
 .grid_6
-  = render 'mini_profile', :startup => resource
+  = render 'mini_profile', :startup => resource, :meta => {}
 .grid_6.inline_edtiable_container
   - if resource.founder == current_user
     = render 'shared/editable', :edit_target => '#gallery', :url => startup_upload_photos_path(resource)
@@ -12,7 +12,8 @@
     hr
     h2= t('label.business_proposals')
     ul
-      - resource.proposals.each_with_index do |proposal, index|
-        li
-          = link_to "#{t('label.business_proposal')} #{index + 1} (#{t("startup.proposal_stage_identifiers.#{proposal.proposal_stage_identifier}")})", edit_startup_proposal_path(resource, proposal)
-      li.create_new= link_to t('label.create_new'), new_startup_proposal_path(resource)
+      - if resource.proposals.any?
+        - resource.proposals.each_with_index do |proposal, index|
+          li= link_to "#{t('label.business_proposal')} #{index + 1} (#{t("startup.proposal_stage_identifiers.#{proposal.proposal_stage_identifier}")})", edit_startup_proposal_path(resource, proposal)
+      - else
+        li.create_new= link_to t('label.create_new'), new_startup_proposal_path(resource)

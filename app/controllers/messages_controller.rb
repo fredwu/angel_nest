@@ -20,7 +20,7 @@ class MessagesController < ApplicationController
   end
 
   def send_private_message
-    result = current_user.send_private_message(User.find(params[:users]), params[:message][:content])
+    result = current_user.send_private_message(User.find(params[:message][:users] || params[:users]), params[:message][:content])
 
     respond_to do |format|
       format.json { render :json => result }
@@ -39,6 +39,18 @@ class MessagesController < ApplicationController
     respond_to do |format|
       format.json { render :json => result }
       format.html { redirect_to :back }
+    end
+  end
+
+  def archive_private_message
+    Message.topics.find(params[:id]).mark_as_archived!
+
+    respond_to do |format|
+      format.json { render :json => result }
+      format.html do
+        flash[:success] = t('text.message_is_archived')
+        redirect_to :back
+      end
     end
   end
 end

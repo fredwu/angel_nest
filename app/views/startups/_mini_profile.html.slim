@@ -1,11 +1,12 @@
-- if startup.founder == current_user
+- if startup.founder == current_user && !meta[:hide_editable]
   = render 'shared/editable', :edit_target => '#profile_details'
 
 .mini_profile.inline_edtiable_container
   #profile_details data-target_link="#{startup_profile_details_path(startup)}"
-    = render 'profile_details', :startup => startup
+    = render 'startups/profile_details', :startup => startup
   .clear
 
-  hr
-  #profile_team
-    = render 'profile_team', :startup => startup
+  - unless meta[:hide_team_members]
+    hr
+    #profile_team
+      = render 'startups/profile_team', :startup => startup

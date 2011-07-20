@@ -57,6 +57,7 @@ en:
   label:
     home: Home
     loading: Loading
+    actions: Actions
     create: Create
     update: Update
     add: Add
@@ -64,6 +65,7 @@ en:
     update: Update
     delete: Delete
     remove: Remove
+    archive: Archive
     cancel: Cancel
     close: Close
     confirm: Confirm
@@ -139,6 +141,12 @@ en:
     messages_inbox: Messages inbox
     proposals_inbox: Proposals inbox
     delete_the_image_below: Delete the image below
+    contact_founder: Contact founder
+    details: Details
+    not_interested: Not interested
+    from: From
+    raise: Raise
+    stage: Stage
   message:
     proposal_saved: The proposal has been saved!
     proposal_submitted: The proposal has been submitted to the investors!
@@ -150,3 +158,4 @@ en:
     enter_recipient_names: Recipient name ...
     enter_investor_names: Investor names ...
     no_more_selections_allowed: No more selections are allowed.
+    message_is_archived: The message is archived.

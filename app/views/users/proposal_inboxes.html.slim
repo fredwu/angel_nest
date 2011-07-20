@@ -1,4 +1,4 @@
 .grid_3
   = render 'users/proposal_inboxes'
 .grid_9
-  = render 'messages/index', :collection => @messages, :meta => { :linkable => true }
+  = render 'messages/index', :collection => @messages, :meta => { :linkable => true, :show_view => 'show_with_startup' }

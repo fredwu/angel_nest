@@ -1,5 +1,6 @@
 ul#proposal_section_selector.multistage_selector
   li= link_to t('label.product'), '#product'
+  li= link_to t('label.team'), '#team'
   li= link_to t('label.market'), '#market'
   li= link_to t('label.competition'), '#competition'
   li= link_to t('label.investment'), '#investment', :class => 'last'
@@ -14,8 +15,16 @@ ul#proposal_section_selector.multistage_selector
     .attribute= resource.pitch
     = f.label :introduction
     .attribute= resource.introduction
-    .grouped_buttons
-      = submit_tag t('label.next'), :class => 'navigation next'
+  fieldset#team
+    #profile_team
+      = f.label t('label.members')
+      .attribute= render 'users/index', :collection => resource.startup.members, :meta => { :parent => resource.startup, :role_identifier => 'member' }
+      = f.label t('label.investors')
+      .attribute= render 'users/index', :collection => resource.startup.investors, :meta => { :parent => resource.startup, :role_identifier => 'investors' }
+      = f.label t('label.advisors')
+      .attribute= render 'users/index', :collection => resource.startup.advisors, :meta => { :parent => resource.startup, :role_identifier => 'advisors' }
+      = f.label t('label.incubators')
+      .attribute= render 'users/index', :collection => resource.startup.incubators, :meta => { :parent => resource.startup, :role_identifier => 'incubators' }
   fieldset#market
     legend= t('label.market')
     h2= t('label.one_year_market')
@@ -39,9 +48,6 @@ ul#proposal_section_selector.multistage_selector
     = f.label :five_year_marketing_strategy
     .attribute= resource.five_year_marketing_strategy
     = f.input :five_year_gross_profit_margin
-    .grouped_buttons
-      = submit_tag t('label.prev'), :class => 'navigation prev'
-      = submit_tag t('label.next'), :class => 'navigation next'
   fieldset#competition
     legend= t('label.competition')
     = f.label :competitors_details
@@ -50,9 +56,6 @@ ul#proposal_section_selector.multistage_selector
     .attribute= resource.competitive_edges
     = f.label :competing_strategy
     .attribute= resource.competing_strategy
-    .grouped_buttons
-      = submit_tag t('label.prev'), :class => 'navigation prev'
-      = submit_tag t('label.next'), :class => 'navigation next'
   fieldset#investment
     legend= t('label.investment')
     = f.input :investment_amount
@@ -62,8 +65,3 @@ ul#proposal_section_selector.multistage_selector
     = f.label :spending_plan
     .attribute= resource.spending_plan
     = f.input :next_investment_round
-    .grouped_buttons
-      = submit_tag t('label.prev'), :class => 'navigation prev'
-      - unless resource.proposal_stage_identifier == 'submitted'
-        = submit_tag t('label.save_draft')
-        = submit_tag t('label.submit_proposal')

@@ -112,6 +112,8 @@ class Startup < ActiveRecord::Base
   end
 
   def create_proposal(investors = [], attributes = {}, stage = 'draft', private_message = I18n.t('text.default_text_for_proposal_review'))
+    raise Exceptions::NotAllowed if proposals.count >= Settings.startup.proposal.limit
+
     proposal = proposals.create(attributes)
     update_and_submit_proposal(proposal, investors, attributes, stage)
     send_private_message_to_investors(proposal, investors, private_message) if stage == 'submitted'
