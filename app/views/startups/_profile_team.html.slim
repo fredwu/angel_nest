@@ -1,8 +1,8 @@
-.team
-  h2= t('label.members')
-  = render 'startups/add_user_link', :startup => startup, :role_identifier => 'member'
-  = render 'users/index', :collection => startup.members, :meta => { :removable => true, :editable => true, :parent => startup, :role_identifier => 'member' }
-  .clear
+.team.inline_popup data-target_link="#{startup_profile_team_path(startup)}" data-edit_target="#profile_team"
+    h2= t('label.members')
+    = render 'startups/add_user_link', :startup => startup, :role_identifier => 'member'
+    = render 'users/index', :collection => startup.members, :meta => { :removable => true, :editable => true, :parent => startup, :role_identifier => 'member' }
+    .clear
 
 .team
   h2= t('label.investors')

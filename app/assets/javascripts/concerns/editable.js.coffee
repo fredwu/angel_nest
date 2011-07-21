@@ -111,8 +111,8 @@ jQuery ->
   $('.inline_edtiable_container').delegate('form', 'submit', ->
     return true if $(@).parents('.follow_button').length > 0
 
-    inline_popup = $(@).parent().hasClass('inline_popup')
     edit_target  = $(@).parent().parent()
+    inline_popup = $(@).parent().hasClass('inline_popup') or edit_target.hasClass('inline_popup')
     target_link  = edit_target.data('target_link')
 
     $(@).ajaxSubmit(
