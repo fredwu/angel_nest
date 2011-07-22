@@ -174,6 +174,14 @@ describe Startup do
       subject.member_title(user).should == 'CEO'
       subject.user_role(user).should == 'Member'
     end
+
+    it "invites the user" do
+      user = User.make!(:email => 'hello@world.com')
+      subject.invite_or_attach_user(:member, { :email => 'hello@world.com' })
+
+      subject.members.last.should == user
+      subject.user_meta(user).confirmed.should == true
+    end
   end
 
   describe "logo" do

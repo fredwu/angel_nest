@@ -70,6 +70,9 @@ class Startup < ActiveRecord::Base
     user = User.find_by_email(attributes[:email]) || attributes[:email] # && TODO: send an invitation email
 
     attach_user(user, role_identifier, attributes[:member_title])
+
+    # TODO: remove the confirmation and make the target user to confirm the invite manually
+    confirm_user(user, role_identifier)
   end
 
   def attach_user(user, role_identifier = :member, member_title = '')
