@@ -1,21 +1,14 @@
 ul#proposal_section_selector.multistage_selector
-  - unless meta[:hide_investors]
-    li= link_to t('label.investors'), '#investors'
   li= link_to t('label.product'), '#product'
   li= link_to t('label.market'), '#market'
   li= link_to t('label.competition'), '#competition'
-  li= link_to t('label.investment'), '#investment', :class => 'last'
+  li= link_to t('label.investment'), '#investment',
+  - unless meta[:hide_investors]
+    li= link_to t('label.investors'), '#investors',  :class => 'last'
   .clear
 
 = simple_form_for resource, :url => submit_path, :validate => true, :html => { :class => 'multistage' } do |f|
-  - unless meta[:hide_investors]
-    fieldset#investors
-      legend= t('label.investors')
-      .multi_add.input.string data-target="investors" data-start_text="#{t('text.enter_investor_names')}" data-selection_limit="#{Settings.recipient_limit.proposals}"
-        = label_tag :investors, t('label.investors')
-        = text_field_tag :investors, resource.investors.map(&:id).join(','), :class => 'string required', :'data-source' => resource.investors.for_auto_suggest.to_json
-      .grouped_buttons
-        = submit_tag t('label.next'), :class => 'navigation next'
+
   fieldset#product
     legend= t('label.product')
     = f.input :new_business_model
@@ -23,7 +16,7 @@ ul#proposal_section_selector.multistage_selector
     = f.input :pitch
     = f.input :introduction
     .grouped_buttons
-      = submit_tag t('label.prev'), :class => 'navigation prev' unless meta[:hide_investors]
+
       = submit_tag t('label.next'), :class => 'navigation next'
   fieldset#market
     legend= t('label.market')
@@ -64,6 +57,17 @@ ul#proposal_section_selector.multistage_selector
     = f.input :next_investment_round
     .grouped_buttons
       = submit_tag t('label.prev'), :class => 'navigation prev'
+      = submit_tag t('label.next'), :class => 'navigation next' unless meta[:hide_investors]
+
+
+  - unless meta[:hide_investors]
+    fieldset#investors
+      legend= t('label.investors')
+      .multi_add.input.string data-target="investors" data-start_text="#{t('text.enter_investor_names')}" data-selection_limit="#{Settings.recipient_limit.proposals}"
+        = label_tag :investors, t('label.investors')
+        = text_field_tag :investors, resource.investors.map(&:id).join(','), :class => 'string required', :'data-source' => resource.investors.for_auto_suggest.to_json
+      .grouped_buttons
+        = submit_tag t('label.prev'), :class => 'navigation prev'
       - unless resource.proposal_stage_identifier == 'submitted'
         = submit_tag t('label.save_draft')
         = submit_tag t('label.submit_proposal')

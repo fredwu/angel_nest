@@ -5,6 +5,7 @@ set :repository,  "git@github.com:fredwu/angel_nest.git"
 
 set :scm, "git"
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
+set :branch, "nginx_passenger"
 
 ssh_options[:forward_agent] = true
 ssh_options[:keys] = [File.join(ENV["HOME"],"xiaoningec2key.pem")]
