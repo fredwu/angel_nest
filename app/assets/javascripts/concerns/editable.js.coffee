@@ -3,7 +3,7 @@ jQuery ->
   $('.inline_editable .editable').livequery(->
     $(@).hide()
   )
-  $('.inline_edtiable_container .mini_profile').live('mouseenter', ->
+  $('.inline_editable_container .mini_profile').live('mouseenter', ->
     if $('.inline_editable .closable', @).length > 0
       $('.inline_editable .closable', @).show()
     else
@@ -108,7 +108,7 @@ jQuery ->
     e.preventDefault()
   )
 
-  $('.inline_edtiable_container').delegate('form', 'submit', ->
+  $('.inline_editable_container').delegate('form', 'submit', ->
     return true if $(@).parents('.follow_button').length > 0
 
     edit_target  = $(@).parent().parent()
