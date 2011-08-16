@@ -42,3 +42,7 @@ Well duh. I have my day job as well as my own adventure to worry about on top of
 ### Development Notes
 
 In order to keep DB migration to minimum, migration files are modified during the development. Please run `rake dev:db:reset` to keep your database schema up to date.
+
+## License
+
+Dual licensed under the [MIT](http://www.opensource.org/licenses/mit-license.php) and [GPL](http://www.gnu.org/licenses/gpl.html) licenses.
