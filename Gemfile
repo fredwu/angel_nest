@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '~> 3.1.0.rc4'
+gem 'rails', '~> 3.1.0.rc6'
 gem 'mysql2'
 
 # core function gems
@@ -19,7 +19,7 @@ gem 'carmen'
 gem 'geo_location'
 
 # asset gems
-gem 'slim', :git => 'git://github.com/stonean/slim.git'
+gem 'slim', '~> 1.0.0'
 gem 'slim-rails'
 gem 'sass'
 gem 'coffee-script'
