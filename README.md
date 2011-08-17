@@ -22,7 +22,7 @@ Probably no, but if you think this system could be used for something else, and 
 
 Well duh. I have my day job as well as my own adventure to worry about on top of this stressful project, so please cut me some slack. ;)
 
-## System
+## System Info
 
 ### Stack
 
@@ -42,6 +42,20 @@ Well duh. I have my day job as well as my own adventure to worry about on top of
 ### Development Notes
 
 In order to keep DB migration to minimum, migration files are modified during the development. Please run `rake dev:db:reset` to keep your database schema up to date.
+
+## Setup Guide
+
+In order to run the system (for demo and development purposes), you may follow the following steps:
+
+- clone the repo, obviously
+- if you use [RVM](http://beginrescueend.com/), you may rename the `_rvmrc` file to `.rvmrc` and adjust its content accordingly
+- copy or rename `config/database.example.yml` to `config/database.yml` and adjust its content accordingly
+- `bundle install`
+- `rake db:create`
+- `rake dev:db:reset`
+- `rails s`
+- done, fire up your browser and browse to `http://localhost:3000/` :)
+- the default login is `test@example.com` and password `password`
 
 ## License
 
