@@ -14,7 +14,7 @@ p ' > users ...'
 user = User.make!({
   :username => 'fredwu',
   :name     => 'Fred Wu',
-  :email    => 'ifredwu@gmail.com',
+  :email    => 'test@example.com',
   :password => 'password',
 })
 
