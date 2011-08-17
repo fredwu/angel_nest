@@ -1,5 +1,7 @@
 # Angel Nest
 
+The story behind this: http://fredwu.me/post/9036730472/open-sourcing-a-200-hour-project-the-story-behind-it
+
 ## What is Angel Nest?
 
 Angel Nest is the code name of a project initially commissioned by a so called entrepreneur. The system itself and the business are modelled after [AngelList](http://angel.co/). The goal of this project was to become one of the first ones targeted at the Chinese entrepreneurship and investment market.
