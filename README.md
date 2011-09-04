@@ -3,6 +3,7 @@
 - Hacker News comments: http://news.ycombinator.com/item?id=2891907
 - Reddit comments: http://www.reddit.com/r/programming/comments/jkr8r/developer_opensources_200_hr_project_after_client/
 - The story behind this: http://fredwu.me/post/9036730472/open-sourcing-a-200-hour-project-the-story-behind-it
+- The things I have learnt: http://fredwu.me/post/9703934823/startup-vc-and-the-things-i-learnt-from-open-sourcing
 
 ## What is Angel Nest?
 
