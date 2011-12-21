@@ -16,7 +16,7 @@ describe InvestorsController do
     collection.should == User.investors.page(1)
     response.should be_success
   end
-  
+
   it "shows pagination" do
     get :index, :page => 99
 
