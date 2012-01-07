@@ -1,1 +1,1 @@
-rvm ruby-1.9.2@angel_nest --create
+rvm ruby-1.9.3@angel_nest --create

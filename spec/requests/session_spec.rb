@@ -45,10 +45,4 @@ describe "session" do
 
     session[:user_return_to].should == startup_path(startup)
   end
-
-  it "doesn't record the last visited page for a user session request" do
-    get new_user_session_path
-
-    session[:user_return_to].should == startups_path
-  end
 end
