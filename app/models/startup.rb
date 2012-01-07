@@ -77,7 +77,7 @@ class Startup < ActiveRecord::Base
 
   def attach_user(user, role_identifier = :member, member_title = '')
     startup_users.create(
-      :user_email      => (user.try(:email) || user),
+      :user_email      => (user.is_a?(User) ? user.email : user),
       :role_identifier => role_identifier.to_s,
       :member_title    => member_title,
     ) unless user_meta(user, role_identifier)
@@ -101,7 +101,7 @@ class Startup < ActiveRecord::Base
 
   def user_meta(user, role_identifier = :member)
     startup_users.where(
-      :user_email      => (user.try(:email) || user),
+      :user_email      => (user.is_a?(User) ? user.email : user),
       :role_identifier => role_identifier.to_s
     ).first
   end
