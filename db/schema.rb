@@ -18,8 +18,8 @@ ActiveRecord::Schema.define(:version => 20110717223142) do
     t.string   "funds_to_offer"
     t.text     "description"
     t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
   end
 
   add_index "investor_profiles", ["user_id"], :name => "index_investor_profiles_on_user_id"
@@ -34,8 +34,8 @@ ActiveRecord::Schema.define(:version => 20110717223142) do
     t.integer  "user_id"
     t.integer  "proposal_id"
     t.integer  "topic_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
   end
 
   add_index "messages", ["is_private", "target_type", "target_id"], :name => "comments_by_type"
@@ -49,8 +49,8 @@ ActiveRecord::Schema.define(:version => 20110717223142) do
   create_table "proposal_for_investors", :id => false, :force => true do |t|
     t.integer  "proposal_id"
     t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   add_index "proposal_for_investors", ["proposal_id", "user_id"], :name => "index_proposal_for_investors_on_proposal_id_and_user_id"
@@ -86,8 +86,8 @@ ActiveRecord::Schema.define(:version => 20110717223142) do
     t.text     "spending_plan"
     t.integer  "next_investment_round",                :default => 0
     t.integer  "startup_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                              :null => false
+    t.datetime "updated_at",                                              :null => false
   end
 
   add_index "proposals", ["proposal_stage_identifier"], :name => "index_proposals_on_proposal_stage_identifier"
@@ -96,8 +96,8 @@ ActiveRecord::Schema.define(:version => 20110717223142) do
   create_table "startup_photos", :force => true do |t|
     t.string   "photo"
     t.integer  "startup_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   add_index "startup_photos", ["startup_id"], :name => "index_startup_photos_on_startup_id"
@@ -108,8 +108,8 @@ ActiveRecord::Schema.define(:version => 20110717223142) do
     t.string   "role_identifier"
     t.string   "member_title",    :default => ""
     t.boolean  "confirmed",       :default => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
   end
 
   add_index "startup_users", ["confirmed"], :name => "index_startup_users_on_confirmed"
@@ -130,8 +130,8 @@ ActiveRecord::Schema.define(:version => 20110717223142) do
     t.integer  "followers_count",   :default => 0
     t.integer  "followed_count",    :default => 0
     t.integer  "comments_count",    :default => 0
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
   end
 
   add_index "startups", ["location"], :name => "index_startups_on_location"
@@ -143,8 +143,8 @@ ActiveRecord::Schema.define(:version => 20110717223142) do
     t.string   "follower_type"
     t.integer  "target_id"
     t.string   "target_type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   add_index "target_followers", ["follower_id", "target_type", "target_id"], :name => "target_followers_follwer", :unique => true
@@ -178,8 +178,8 @@ ActiveRecord::Schema.define(:version => 20110717223142) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                               :null => false
+    t.datetime "updated_at",                                               :null => false
   end
 
   add_index "users", ["authentication_token"], :name => "index_users_on_authentication_token", :unique => true
