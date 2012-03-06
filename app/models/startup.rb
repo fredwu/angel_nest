@@ -16,6 +16,14 @@ class Startup < ActiveRecord::Base
 
   has_many :proposals
 
+  attr_accessible :name,
+                  :pitch,
+                  :funds_to_raise,
+                  :stage_identifier,
+                  :market_identifier,
+                  :location,
+                  :description
+
   accepts_nested_attributes_for :photos, :limit => 5, :allow_destroy => true, :reject_if => :all_blank
 
   validates :name,              :presence     => true,

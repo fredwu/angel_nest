@@ -112,22 +112,36 @@ class User < ActiveRecord::Base
   end
 
   def send_private_message(target_user, content, extras = {})
-    messages.create!({
+    message = messages.create!({
       :content     => content,
       :is_private  => true,
       :target_id   => target_user.id,
       :target_type => 'User'
-    }.merge(extras)) && reload
+    })
+
+    extras.each { |k, v| message.update_attribute k, v }
+    message.save
+
+    reload
+
+    message
   end
 
   def reply_private_message(topic, content, extras = {})
-    messages.create!({
+    message = messages.create!({
       :content     => content,
       :is_private  => true,
       :target_id   => topic.user.id,
-      :target_type => 'User',
-      :topic_id    => topic.id
-    }.merge(extras)) && reload
+      :target_type => 'User'
+    })
+
+    extras.each { |k, v| message.update_attribute k, v }
+    message.topic_id = topic.id
+    message.save
+
+    reload
+
+    message
   end
 
   def add_micro_post(content)

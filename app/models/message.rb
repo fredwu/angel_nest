@@ -6,6 +6,11 @@ class Message < ActiveRecord::Base
   belongs_to :topic, :class_name => 'Message', :foreign_key => 'topic_id'
   has_many :replies, :class_name => 'Message', :foreign_key => 'topic_id'
 
+  attr_accessible :content,
+                  :is_private,
+                  :target_id,
+                  :target_type
+
   validates :content, :presence => true,
                       :length   => { :maximum => 140 }
 

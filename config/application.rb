@@ -43,21 +43,28 @@ module AngelNest
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
-    # Please note that JavaScript expansions are *ignored altogether* if the asset
-    # pipeline is enabled (see config.assets.enabled below). Put your defaults in
-    # app/assets/javascripts/application.js in that case.
-    #
-    # JavaScript files you want as :defaults (application.js is always included).
-    # config.action_view.javascript_expansions[:defaults] = %w(prototype prototype_ujs)
-
     # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = "utf-8"
 
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password, :password_confirmation]
 
+    # Use SQL instead of Active Record's schema dumper when creating the database.
+    # This is necessary if your schema can't be completely dumped by the schema dumper,
+    # like if you have constraints or database-specific column types
+    # config.active_record.schema_format = :sql
+
+    # Enforce whitelist mode for mass assignment.
+    # This will create an empty whitelist of attributes available for mass-assignment for all models
+    # in your app. As such, your models will need to explicitly whitelist or blacklist accessible
+    # parameters by using an attr_accessible or attr_protected declaration.
+    config.active_record.whitelist_attributes = true
+
     # Enable the asset pipeline
     config.assets.enabled = true
+
+    # Version of your assets, change this if you want to expire all your assets
+    config.assets.version = '1.0'
 
     config.generators do |g|
       g.template_engine :slim

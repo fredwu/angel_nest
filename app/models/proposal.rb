@@ -3,6 +3,11 @@ class Proposal < ActiveRecord::Base
   belongs_to              :startup
   has_and_belongs_to_many :investors, :join_table => :proposal_for_investors, :class_name => 'User'
 
+  attr_protected :proposal_stage_identifier,
+                 :startup_id,
+                 :created_at,
+                 :updated_at
+
   validates :pitch,                                :presence     => true,
                                                    :length       => { :within => 10..140 }
   validates :introduction,                         :presence     => true,
