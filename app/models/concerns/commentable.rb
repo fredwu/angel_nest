@@ -10,18 +10,13 @@ module Commentable
   def add_comment(user, content, options = {})
     options = { :is_private => false }.merge(options)
 
-    message = Message.create(
+    Message.create({
       :content     => content,
       :is_private  => options[:is_private],
       :target_id   => id,
-      :target_type => self.class.name
-    )
-
-    message.update_attribute :user_id, user.id
-
-    reload
-
-    message
+      :target_type => self.class.name,
+      :user_id     => user.id
+    }, :as => :internal) && reload
   end
 
   def add_private_comment(user, content, options = {})

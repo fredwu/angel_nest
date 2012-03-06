@@ -10,6 +10,7 @@ class Message < ActiveRecord::Base
                   :is_private,
                   :target_id,
                   :target_type
+  attr_protected  :nil, :as => :internal
 
   validates :content, :presence => true,
                       :length   => { :maximum => 140 }
