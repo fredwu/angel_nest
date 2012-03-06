@@ -17,8 +17,7 @@ module Commentable
       :target_type => self.class.name
     )
 
-    message.user_id = user.id
-    message.save
+    message.update_attribute :user_id, user.id
 
     reload
 

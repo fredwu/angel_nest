@@ -120,7 +120,6 @@ class User < ActiveRecord::Base
     })
 
     extras.each { |k, v| message.update_attribute k, v }
-    message.save
 
     reload
 
@@ -135,9 +134,8 @@ class User < ActiveRecord::Base
       :target_type => 'User'
     })
 
+    message.update_attribute :topic_id, topic.id
     extras.each { |k, v| message.update_attribute k, v }
-    message.topic_id = topic.id
-    message.save
 
     reload
 
