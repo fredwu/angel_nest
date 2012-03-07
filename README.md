@@ -1,4 +1,4 @@
-# Angel Nest
+# Angel Nest [![Build Status](https://secure.travis-ci.org/fredwu/angel_nest.png?branch=master)](http://travis-ci.org/fredwu/angel_nest) [![Dependency Status](https://gemnasium.com/fredwu/angel_nest.png)](https://gemnasium.com/fredwu/angel_nest)
 
 - Hacker News comments: http://news.ycombinator.com/item?id=2891907
 - Reddit comments: http://www.reddit.com/r/programming/comments/jkr8r/developer_opensources_200_hr_project_after_client/
