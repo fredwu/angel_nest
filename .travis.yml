@@ -5,4 +5,5 @@ rvm:
 
 before_script:
   - "mysql -e 'create database angelnest_test;'"
+  - "cp config/database.example.yml config/database.yml"
   - "bundle exec rake db:migrate"
