@@ -38,9 +38,9 @@ group :assets do
 end
 
 group :development, :test do
-  gem 'capybara',    '~> 1.1.2'
-  gem 'rspec-rails', '~> 2.8.1'
-  gem 'machinist',   '~> 2.0.0.beta2'
+  gem 'capybara',           '~> 1.1.2'
+  gem 'rspec-rails',        '~> 2.8.1'
+  gem 'factory_girl_rails', '~> 1.7.0', :require => false
   gem 'ffaker'
   gem 'delorean'
   gem 'database_cleaner'

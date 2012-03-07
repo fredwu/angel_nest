@@ -13,7 +13,7 @@ describe ProposalsController do
   end
 
   it "shows the edit page" do
-    investors = User.make!(2)
+    investors = [User.make!, User.make!]
     proposal  = Proposal.make!(
       :startup   => startup,
       :investors => investors

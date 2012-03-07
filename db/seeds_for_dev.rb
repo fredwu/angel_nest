@@ -20,7 +20,7 @@ user = User.make!({
 
 # more users
 
-User.make!(40)
+40.times { User.make! }
 User.all.each { |u| u.confirm! }
 
 # investors and startups
