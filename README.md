@@ -31,8 +31,8 @@ Well duh. I have my day job as well as my own adventure to worry about on top of
 
 ### Stack
 
-- ruby 1.9.2
-- rails 3.1
+- ruby 1.9
+- rails 3.2
 
 ### Setup Instructions
 
@@ -42,7 +42,6 @@ Well duh. I have my day job as well as my own adventure to worry about on top of
 ### Run Test Suites
 
 - `rake spec` for integration and unit tests
-- `rake cucumber` for acceptance tests
 
 ### Development Notes
 
