@@ -64,3 +64,7 @@ In order to run the system (for demo and development purposes), you may follow t
 ## License
 
 Dual licensed under the [MIT](http://www.opensource.org/licenses/mit-license.php) and [GPL](http://www.gnu.org/licenses/gpl.html) licenses.
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/fredwu/angel_nest/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
