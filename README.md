@@ -5,6 +5,12 @@
 - The story behind this: http://fredwu.me/post/9036730472/open-sourcing-a-200-hour-project-the-story-behind-it
 - The things I have learnt: http://fredwu.me/post/9703934823/startup-vc-and-the-things-i-learnt-from-open-sourcing
 
+## Testimonials from HNers
+
+- > Holy shit the code is clean. Good job dude. I'm impressed by your .SCSS too. Good quality dev right here.
+
+- > Something not noted: he's turned a negative event (getting stiffed) into positive exposure for his work with hundreds of HN readers. At least at a glance, it seems like solid and clean Rails / Ruby code (and I think I've seen some other commenters noting that as well.) I'd be surprised if this post didn't result in at least one new client down the road... nicely played.
+
 ## What is Angel Nest?
 
 Angel Nest is the code name of a project initially commissioned by a so called entrepreneur. The system itself and the business are modelled after [AngelList](http://angel.co/). The goal of this project was to become one of the first ones targeted at the Chinese entrepreneurship and investment market.
