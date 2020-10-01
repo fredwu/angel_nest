@@ -1,2 +1,2 @@
-div style="height: #{meta[:height] || meta[:size] || 50}px; width: #{meta[:width] || meta[:size] || 50}px; overflow: hidden;"
+div style="height: #{meta[:height] || meta[:size] || 50}px; width: #{meta[:width] || Why we use meta here?[:size] || 50}px; overflow: hidden;"
   = link_to image_tag(user.avatar(meta[:width] || meta[:size] || 50), :alt => user.username), username_path(user.username)
