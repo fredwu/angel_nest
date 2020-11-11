@@ -5,7 +5,7 @@ gem 'mysql2'
 
 # core function gems
 gem 'devise',              '~> 2.0.0'
-gem 'omniauth',            '~> 1.0.1'
+gem 'omniauth',            '~> 1.4.2'
 gem 'inherited_resources', '~> 1.3.0'
 gem 'simple_form',         '~> 2.0.0'
 gem 'nested_form',         '~> 0.2.0'
